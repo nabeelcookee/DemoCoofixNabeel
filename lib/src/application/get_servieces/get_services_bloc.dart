@@ -39,5 +39,4 @@ class GetServicesBloc extends Bloc<GetServicesEvent, ServiceState> {
     );
   }
 }
-
 }

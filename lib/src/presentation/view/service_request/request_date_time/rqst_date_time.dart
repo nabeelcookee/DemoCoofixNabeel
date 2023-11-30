@@ -1,3 +1,5 @@
+import 'package:coofix/src/application/address_bloc/address_bloc.dart';
+import 'package:coofix/src/application/address_bloc/address_event.dart';
 import 'package:coofix/src/presentation/core/constants/constants.dart';
 import 'package:coofix/src/presentation/core/constants/strings.dart';
 import 'package:coofix/src/presentation/core/theme/colors.dart';
@@ -8,6 +10,7 @@ import 'package:coofix/src/presentation/view/choose_address/choose_address_botto
 import 'package:coofix/src/presentation/view/service_request/widgets/custom_app_bar.dart';
 import 'package:coofix/src/presentation/view/service_request/widgets/spinner_date_picker.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_holo_date_picker/flutter_holo_date_picker.dart';
 
 class ServiceRqstDateTimeView extends StatefulWidget {
@@ -93,6 +96,7 @@ class _ServiceRqstDateTimeViewState extends State<ServiceRqstDateTimeView> {
                     PrimaryButton(
                       text: AppStrings.continueButtonText,
                       onPressed: () {
+                        context.read<AddressBloc>().add(GetAddressEvent.getAddress(limit: 0, skip: 0, id: ""));
                         showModalBottomSheet(
                           context: context,
                           isDismissible: true,

@@ -255,3 +255,211 @@ abstract class _GetServicesEvent implements GetServicesEvent {
   _$$GetServicesEventImplCopyWith<_$GetServicesEventImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
+
+/// @nodoc
+mixin _$SelecterServiceId {
+  String get selecterServiceId => throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(String selecterServiceId) selecterServiceId,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(String selecterServiceId)? selecterServiceId,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(String selecterServiceId)? selecterServiceId,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_SelecterServiceId value) selecterServiceId,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_SelecterServiceId value)? selecterServiceId,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_SelecterServiceId value)? selecterServiceId,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
+
+  @JsonKey(ignore: true)
+  $SelecterServiceIdCopyWith<SelecterServiceId> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $SelecterServiceIdCopyWith<$Res> {
+  factory $SelecterServiceIdCopyWith(
+          SelecterServiceId value, $Res Function(SelecterServiceId) then) =
+      _$SelecterServiceIdCopyWithImpl<$Res, SelecterServiceId>;
+  @useResult
+  $Res call({String selecterServiceId});
+}
+
+/// @nodoc
+class _$SelecterServiceIdCopyWithImpl<$Res, $Val extends SelecterServiceId>
+    implements $SelecterServiceIdCopyWith<$Res> {
+  _$SelecterServiceIdCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? selecterServiceId = null,
+  }) {
+    return _then(_value.copyWith(
+      selecterServiceId: null == selecterServiceId
+          ? _value.selecterServiceId
+          : selecterServiceId // ignore: cast_nullable_to_non_nullable
+              as String,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$SelecterServiceIdImplCopyWith<$Res>
+    implements $SelecterServiceIdCopyWith<$Res> {
+  factory _$$SelecterServiceIdImplCopyWith(_$SelecterServiceIdImpl value,
+          $Res Function(_$SelecterServiceIdImpl) then) =
+      __$$SelecterServiceIdImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({String selecterServiceId});
+}
+
+/// @nodoc
+class __$$SelecterServiceIdImplCopyWithImpl<$Res>
+    extends _$SelecterServiceIdCopyWithImpl<$Res, _$SelecterServiceIdImpl>
+    implements _$$SelecterServiceIdImplCopyWith<$Res> {
+  __$$SelecterServiceIdImplCopyWithImpl(_$SelecterServiceIdImpl _value,
+      $Res Function(_$SelecterServiceIdImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? selecterServiceId = null,
+  }) {
+    return _then(_$SelecterServiceIdImpl(
+      selecterServiceId: null == selecterServiceId
+          ? _value.selecterServiceId
+          : selecterServiceId // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$SelecterServiceIdImpl implements _SelecterServiceId {
+  const _$SelecterServiceIdImpl({required this.selecterServiceId});
+
+  @override
+  final String selecterServiceId;
+
+  @override
+  String toString() {
+    return 'SelecterServiceId.selecterServiceId(selecterServiceId: $selecterServiceId)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$SelecterServiceIdImpl &&
+            (identical(other.selecterServiceId, selecterServiceId) ||
+                other.selecterServiceId == selecterServiceId));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, selecterServiceId);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$SelecterServiceIdImplCopyWith<_$SelecterServiceIdImpl> get copyWith =>
+      __$$SelecterServiceIdImplCopyWithImpl<_$SelecterServiceIdImpl>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(String selecterServiceId) selecterServiceId,
+  }) {
+    return selecterServiceId(this.selecterServiceId);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(String selecterServiceId)? selecterServiceId,
+  }) {
+    return selecterServiceId?.call(this.selecterServiceId);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(String selecterServiceId)? selecterServiceId,
+    required TResult orElse(),
+  }) {
+    if (selecterServiceId != null) {
+      return selecterServiceId(this.selecterServiceId);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_SelecterServiceId value) selecterServiceId,
+  }) {
+    return selecterServiceId(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_SelecterServiceId value)? selecterServiceId,
+  }) {
+    return selecterServiceId?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_SelecterServiceId value)? selecterServiceId,
+    required TResult orElse(),
+  }) {
+    if (selecterServiceId != null) {
+      return selecterServiceId(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _SelecterServiceId implements SelecterServiceId {
+  const factory _SelecterServiceId({required final String selecterServiceId}) =
+      _$SelecterServiceIdImpl;
+
+  @override
+  String get selecterServiceId;
+  @override
+  @JsonKey(ignore: true)
+  _$$SelecterServiceIdImplCopyWith<_$SelecterServiceIdImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}

@@ -11,4 +11,6 @@ class ApiEndpoints{
   static const String newRequest="${ApiUrl.baseUrl}/profile/service_request/new";
   
   static const String getServieces="${ApiUrl.baseUrl}/general/get_services";
+
+  static const String getAdress ="${ApiUrl.baseUrl}/profile/address/list";
 }

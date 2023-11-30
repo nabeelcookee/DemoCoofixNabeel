@@ -17,7 +17,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 class ServiceRequestView extends StatefulWidget {
   const ServiceRequestView({super.key});
-   
+
   @override
   State<ServiceRequestView> createState() => _ServiceRequestViewState();
 }
@@ -33,13 +33,14 @@ class _ServiceRequestViewState extends State<ServiceRequestView> {
 
   @override
   Widget build(BuildContext context) {
+    String? ServiceId;
     final kSize = MediaQuery.of(context).size;
     return BlocBuilder<GetServicesBloc, ServiceState>(
       builder: (context, state) {
         return Scaffold(
           backgroundColor: AppColors.secondaryColor,
           extendBody: true,
-          bottomNavigationBar: _footerButton(kSize , ),
+          bottomNavigationBar: _footerButton(kSize, ServiceId ?? ""),
           body: ScrollConfiguration(
             behavior: NoGlowScrollBehaviour(),
             child: SizedBox(
@@ -59,10 +60,12 @@ class _ServiceRequestViewState extends State<ServiceRequestView> {
                           const CustomAppBar(
                               title: AppStrings.selectService,
                               description: AppStrings.selectServiceDescription),
-                           Expanded(
-                            child: ServiceGridTile(getServicesId:(String serviceId){
-                              log(serviceId,name: "serviceId from request");
-                            } ),
+                          Expanded(
+                            child: ServiceGridTile(
+                                getServicesId: (String serviceId) {
+                              log(serviceId, name: "serviceId from request");
+                              ServiceId = serviceId;
+                            }),
                           )
                         ],
                       ),
@@ -75,10 +78,9 @@ class _ServiceRequestViewState extends State<ServiceRequestView> {
     );
   }
 
-  Widget _footerButton(Size kSize , ) {
+  Widget _footerButton(Size kSize, String selecterServiceId) {
     return BlocBuilder<GetServicesBloc, ServiceState>(
       builder: (context, state) {
-        
         return Container(
             padding: const EdgeInsets.symmetric(
                 horizontal: AppConstants.basePadding,
@@ -102,7 +104,9 @@ class _ServiceRequestViewState extends State<ServiceRequestView> {
                           topRight: Radius.circular(kSize.height * 0.0315))),
                   context: context,
                   builder: (context) {
-                    return const ServiceRequestBottomSheet();
+                    return ServiceRequestBottomSheet(
+                      serviceId: selecterServiceId,
+                    );
                   },
                 );
               },

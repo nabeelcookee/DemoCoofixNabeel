@@ -2,4 +2,5 @@ import 'package:coofix/src/domain/domain/models/get_servieces/get_servieces_mode
 
 abstract class IGetServieces{
   Future<List<GetServiecesModel>> getServices({required String id ,required int skip, required int limit});
+  
 }

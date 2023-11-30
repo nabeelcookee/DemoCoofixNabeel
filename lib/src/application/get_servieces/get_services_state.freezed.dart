@@ -20,6 +20,7 @@ mixin _$ServiceState {
   bool get isLoading => throw _privateConstructorUsedError;
   String get errorMessage => throw _privateConstructorUsedError;
   List<GetServiecesModel> get services => throw _privateConstructorUsedError;
+  String get selecterServiceId => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $ServiceStateCopyWith<ServiceState> get copyWith =>
@@ -36,7 +37,8 @@ abstract class $ServiceStateCopyWith<$Res> {
       {bool status,
       bool isLoading,
       String errorMessage,
-      List<GetServiecesModel> services});
+      List<GetServiecesModel> services,
+      String selecterServiceId});
 }
 
 /// @nodoc
@@ -56,6 +58,7 @@ class _$ServiceStateCopyWithImpl<$Res, $Val extends ServiceState>
     Object? isLoading = null,
     Object? errorMessage = null,
     Object? services = null,
+    Object? selecterServiceId = null,
   }) {
     return _then(_value.copyWith(
       status: null == status
@@ -74,6 +77,10 @@ class _$ServiceStateCopyWithImpl<$Res, $Val extends ServiceState>
           ? _value.services
           : services // ignore: cast_nullable_to_non_nullable
               as List<GetServiecesModel>,
+      selecterServiceId: null == selecterServiceId
+          ? _value.selecterServiceId
+          : selecterServiceId // ignore: cast_nullable_to_non_nullable
+              as String,
     ) as $Val);
   }
 }
@@ -90,7 +97,8 @@ abstract class _$$ServiceStateImplCopyWith<$Res>
       {bool status,
       bool isLoading,
       String errorMessage,
-      List<GetServiecesModel> services});
+      List<GetServiecesModel> services,
+      String selecterServiceId});
 }
 
 /// @nodoc
@@ -108,6 +116,7 @@ class __$$ServiceStateImplCopyWithImpl<$Res>
     Object? isLoading = null,
     Object? errorMessage = null,
     Object? services = null,
+    Object? selecterServiceId = null,
   }) {
     return _then(_$ServiceStateImpl(
       status: null == status
@@ -126,18 +135,23 @@ class __$$ServiceStateImplCopyWithImpl<$Res>
           ? _value._services
           : services // ignore: cast_nullable_to_non_nullable
               as List<GetServiecesModel>,
+      selecterServiceId: null == selecterServiceId
+          ? _value.selecterServiceId
+          : selecterServiceId // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 }
 
 /// @nodoc
 
-class _$ServiceStateImpl implements _ServiceState {
+class _$ServiceStateImpl with DiagnosticableTreeMixin implements _ServiceState {
   _$ServiceStateImpl(
       {required this.status,
       required this.isLoading,
       required this.errorMessage,
-      required final List<GetServiecesModel> services})
+      required final List<GetServiecesModel> services,
+      required this.selecterServiceId})
       : _services = services;
 
   @override
@@ -155,8 +169,23 @@ class _$ServiceStateImpl implements _ServiceState {
   }
 
   @override
-  String toString() {
-    return 'ServiceState(status: $status, isLoading: $isLoading, errorMessage: $errorMessage, services: $services)';
+  final String selecterServiceId;
+
+  @override
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+    return 'ServiceState(status: $status, isLoading: $isLoading, errorMessage: $errorMessage, services: $services, selecterServiceId: $selecterServiceId)';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties
+      ..add(DiagnosticsProperty('type', 'ServiceState'))
+      ..add(DiagnosticsProperty('status', status))
+      ..add(DiagnosticsProperty('isLoading', isLoading))
+      ..add(DiagnosticsProperty('errorMessage', errorMessage))
+      ..add(DiagnosticsProperty('services', services))
+      ..add(DiagnosticsProperty('selecterServiceId', selecterServiceId));
   }
 
   @override
@@ -169,12 +198,14 @@ class _$ServiceStateImpl implements _ServiceState {
                 other.isLoading == isLoading) &&
             (identical(other.errorMessage, errorMessage) ||
                 other.errorMessage == errorMessage) &&
-            const DeepCollectionEquality().equals(other._services, _services));
+            const DeepCollectionEquality().equals(other._services, _services) &&
+            (identical(other.selecterServiceId, selecterServiceId) ||
+                other.selecterServiceId == selecterServiceId));
   }
 
   @override
   int get hashCode => Object.hash(runtimeType, status, isLoading, errorMessage,
-      const DeepCollectionEquality().hash(_services));
+      const DeepCollectionEquality().hash(_services), selecterServiceId);
 
   @JsonKey(ignore: true)
   @override
@@ -188,7 +219,8 @@ abstract class _ServiceState implements ServiceState {
       {required final bool status,
       required final bool isLoading,
       required final String errorMessage,
-      required final List<GetServiecesModel> services}) = _$ServiceStateImpl;
+      required final List<GetServiecesModel> services,
+      required final String selecterServiceId}) = _$ServiceStateImpl;
 
   @override
   bool get status;
@@ -198,6 +230,8 @@ abstract class _ServiceState implements ServiceState {
   String get errorMessage;
   @override
   List<GetServiecesModel> get services;
+  @override
+  String get selecterServiceId;
   @override
   @JsonKey(ignore: true)
   _$$ServiceStateImplCopyWith<_$ServiceStateImpl> get copyWith =>
