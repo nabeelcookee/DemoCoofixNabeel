@@ -1,5 +1,6 @@
 import 'package:coofix/src/application/address_bloc/address_bloc.dart';
 import 'package:coofix/src/application/address_bloc/address_event.dart';
+import 'package:coofix/src/domain/domain/models/get_address_model/get_address_model.dart';
 import 'package:coofix/src/presentation/core/constants/constants.dart';
 import 'package:coofix/src/presentation/core/constants/strings.dart';
 import 'package:coofix/src/presentation/core/theme/colors.dart';
@@ -51,7 +52,6 @@ class _ServiceRqstDateTimeViewState extends State<ServiceRqstDateTimeView> {
                     SpinnerDatePicker(
                         looping: true, // default is not looping
                         firstDate: DateTime.now(), //DateTime(1960),
-
                         dateFormat: "MMMM dd,EEEE",
                         onChange: (DateTime newDate, _) {
                           setState(() {
@@ -96,7 +96,7 @@ class _ServiceRqstDateTimeViewState extends State<ServiceRqstDateTimeView> {
                     PrimaryButton(
                       text: AppStrings.continueButtonText,
                       onPressed: () {
-                        context.read<AddressBloc>().add(GetAddressEvent.getAddress(limit: 0, skip: 0, id: ""));
+                       context.read<AddressBloc>().add(const  GetAddressEvent.getAddress(limit: 0, skip: 0, id: "")) ;
                         showModalBottomSheet(
                           context: context,
                           isDismissible: true,
@@ -120,7 +120,6 @@ class _ServiceRqstDateTimeViewState extends State<ServiceRqstDateTimeView> {
           )),
     );
   }
-
   Widget timeWidget(Size kSize, int index) {
     return Expanded(
       child: InkWell(

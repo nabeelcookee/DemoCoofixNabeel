@@ -42,12 +42,18 @@ class AuthRepository implements IAuthRepository {
       throw Exception('Failed to send OTP: $e');
     }
   }
-
-  void saveAccessTokenToPrefs(String accessToken) async {
+void saveAccessTokenToPrefs(String accessToken) async {
+  try {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     prefs.setString('access_token', accessToken);
+    print('Access token saved: $accessToken');
+  } catch (e) {
+    print('Error accessing SharedPreferences: $e');
   }
+}
 
+
+   
   @override
   Future<AppUser> checkAuth() async {
     try {
@@ -75,14 +81,15 @@ class AuthRepository implements IAuthRepository {
         print(user);
         print("checkAuth Success");
         return user;
-      }else {
+      } else {
         throw Exception('Failed to check authentication..1');
       }
-    }catch (error) {
+    } catch (error) {
       print('Error: $error');
       throw Exception('Failed to check authentication..2');
     }
   }
+
   @override
   Future<AppUser> verifyOtp(
       {required String otp, required String userId}) async {
@@ -92,7 +99,7 @@ class AuthRepository implements IAuthRepository {
       final Map<String, dynamic> data = {
         'otp': otp,
         'user_id': userId,
-      };  
+      };
       var dio = Dio();
       dio.interceptors.add(Dionterceptor());
       final response = await dio.post(ApiEndpoints.verifyOtpApi,
@@ -100,13 +107,14 @@ class AuthRepository implements IAuthRepository {
             headers: {"Tokenvalid": AppConstants.tockenValied},
           ),
           data: data);
-
       log('Response status code: ${response.statusCode}');
       log('Response headers: ${response.headers}');
       log('Response body: ${response.data}');
       if (response.statusCode == 200) {
-        final userModel = AppUser.fromJson(response.data['user']);
+        final userModel = AppUser.fromJson(response.data);
+        log(userModel.accessToken,name: "accssess token");
         saveAccessTokenToPrefs(userModel.accessToken);
+        log(response.data.toString(),name: "from verify");
         print('accsess tokent is ${userModel.accessToken}');
         print(userModel);
         print("success");

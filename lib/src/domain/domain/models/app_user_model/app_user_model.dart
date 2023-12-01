@@ -10,7 +10,7 @@ class AppUser with _$AppUser{
    
   @JsonKey(name: '_id') @Default('') String id,
   @JsonKey(name: 'row_id')@Default('')  String rowId,
-  @JsonKey(name: 'user_name') @Default('') String name,
+  @JsonKey(name: 'name') @Default('') String name,
    @JsonKey(name: 'phone_number') @Default('') String phoneNumber,
    @Default('') String image,
    @Default(false) bool active,

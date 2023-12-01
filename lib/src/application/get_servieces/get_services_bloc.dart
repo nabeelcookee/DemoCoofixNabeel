@@ -18,7 +18,6 @@ class GetServicesBloc extends Bloc<GetServicesEvent, ServiceState> {
   }
  FutureOr<void> _getServices(
     GetServicesEvent event, Emitter<ServiceState> emit) async {
-  log(event.id, name: "from get services");
   try {
     emit(state.copyWith(
     ));

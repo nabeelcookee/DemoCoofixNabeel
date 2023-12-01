@@ -1,5 +1,4 @@
 import 'dart:async';
-
 import 'package:bloc/bloc.dart';
 import 'package:coofix/src/application/address_bloc/address_event.dart';
 import 'package:coofix/src/application/address_bloc/address_state.dart';
@@ -9,6 +8,7 @@ import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
+
 
 @injectable
 class AddressBloc extends Bloc<GetAddressEvent, AddressState> {
@@ -22,8 +22,8 @@ FutureOr<void>_getAddress(GetAddressEvent event ,Emitter<AddressState> emit) asy
   try{
      emit(state.copyWith(
     ));
-    final response= await iGetAddress.getServices(id: "", skip: 0, limit: 0);
-    emit(state.copyWith(address: response));
+    final response= await iGetAddress.getServices(id: event.id, skip: event.skip, limit: event.limit);
+    emit(state.copyWith(address: response,));
 }catch(e){
  if (kDebugMode) {
       print('Error in getaddress: $e');

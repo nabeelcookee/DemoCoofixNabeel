@@ -46,8 +46,9 @@ FutureOr<void> _verifyOtp(_VerifyOtp event, Emitter<AuthState> emit) async {
  try {
     emit(state.copyWith(isVrifyingOtp: true,errorMessage: '')); 
     var response = await iathReposiroy.verifyOtp(otp: event.otp, userId: event.userId);
-    emit(state.copyWith(user: response,  ));
+    emit(state.copyWith(user: response ));
     log(event.userId);
+    log(response.toString(),name: "response frome verify");
     
     emit(state.copyWith(isVrifyingOtp: false)); 
   } catch (e) {

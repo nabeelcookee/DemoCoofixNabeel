@@ -128,7 +128,7 @@ class _SplashViewState extends State<SplashView>
   }
   chechPreviouseLogin()async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
-      if (prefs.getString('access_token') != null) {
+      if (prefs.getString('access_token') != null && prefs.getString('access_token')!.isNotEmpty) {
         context.read<AuthBloc>().add(AuthEvent.checkAuth());
       } else {
         Navigator.pushReplacementNamed(
