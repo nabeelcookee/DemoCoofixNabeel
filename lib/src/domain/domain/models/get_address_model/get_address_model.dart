@@ -1,4 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
+
 part 'get_address_model.freezed.dart';
 part 'get_address_model.g.dart';
 
@@ -26,7 +27,7 @@ class AddressModel with _$AddressModel {
 @freezed
 class LocationCoordinates with _$LocationCoordinates {
   factory LocationCoordinates({
-    @JsonKey(name: 'type')  required String type,
+    @JsonKey(name: 'type') required String type,
     required List<double> coordinates,
   }) = _LocationCoordinates;
 

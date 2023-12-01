@@ -1,4 +1,7 @@
 import 'package:coofix/app/router/router_constants.dart';
+import 'package:coofix/src/application/address_bloc/address_bloc.dart';
+import 'package:coofix/src/application/address_bloc/address_event.dart';
+import 'package:coofix/src/application/address_bloc/address_state.dart';
 import 'package:coofix/src/presentation/core/constants/constants.dart';
 import 'package:coofix/src/presentation/core/constants/images.dart';
 import 'package:coofix/src/presentation/core/constants/strings.dart';
@@ -9,6 +12,7 @@ import 'package:coofix/src/presentation/core/widgets/custom_gradient_tile.dart';
 import 'package:coofix/src/presentation/core/widgets/footer_button.dart';
 import 'package:coofix/src/presentation/core/widgets/primary_button.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class ChooseAddressBottomSheet extends StatefulWidget {
   const ChooseAddressBottomSheet({super.key});
@@ -20,6 +24,14 @@ class ChooseAddressBottomSheet extends StatefulWidget {
 
 class _ChooseAddressBottomSheetState extends State<ChooseAddressBottomSheet> {
   final selectedValue = ValueNotifier(0);
+  @override
+  void initState() {
+    context
+        .read<AddressBloc>()
+        .add(const GetAddressEvent.getAddress(limit: 0, skip: 0, id: ""));
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     final kSize = MediaQuery.of(context).size;
@@ -61,12 +73,24 @@ class _ChooseAddressBottomSheetState extends State<ChooseAddressBottomSheet> {
                     height: kSize.height * .025,
                   ),
                   Expanded(
-                    child: ListView.builder(
-                      scrollDirection: Axis.vertical,
-                      itemCount: 5,
-                      shrinkWrap: true,
-                      itemBuilder: (context, index) {
-                        return addressTile(kSize, index);
+                    child: BlocBuilder<AddressBloc, AddressState>(
+                      builder: (
+                        context,
+                        state,
+                      ) {
+                        return ListView.builder(
+                          scrollDirection: Axis.vertical,
+                          itemCount: state.address.length,
+                          shrinkWrap: true,
+                          itemBuilder: (context, index) {
+                            if (index < state.address.length) {
+                              return addressTile(kSize, index);
+                            } else {
+                              return const  SizedBox
+                                  .shrink();
+                            }
+                          },
+                        );
                       },
                     ),
                   )
@@ -81,65 +105,69 @@ class _ChooseAddressBottomSheetState extends State<ChooseAddressBottomSheet> {
   }
 
   Widget addressTile(Size kSize, int index) {
-    return ValueListenableBuilder(
-      valueListenable: selectedValue,
-      builder: (context, value, child) {
-        return InkWell(
-          highlightColor: AppColors.transparent,
-          splashColor: AppColors.transparent,
-          onTap: () {
-            selectedValue.value = index;
-          },
-          child: CustomGradientTile(
-            margin: EdgeInsets.only(bottom: kSize.height * .02),
-            gradient: const LinearGradient(colors: [
-              AppColors.rqstTileGradientTop,
-              AppColors.rqstTileGradientCenter,
-              AppColors.rqstTileGradientBottom
-            ], begin: Alignment.topLeft, end: Alignment.bottomRight),
-            child: Column(
-                mainAxisSize: MainAxisSize.min,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Row(
+    return BlocBuilder<AddressBloc, AddressState>(
+      builder: (context, state) {
+        return ValueListenableBuilder(
+          valueListenable: selectedValue,
+          builder: (context, value, child) {
+            return InkWell(
+              highlightColor: AppColors.transparent,
+              splashColor: AppColors.transparent,
+              onTap: () {
+                selectedValue.value = index;
+              },
+              child: CustomGradientTile(
+                margin: EdgeInsets.only(bottom: kSize.height * .02),
+                gradient: const LinearGradient(colors: [
+                  AppColors.rqstTileGradientTop,
+                  AppColors.rqstTileGradientCenter,
+                  AppColors.rqstTileGradientBottom
+                ], begin: Alignment.topLeft, end: Alignment.bottomRight),
+                child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Image.asset(
-                        index / 2 == 0
-                            ? AppImages.workIcon
-                            : AppImages.homeIcon,
-                        height: kSize.height * 0.0315,
-                        color: AppColors.textColor,
-                      ),
-                      SizedBox(width: kSize.width * .02),
-                      Text(
-                        index / 2 == 0 ? 'Work' : 'Home',
-                        style: AppTypography.soraRegular.copyWith(
-                            fontSize: kSize.height * .019,
-                            color: AppColors.blueGrey1),
-                      ),
-                      const Spacer(),
-                      if (selectedValue.value == index) selectedIndicator(kSize)
-                    ],
-                  ),
-                  SizedBox(
-                    height: kSize.height * .02,
-                  ),
-                  RichText(
-                      text: TextSpan(
-                          text: 'Vismaya',
-                          style: AppTypography.soraSemiBold.copyWith(
-                              fontSize: kSize.height * .019,
-                              color: AppColors.blackColor),
-                          children: [
-                        TextSpan(
-                            text:
-                                ' - 4517 Washington Ave. Manchester, Kentucky 39495',
+                      Row(
+                        children: [
+                          Image.asset(
+                            index / 2 == 0
+                                ? AppImages.workIcon
+                                : AppImages.homeIcon,
+                            height: kSize.height * 0.0315,
+                            color: AppColors.textColor,
+                          ),
+                          SizedBox(width: kSize.width * .02),
+                          Text(
+                            index / 2 == 0 ? 'Work' : 'Home',
                             style: AppTypography.soraRegular.copyWith(
-                                color: AppColors.blueGrey1,
-                                fontSize: kSize.height * .019))
-                      ]))
-                ]),
-          ),
+                                fontSize: kSize.height * .019,
+                                color: AppColors.blueGrey1),
+                          ),
+                          const Spacer(),
+                          if (selectedValue.value == index)
+                            selectedIndicator(kSize)
+                        ],
+                      ),
+                      SizedBox(
+                        height: kSize.height * .02,
+                      ),
+                      RichText(
+                          text: TextSpan(
+                              text: state.address[index].fullName,
+                              style: AppTypography.soraSemiBold.copyWith(
+                                  fontSize: kSize.height * .019,
+                                  color: AppColors.blackColor),
+                              children: [
+                            TextSpan(
+                                text: state.address[index].address,
+                                style: AppTypography.soraRegular.copyWith(
+                                    color: AppColors.blueGrey1,
+                                    fontSize: kSize.height * .019))
+                          ]))
+                    ]),
+              ),
+            );
+          },
         );
       },
     );
@@ -181,7 +209,10 @@ class _ChooseAddressBottomSheetState extends State<ChooseAddressBottomSheet> {
           ),
           FooterButton(
               width: kSize.width,
-              onTap: () {},
+              onTap: () {
+                Navigator.pushNamed(
+                    context, RouterConstants.addNewAddressRoute);
+              },
               label: '',
               child: Row(
                 mainAxisSize: MainAxisSize.min,

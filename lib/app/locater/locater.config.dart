@@ -24,7 +24,7 @@ import 'package:coofix/src/domain/domain/repositories/i_request_repositry.dart'
     as _i9;
 import 'package:coofix/src/infrasructure/repositry/auth_repositry/auth_repositry.dart'
     as _i4;
-import 'package:coofix/src/infrasructure/repositry/get_address/get_address_repositry.dart'
+import 'package:coofix/src/infrasructure/repositry/get_address_repositry/get_address_repositry.dart'
     as _i6;
 import 'package:coofix/src/infrasructure/repositry/get_servieces_repositry/get_servieces_repositry.dart'
     as _i8;
@@ -45,12 +45,14 @@ extension GetItInjectableX on _i1.GetIt {
       environmentFilter,
     );
     gh.lazySingleton<_i3.IAuthRepository>(() => _i4.AuthRepository());
-    gh.lazySingleton<_i5.IGetAddress>(() => _i6.GetAddressRepositry());
+    gh.lazySingleton<_i5.IGetAddress>(() => _i6.GetAddressRepository());
     gh.lazySingleton<_i7.IGetServieces>(() => _i8.GetServiecesRepositry());
     gh.lazySingleton<_i9.INewRequestRepositry>(
         () => _i10.NewRequestRepositry());
     gh.factory<_i11.NewRequestBloc>(
         () => _i11.NewRequestBloc(gh<_i9.INewRequestRepositry>()));
+    gh.factory<_i12.AddAddressBloc>(
+        () => _i12.AddAddressBloc(gh<_i5.IGetAddress>()));
     gh.factory<_i12.AddressBloc>(() => _i12.AddressBloc(gh<_i5.IGetAddress>()));
     gh.factory<_i13.AuthBloc>(() => _i13.AuthBloc(gh<_i3.IAuthRepository>()));
     gh.factory<_i14.GetServicesBloc>(

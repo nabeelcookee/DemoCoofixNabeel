@@ -9,3 +9,16 @@ class GetAddressEvent with _$GetAddressEvent {
     required String id,
   }) = _GetAddressEvent;
 }
+@freezed
+class AddAddressEvent with _$AddAddressEvent {
+  const factory AddAddressEvent.addAddress({
+  required String id,
+  required String  addressType,
+  required String fullName,
+  required String addres,
+  required String pinCode,
+  required String directionToReach,
+  required double locationLatitude,
+  required double locationLongitude,
+  }) = _AddAddressEvent;
+}

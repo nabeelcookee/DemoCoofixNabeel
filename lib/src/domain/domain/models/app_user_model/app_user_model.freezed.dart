@@ -24,7 +24,7 @@ mixin _$AppUser {
   String get id => throw _privateConstructorUsedError;
   @JsonKey(name: 'row_id')
   String get rowId => throw _privateConstructorUsedError;
-  @JsonKey(name: 'user_name')
+  @JsonKey(name: 'name')
   String get name => throw _privateConstructorUsedError;
   @JsonKey(name: 'phone_number')
   String get phoneNumber => throw _privateConstructorUsedError;
@@ -50,7 +50,7 @@ abstract class $AppUserCopyWith<$Res> {
   $Res call(
       {@JsonKey(name: '_id') String id,
       @JsonKey(name: 'row_id') String rowId,
-      @JsonKey(name: 'user_name') String name,
+      @JsonKey(name: 'name') String name,
       @JsonKey(name: 'phone_number') String phoneNumber,
       String image,
       bool active,
@@ -133,7 +133,7 @@ abstract class _$$AppUserImplCopyWith<$Res> implements $AppUserCopyWith<$Res> {
   $Res call(
       {@JsonKey(name: '_id') String id,
       @JsonKey(name: 'row_id') String rowId,
-      @JsonKey(name: 'user_name') String name,
+      @JsonKey(name: 'name') String name,
       @JsonKey(name: 'phone_number') String phoneNumber,
       String image,
       bool active,
@@ -210,7 +210,7 @@ class _$AppUserImpl implements _AppUser {
   _$AppUserImpl(
       {@JsonKey(name: '_id') this.id = '',
       @JsonKey(name: 'row_id') this.rowId = '',
-      @JsonKey(name: 'user_name') this.name = '',
+      @JsonKey(name: 'name') this.name = '',
       @JsonKey(name: 'phone_number') this.phoneNumber = '',
       this.image = '',
       this.active = false,
@@ -228,7 +228,7 @@ class _$AppUserImpl implements _AppUser {
   @JsonKey(name: 'row_id')
   final String rowId;
   @override
-  @JsonKey(name: 'user_name')
+  @JsonKey(name: 'name')
   final String name;
   @override
   @JsonKey(name: 'phone_number')
@@ -296,7 +296,7 @@ abstract class _AppUser implements AppUser {
   factory _AppUser(
       {@JsonKey(name: '_id') final String id,
       @JsonKey(name: 'row_id') final String rowId,
-      @JsonKey(name: 'user_name') final String name,
+      @JsonKey(name: 'name') final String name,
       @JsonKey(name: 'phone_number') final String phoneNumber,
       final String image,
       final bool active,
@@ -313,7 +313,7 @@ abstract class _AppUser implements AppUser {
   @JsonKey(name: 'row_id')
   String get rowId;
   @override
-  @JsonKey(name: 'user_name')
+  @JsonKey(name: 'name')
   String get name;
   @override
   @JsonKey(name: 'phone_number')

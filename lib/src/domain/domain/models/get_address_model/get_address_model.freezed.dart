@@ -36,7 +36,6 @@ mixin _$AddressModel {
   String get pinCode => throw _privateConstructorUsedError;
   @JsonKey(name: 'directionToReach')
   String get directionToReach => throw _privateConstructorUsedError;
-  @JsonKey(name: 'locationCoordinates')
   LocationCoordinates get locationCoordinates =>
       throw _privateConstructorUsedError;
   @JsonKey(name: 'selected')
@@ -67,7 +66,6 @@ abstract class $AddressModelCopyWith<$Res> {
       @JsonKey(name: 'address') String address,
       @JsonKey(name: 'pinCode') String pinCode,
       @JsonKey(name: 'directionToReach') String directionToReach,
-      @JsonKey(name: 'locationCoordinates')
       LocationCoordinates locationCoordinates,
       @JsonKey(name: 'selected') bool selected,
       @JsonKey(name: 'createdAt') String createdAt,
@@ -181,7 +179,6 @@ abstract class _$$AddressModelImplCopyWith<$Res>
       @JsonKey(name: 'address') String address,
       @JsonKey(name: 'pinCode') String pinCode,
       @JsonKey(name: 'directionToReach') String directionToReach,
-      @JsonKey(name: 'locationCoordinates')
       LocationCoordinates locationCoordinates,
       @JsonKey(name: 'selected') bool selected,
       @JsonKey(name: 'createdAt') String createdAt,
@@ -280,7 +277,7 @@ class _$AddressModelImpl implements _AddressModel {
       @JsonKey(name: 'address') required this.address,
       @JsonKey(name: 'pinCode') required this.pinCode,
       @JsonKey(name: 'directionToReach') required this.directionToReach,
-      @JsonKey(name: 'locationCoordinates') required this.locationCoordinates,
+      required this.locationCoordinates,
       @JsonKey(name: 'selected') required this.selected,
       @JsonKey(name: 'createdAt') required this.createdAt,
       @JsonKey(name: 'updatedAt') required this.updatedAt});
@@ -313,7 +310,6 @@ class _$AddressModelImpl implements _AddressModel {
   @JsonKey(name: 'directionToReach')
   final String directionToReach;
   @override
-  @JsonKey(name: 'locationCoordinates')
   final LocationCoordinates locationCoordinates;
   @override
   @JsonKey(name: 'selected')
@@ -398,7 +394,6 @@ abstract class _AddressModel implements AddressModel {
       @JsonKey(name: 'address') required final String address,
       @JsonKey(name: 'pinCode') required final String pinCode,
       @JsonKey(name: 'directionToReach') required final String directionToReach,
-      @JsonKey(name: 'locationCoordinates')
       required final LocationCoordinates locationCoordinates,
       @JsonKey(name: 'selected') required final bool selected,
       @JsonKey(name: 'createdAt') required final String createdAt,
@@ -433,7 +428,6 @@ abstract class _AddressModel implements AddressModel {
   @JsonKey(name: 'directionToReach')
   String get directionToReach;
   @override
-  @JsonKey(name: 'locationCoordinates')
   LocationCoordinates get locationCoordinates;
   @override
   @JsonKey(name: 'selected')
@@ -456,6 +450,7 @@ LocationCoordinates _$LocationCoordinatesFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$LocationCoordinates {
+  @JsonKey(name: 'type')
   String get type => throw _privateConstructorUsedError;
   List<double> get coordinates => throw _privateConstructorUsedError;
 
@@ -471,7 +466,7 @@ abstract class $LocationCoordinatesCopyWith<$Res> {
           LocationCoordinates value, $Res Function(LocationCoordinates) then) =
       _$LocationCoordinatesCopyWithImpl<$Res, LocationCoordinates>;
   @useResult
-  $Res call({String type, List<double> coordinates});
+  $Res call({@JsonKey(name: 'type') String type, List<double> coordinates});
 }
 
 /// @nodoc
@@ -511,7 +506,7 @@ abstract class _$$LocationCoordinatesImplCopyWith<$Res>
       __$$LocationCoordinatesImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String type, List<double> coordinates});
+  $Res call({@JsonKey(name: 'type') String type, List<double> coordinates});
 }
 
 /// @nodoc
@@ -545,13 +540,15 @@ class __$$LocationCoordinatesImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$LocationCoordinatesImpl implements _LocationCoordinates {
   _$LocationCoordinatesImpl(
-      {required this.type, required final List<double> coordinates})
+      {@JsonKey(name: 'type') required this.type,
+      required final List<double> coordinates})
       : _coordinates = coordinates;
 
   factory _$LocationCoordinatesImpl.fromJson(Map<String, dynamic> json) =>
       _$$LocationCoordinatesImplFromJson(json);
 
   @override
+  @JsonKey(name: 'type')
   final String type;
   final List<double> _coordinates;
   @override
@@ -598,13 +595,14 @@ class _$LocationCoordinatesImpl implements _LocationCoordinates {
 
 abstract class _LocationCoordinates implements LocationCoordinates {
   factory _LocationCoordinates(
-      {required final String type,
+      {@JsonKey(name: 'type') required final String type,
       required final List<double> coordinates}) = _$LocationCoordinatesImpl;
 
   factory _LocationCoordinates.fromJson(Map<String, dynamic> json) =
       _$LocationCoordinatesImpl.fromJson;
 
   @override
+  @JsonKey(name: 'type')
   String get type;
   @override
   List<double> get coordinates;

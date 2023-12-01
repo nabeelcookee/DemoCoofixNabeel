@@ -3,7 +3,10 @@ import 'package:coofix/src/presentation/core/theme/typography.dart';
 import 'package:flutter/material.dart';
 
 class SaveThisAddressAsContainer extends StatefulWidget {
-  const SaveThisAddressAsContainer({super.key});
+   final Function(int) onIndexChanged; // New parameter to receive the selected index
+
+   SaveThisAddressAsContainer({Key? key, required this.onIndexChanged})
+      : super(key: key);
 
   @override
   State<SaveThisAddressAsContainer> createState() =>
@@ -12,8 +15,7 @@ class SaveThisAddressAsContainer extends StatefulWidget {
 
 class _SaveThisAddressAsContainerState
     extends State<SaveThisAddressAsContainer> {
-  int selectedIndex = 0;
-
+       int selectedIndex = 0;
   List<String> addressModeTitle = [
     "Home",
     "Work",
@@ -22,6 +24,7 @@ class _SaveThisAddressAsContainerState
 
   @override
   Widget build(BuildContext context) {
+    
     final kSize = MediaQuery.of(context).size;
     return ListView.builder(
       scrollDirection: Axis.horizontal,
@@ -32,6 +35,8 @@ class _SaveThisAddressAsContainerState
             onTap: () {
               setState(() {
                 selectedIndex = index;
+                // Pass the selected index to the constructor
+                widget.onIndexChanged(selectedIndex);
               });
             },
             child: AnimatedContainer(
@@ -49,7 +54,7 @@ class _SaveThisAddressAsContainerState
               child: Text(addressModeTitle[index],
                   style: AppTypography.soraRegular.copyWith(
                       fontSize: kSize.height * 0.01910,
-                      color: selectedIndex == index
+                      color:selectedIndex == index
                           ? AppColors.secondaryColor
                           : AppColors.blueGrey1)),
             ),

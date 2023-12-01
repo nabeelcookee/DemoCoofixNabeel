@@ -1,3 +1,8 @@
+import 'dart:io';
+
+import 'package:coofix/src/application/address_bloc/address_bloc.dart';
+import 'package:coofix/src/application/address_bloc/address_event.dart';
+import 'package:coofix/src/application/address_bloc/address_state.dart';
 import 'package:coofix/src/presentation/core/theme/typography.dart';
 import 'package:coofix/src/presentation/core/values/form_validators.dart';
 import 'package:coofix/src/presentation/core/widgets/custom_textfield.dart';
@@ -5,12 +10,13 @@ import 'package:coofix/src/presentation/core/widgets/primary_button.dart';
 import 'package:coofix/src/presentation/view/manage_address/add_new_address/widgets/addressmodecontainer.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 // ignore: must_be_immutable
 class AllTextFormField extends StatefulWidget {
-  const AllTextFormField({super.key, this.ksize});
+  AllTextFormField({super.key, this.ksize});
   final Size? ksize;
-
+  int selectedIndex = 0;
   @override
   State<AllTextFormField> createState() => _AllTextFormFieldState();
 }
@@ -24,6 +30,7 @@ class _AllTextFormFieldState extends State<AllTextFormField> {
 
   @override
   Widget build(BuildContext context) {
+    int selectedIndex = 0;
     return SingleChildScrollView(
       child: Form(
         key: formKey,
@@ -96,23 +103,45 @@ class _AllTextFormFieldState extends State<AllTextFormField> {
             SizedBox(
               width: widget.ksize!.width,
               height: widget.ksize!.height * 0.05,
-              child: const SaveThisAddressAsContainer(),
+              child: SaveThisAddressAsContainer(
+                onIndexChanged: (index) {
+                  setState(() {
+                    selectedIndex = index;
+                  });
+                },
+              ),
             ),
             SizedBox(
               height: widget.ksize!.height * 0.1,
             ),
-
             //Footer button
-            PrimaryButton(
-              text: "Add",
-              onPressed: () {
-                if (formKey.currentState!.validate()) {
-                  Navigator.pop(context);
-                  fullNameController.clear();
-                  addressController.clear();
-                  pincodeController.clear();
-                  directionToReachController.clear();
-                }
+            BlocBuilder<AddAddressBloc, AddressState>(
+              builder: (context, state) {
+                return PrimaryButton(
+                          text: "Add",
+                          onPressed: () {
+                            if (formKey.currentState!.validate()) {
+                              context.read<AddAddressBloc>().add(AddAddressEvent.addAddress(
+                                  id: "",
+                                  addressType: selectedIndex == 0
+                                      ? "Home"
+                                      : (selectedIndex == 1 ? "Work" : "Other"),
+                                  fullName: fullNameController.text,
+                                  addres: addressController.text,
+                                  pinCode: pincodeController.text,
+                                  directionToReach: directionToReachController.text,
+                                  locationLatitude: 1.2,
+                                  locationLongitude: 1.2));
+                              fullNameController.clear();
+                              addressController.clear();
+                              pincodeController.clear();
+                              directionToReachController.clear();
+                              if (state.status==true) {
+                                Navigator.pop(context);
+                              }
+                            }
+                          },
+                        );
               },
             ),
             SizedBox(
