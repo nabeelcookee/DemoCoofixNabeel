@@ -30,7 +30,7 @@ class _ChooseAddressBottomSheetState extends State<ChooseAddressBottomSheet> {
   void initState() {
     context
         .read<AddressBloc>()
-        .add(const AddressEvent.getAddress(limit: 0, skip: 0, id: ""));
+        .add(const GetAddressEvent.getAddress(limit: 0, skip: 0, id: ""));
     super.initState();
   }
 
@@ -104,6 +104,7 @@ class _ChooseAddressBottomSheetState extends State<ChooseAddressBottomSheet> {
       },
     );
   }
+
   Widget addressTile(Size kSize, int index) {
     return BlocBuilder<AddressBloc, AddressState>(
       builder: (context, state) {
@@ -117,9 +118,9 @@ class _ChooseAddressBottomSheetState extends State<ChooseAddressBottomSheet> {
                   splashColor: AppColors.transparent,
                   onTap: () {
                     selectedValue.value = index;
-                    context.read<AddressBloc>().add(
-                        AddressEvent.selectedAddress(
-                            id: state.address[index].id));
+                    context.read<SelectedAddressBloc>().add(
+                        SelectedAddressEvent.selectedAddress(
+                            id: state.address[selectedValue.value].id));
 
                     log(state.address[selectedValue.value].id,
                         name: "selected address id ");

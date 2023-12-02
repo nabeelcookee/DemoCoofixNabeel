@@ -115,7 +115,7 @@ class _AllTextFormFieldState extends State<AllTextFormField> {
               height: widget.ksize!.height * 0.1,
             ),
             //Footer button
-            BlocBuilder<AddAddressBloc, AddressState>(
+            BlocBuilder<AddressBloc, AddressState>(
               builder: (context, state) {
                 return PrimaryButton(
                           text: "Add",

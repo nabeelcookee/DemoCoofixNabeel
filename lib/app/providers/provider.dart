@@ -9,5 +9,8 @@ List<BlocProvider> kBlocProviders = [
   BlocProvider<AuthBloc>(create: (context) => getIt<AuthBloc>()),
   BlocProvider<GetServicesBloc>(create: (contxt)=>getIt<GetServicesBloc>()),
   BlocProvider<NewRequestBloc>(create: (context)=>getIt<NewRequestBloc>()),
-  BlocProvider<AddressBloc>(create: (context)=>getIt<AddressBloc>())
+  BlocProvider<AddressBloc>(create: (context)=>getIt<AddressBloc>()),
+  BlocProvider<AddAddressBloc>(create : (context)=> getIt<AddAddressBloc>()),
+  BlocProvider<SelectedAddressBloc>(create: (context)=> getIt<SelectedAddressBloc>())
+
 ];

@@ -96,7 +96,7 @@ class _ServiceRqstDateTimeViewState extends State<ServiceRqstDateTimeView> {
                     PrimaryButton(
                       text: AppStrings.continueButtonText,
                       onPressed: () {
-                       context.read<AddressBloc>().add(  AddressEvent.getAddress(limit: 0, skip: 0, id: "")) ;
+                       context.read<AddressBloc>().add(const   GetAddressEvent.getAddress(limit: 0, skip: 0, id: "")) ;
                         showModalBottomSheet(
                           context: context,
                           isDismissible: true,
