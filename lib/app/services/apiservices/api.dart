@@ -15,4 +15,6 @@ class ApiEndpoints{
   static const String getAdress ="${ApiUrl.baseUrl}/profile/address/list";
   
   static const String addAddres ="${ApiUrl.baseUrl}/profile/address/insert";
+
+  static const String selectedAddress ="${ApiUrl.baseUrl}/profile/address/select";
 }

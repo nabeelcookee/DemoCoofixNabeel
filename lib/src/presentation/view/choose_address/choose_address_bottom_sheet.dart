@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:coofix/app/router/router_constants.dart';
 import 'package:coofix/src/application/address_bloc/address_bloc.dart';
 import 'package:coofix/src/application/address_bloc/address_event.dart';
@@ -28,7 +30,7 @@ class _ChooseAddressBottomSheetState extends State<ChooseAddressBottomSheet> {
   void initState() {
     context
         .read<AddressBloc>()
-        .add(const GetAddressEvent.getAddress(limit: 0, skip: 0, id: ""));
+        .add(const AddressEvent.getAddress(limit: 0, skip: 0, id: ""));
     super.initState();
   }
 
@@ -86,8 +88,7 @@ class _ChooseAddressBottomSheetState extends State<ChooseAddressBottomSheet> {
                             if (index < state.address.length) {
                               return addressTile(kSize, index);
                             } else {
-                              return const  SizedBox
-                                  .shrink();
+                              return const SizedBox.shrink();
                             }
                           },
                         );
@@ -103,69 +104,78 @@ class _ChooseAddressBottomSheetState extends State<ChooseAddressBottomSheet> {
       },
     );
   }
-
   Widget addressTile(Size kSize, int index) {
     return BlocBuilder<AddressBloc, AddressState>(
       builder: (context, state) {
         return ValueListenableBuilder(
           valueListenable: selectedValue,
           builder: (context, value, child) {
-            return InkWell(
-              highlightColor: AppColors.transparent,
-              splashColor: AppColors.transparent,
-              onTap: () {
-                selectedValue.value = index;
-              },
-              child: CustomGradientTile(
-                margin: EdgeInsets.only(bottom: kSize.height * .02),
-                gradient: const LinearGradient(colors: [
-                  AppColors.rqstTileGradientTop,
-                  AppColors.rqstTileGradientCenter,
-                  AppColors.rqstTileGradientBottom
-                ], begin: Alignment.topLeft, end: Alignment.bottomRight),
-                child: Column(
-                    mainAxisSize: MainAxisSize.min,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Row(
+            return BlocBuilder<AddressBloc, AddressState>(
+              builder: (context, state) {
+                return InkWell(
+                  highlightColor: AppColors.transparent,
+                  splashColor: AppColors.transparent,
+                  onTap: () {
+                    selectedValue.value = index;
+                    context.read<AddressBloc>().add(
+                        AddressEvent.selectedAddress(
+                            id: state.address[index].id));
+
+                    log(state.address[selectedValue.value].id,
+                        name: "selected address id ");
+                  },
+                  child: CustomGradientTile(
+                    margin: EdgeInsets.only(bottom: kSize.height * .02),
+                    gradient: const LinearGradient(colors: [
+                      AppColors.rqstTileGradientTop,
+                      AppColors.rqstTileGradientCenter,
+                      AppColors.rqstTileGradientBottom
+                    ], begin: Alignment.topLeft, end: Alignment.bottomRight),
+                    child: Column(
+                        mainAxisSize: MainAxisSize.min,
+                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Image.asset(
-                            index / 2 == 0
-                                ? AppImages.workIcon
-                                : AppImages.homeIcon,
-                            height: kSize.height * 0.0315,
-                            color: AppColors.textColor,
-                          ),
-                          SizedBox(width: kSize.width * .02),
-                          Text(
-                            index / 2 == 0 ? 'Work' : 'Home',
-                            style: AppTypography.soraRegular.copyWith(
-                                fontSize: kSize.height * .019,
-                                color: AppColors.blueGrey1),
-                          ),
-                          const Spacer(),
-                          if (selectedValue.value == index)
-                            selectedIndicator(kSize)
-                        ],
-                      ),
-                      SizedBox(
-                        height: kSize.height * .02,
-                      ),
-                      RichText(
-                          text: TextSpan(
-                              text: state.address[index].fullName,
-                              style: AppTypography.soraSemiBold.copyWith(
-                                  fontSize: kSize.height * .019,
-                                  color: AppColors.blackColor),
-                              children: [
-                            TextSpan(
-                                text: state.address[index].address,
+                          Row(
+                            children: [
+                              Image.asset(
+                                index / 2 == 0
+                                    ? AppImages.workIcon
+                                    : AppImages.homeIcon,
+                                height: kSize.height * 0.0315,
+                                color: AppColors.textColor,
+                              ),
+                              SizedBox(width: kSize.width * .02),
+                              Text(
+                                index / 2 == 0 ? 'Work' : 'Home',
                                 style: AppTypography.soraRegular.copyWith(
-                                    color: AppColors.blueGrey1,
-                                    fontSize: kSize.height * .019))
-                          ]))
-                    ]),
-              ),
+                                    fontSize: kSize.height * .019,
+                                    color: AppColors.blueGrey1),
+                              ),
+                              const Spacer(),
+                              if (selectedValue.value == index)
+                                selectedIndicator(kSize)
+                            ],
+                          ),
+                          SizedBox(
+                            height: kSize.height * .02,
+                          ),
+                          RichText(
+                              text: TextSpan(
+                                  text: state.address[index].fullName,
+                                  style: AppTypography.soraSemiBold.copyWith(
+                                      fontSize: kSize.height * .019,
+                                      color: AppColors.blackColor),
+                                  children: [
+                                TextSpan(
+                                    text: state.address[index].address,
+                                    style: AppTypography.soraRegular.copyWith(
+                                        color: AppColors.blueGrey1,
+                                        fontSize: kSize.height * .019))
+                              ]))
+                        ]),
+                  ),
+                );
+              },
             );
           },
         );

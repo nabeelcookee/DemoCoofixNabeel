@@ -9,13 +9,22 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 @LazySingleton(as: IGetAddress)
 class GetAddressRepository implements IGetAddress {
+  // @override
+  // Future<AddressModel> addAddres(
+  //     {required String id,
+  //     required String addressType,
+  //     required String fullName,
+  //     required String addAddres,
+  //     required String pinCode,
+  //     required String directionToReach,
+  //     required double locationLatitude,
+  //     required double locationLongitude}) async {
+
+  // }
+
   @override
-  @override
-  Future<List<AddressModel>> getServices({
-    required String id,
-    required int skip,
-    required int limit,
-  }) async {
+  Future<List<AddressModel>> getAddress(
+      {required String id, required int skip, required int limit}) async {
     try {
       SharedPreferences prefs = await SharedPreferences.getInstance();
       final Map<String, dynamic> data = {
@@ -69,11 +78,52 @@ class GetAddressRepository implements IGetAddress {
   }
 
   @override
+  Future<AddressModel> selectedAddress({required String id}) async {
+    try {
+      SharedPreferences prefs = await SharedPreferences.getInstance();
+      final Map<String, dynamic> data = {
+        'id': id,
+      };
+
+      var dio = Dio();
+      dio.interceptors.add(Dionterceptor());
+
+      final response = await dio.post(
+        ApiEndpoints.selectedAddress,
+        data: data,
+        options: Options(
+          headers: {
+            "Authorization": "Bearer ${prefs.getString('access_token') ?? ''}",
+          },
+        ),
+      );
+      if (kDebugMode) {
+        print(
+            "selected Address access token is ${prefs.getString('access_token')}");
+        print('selected Address Response status code: ${response.statusCode}');
+        print('selected Address Response headers: ${response.headers}');
+        print('selected Address Response body: ${response.data}');
+      }
+      if (response.statusCode == 200) {
+        final dynamic responseData = response.data;
+        final AddressModel selectedData = AddressModel.fromJson(responseData);
+        return selectedData;
+      } else {
+        throw Exception(
+            "Failed to fetch address. Status code: ${response.statusCode}");
+      }
+    } catch (e) {
+      print(e);
+      throw Exception("Failed to fetch address. $e");
+    }
+  }
+
+  @override
   Future<AddressModel> addAddres(
       {required String id,
       required String addressType,
       required String fullName,
-      required String addAddres,
+      required String addres,
       required String pinCode,
       required String directionToReach,
       required double locationLatitude,

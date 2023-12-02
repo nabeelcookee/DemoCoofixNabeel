@@ -6,6 +6,7 @@ part 'get_address_model.g.dart';
 @freezed
 class AddressModel with _$AddressModel {
   factory AddressModel({
+    
     @JsonKey(name: '_id') required String id,
     @JsonKey(name: 'row_id') required int rowId,
     @JsonKey(name: 'customer') required String customer,

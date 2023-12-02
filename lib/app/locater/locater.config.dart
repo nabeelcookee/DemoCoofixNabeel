@@ -51,8 +51,6 @@ extension GetItInjectableX on _i1.GetIt {
         () => _i10.NewRequestRepositry());
     gh.factory<_i11.NewRequestBloc>(
         () => _i11.NewRequestBloc(gh<_i9.INewRequestRepositry>()));
-    gh.factory<_i12.AddAddressBloc>(
-        () => _i12.AddAddressBloc(gh<_i5.IGetAddress>()));
     gh.factory<_i12.AddressBloc>(() => _i12.AddressBloc(gh<_i5.IGetAddress>()));
     gh.factory<_i13.AuthBloc>(() => _i13.AuthBloc(gh<_i3.IAuthRepository>()));
     gh.factory<_i14.GetServicesBloc>(

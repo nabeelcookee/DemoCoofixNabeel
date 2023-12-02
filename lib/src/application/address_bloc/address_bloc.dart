@@ -8,69 +8,79 @@ import 'package:flutter/foundation.dart';
 import 'package:injectable/injectable.dart';
 
 @injectable
-class AddressBloc extends Bloc<GetAddressEvent, AddressState> {
+class AddressBloc extends Bloc<AddressEvent, AddressState> {
   final IGetAddress iGetAddress;
 
   AddressBloc(this.iGetAddress) : super(AddressState.initial()) {
-    on<GetAddressEvent>(_getAddress);
+    on<_GetAddressEvent>(_handleGetAddress);
+    on<_AddAddressEvent>(_handleAddAddress);
+    on<_SelectedAddressEvent>(_handleSelectedAddress);
   }
-  FutureOr<void> _getAddress(
-      GetAddressEvent event, Emitter<AddressState> emit) async {
+
+  Future<void> _handleGetAddress(
+      _GetAddressEvent event, Emitter<AddressState> emit) async {
     try {
       emit(state.copyWith());
-      final response = await iGetAddress.getServices(
-          id: event.id, skip: event.skip, limit: event.limit);
+      final response = await iGetAddress.getAddress(
+        id: event.id,
+        skip: event.skip,
+        limit: event.limit,
+      );
       emit(state.copyWith(
         address: response,
       ));
     } catch (e) {
       if (kDebugMode) {
-        print('Error in getaddress: $e');
+        print('Error in getAddress: $e');
       }
       emit(
         state.copyWith(
-          errorMessage: "${e}",
+          errorMessage: "$e",
         ),
       );
     }
   }
-}
 
-@injectable
-class AddAddressBloc extends Bloc<AddAddressEvent, AddressState> {
-  final IGetAddress iGetAddress;
-
-  AddAddressBloc(this.iGetAddress) : super(AddressState.initial()) {
-    on<AddAddressEvent>(_addAddress);
-  }
-  FutureOr<void> _addAddress(
-      AddAddressEvent event, Emitter<AddressState> emit) async {
+  Future<void> _handleAddAddress(
+      _AddAddressEvent event, Emitter<AddressState> emit) async {
     try {
       emit(state.copyWith(status: false));
       final response = await iGetAddress.addAddres(
         id: event.id,
-        addAddres: event.addres,
         addressType: event.addressType,
-        directionToReach: event.directionToReach,
         fullName: event.fullName,
+        addres: event.addres,
+        pinCode: event.pinCode,
+        directionToReach: event.directionToReach,
         locationLatitude: event.locationLatitude,
         locationLongitude: event.locationLongitude,
-        pinCode: event.pinCode,
       );
- 
+
       final List<AddressModel> addressList = [response];
-      emit(state.copyWith(status: true,
+      emit(state.copyWith(
+        status: true,
         address: addressList,
       ));
     } catch (e) {
       if (kDebugMode) {
-        print('Error in getaddress: $e');
+        print('Error in addAddress: $e');
       }
       emit(
-        state.copyWith(
-          errorMessage: "$e",status: false
-        ),
+        state.copyWith(errorMessage: "$e", status: false),
       );
+    }
+  }
+
+  Future<void> _handleSelectedAddress(
+      _SelectedAddressEvent event, Emitter<AddressState> emit) async {
+    try {
+      final response = await iGetAddress.selectedAddress(id: event.id);
+      emit(state.copyWith(
+        status: true,
+        address: [response],
+      ));
+    } catch (e) {
+      throw Exception("Failed response: $e");
     }
   }
 }

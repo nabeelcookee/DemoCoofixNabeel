@@ -16,26 +16,25 @@ class GetServicesBloc extends Bloc<GetServicesEvent, ServiceState> {
   GetServicesBloc(this.iGetServieces) : super(ServiceState.initial()) {
     on<GetServicesEvent>(_getServices);
   }
- FutureOr<void> _getServices(
-    GetServicesEvent event, Emitter<ServiceState> emit) async {
-  try {
-    emit(state.copyWith(
-    ));
-    final response = await iGetServieces.getServices(
-      limit: event.limit,
-      skip: event.skip,
-      id: event.id,
-    );
-    emit(state.copyWith(
-      services: response,
-    ));
-  } catch (e) {
-    if (kDebugMode) {
-      print('Error in _getServices: $e');
+  FutureOr<void> _getServices(
+      GetServicesEvent event, Emitter<ServiceState> emit) async {
+    try {
+      emit(state.copyWith());
+      final response = await iGetServieces.getServices(
+        limit: event.limit,
+        skip: event.skip,
+        id: event.id,
+      );
+      emit(state.copyWith(
+        services: response,
+      ));
+    } catch (e) {
+      if (kDebugMode) {
+        print('Error in _getServices: $e');
+      }
+      emit(
+        state.copyWith(isLoading: false, errorMessage: "${e}", status: false),
+      );
     }
-    emit(
-      state.copyWith(isLoading: false, errorMessage: "${e}", status: false),
-    );
   }
-}
 }
