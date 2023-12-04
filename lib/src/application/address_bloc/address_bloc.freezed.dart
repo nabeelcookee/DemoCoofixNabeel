@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
-part of 'address_event.dart';
+part of 'address_bloc.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -15,61 +15,98 @@ final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
-mixin _$GetAddressEvent {
-  int get limit => throw _privateConstructorUsedError;
-  int get skip => throw _privateConstructorUsedError;
+mixin _$AddressEvent {
   String get id => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(int limit, int skip, String id) getAddress,
+    required TResult Function(
+            String id,
+            String addressType,
+            String fullName,
+            String address,
+            String pinCode,
+            String directionToReach,
+            double locationLatitude,
+            double locationLongitude)
+        addAddress,
+    required TResult Function(String id) selectedAddress,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(int limit, int skip, String id)? getAddress,
+    TResult? Function(
+            String id,
+            String addressType,
+            String fullName,
+            String address,
+            String pinCode,
+            String directionToReach,
+            double locationLatitude,
+            double locationLongitude)?
+        addAddress,
+    TResult? Function(String id)? selectedAddress,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(int limit, int skip, String id)? getAddress,
+    TResult Function(
+            String id,
+            String addressType,
+            String fullName,
+            String address,
+            String pinCode,
+            String directionToReach,
+            double locationLatitude,
+            double locationLongitude)?
+        addAddress,
+    TResult Function(String id)? selectedAddress,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_GetAddressEvent value) getAddress,
+    required TResult Function(_AddAddressEvent value) addAddress,
+    required TResult Function(_SelectedAddressEvent value) selectedAddress,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_GetAddressEvent value)? getAddress,
+    TResult? Function(_AddAddressEvent value)? addAddress,
+    TResult? Function(_SelectedAddressEvent value)? selectedAddress,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_GetAddressEvent value)? getAddress,
+    TResult Function(_AddAddressEvent value)? addAddress,
+    TResult Function(_SelectedAddressEvent value)? selectedAddress,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
-  $GetAddressEventCopyWith<GetAddressEvent> get copyWith =>
+  $AddressEventCopyWith<AddressEvent> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $GetAddressEventCopyWith<$Res> {
-  factory $GetAddressEventCopyWith(
-          GetAddressEvent value, $Res Function(GetAddressEvent) then) =
-      _$GetAddressEventCopyWithImpl<$Res, GetAddressEvent>;
+abstract class $AddressEventCopyWith<$Res> {
+  factory $AddressEventCopyWith(
+          AddressEvent value, $Res Function(AddressEvent) then) =
+      _$AddressEventCopyWithImpl<$Res, AddressEvent>;
   @useResult
-  $Res call({int limit, int skip, String id});
+  $Res call({String id});
 }
 
 /// @nodoc
-class _$GetAddressEventCopyWithImpl<$Res, $Val extends GetAddressEvent>
-    implements $GetAddressEventCopyWith<$Res> {
-  _$GetAddressEventCopyWithImpl(this._value, this._then);
+class _$AddressEventCopyWithImpl<$Res, $Val extends AddressEvent>
+    implements $AddressEventCopyWith<$Res> {
+  _$AddressEventCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -79,19 +116,9 @@ class _$GetAddressEventCopyWithImpl<$Res, $Val extends GetAddressEvent>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? limit = null,
-    Object? skip = null,
     Object? id = null,
   }) {
     return _then(_value.copyWith(
-      limit: null == limit
-          ? _value.limit
-          : limit // ignore: cast_nullable_to_non_nullable
-              as int,
-      skip: null == skip
-          ? _value.skip
-          : skip // ignore: cast_nullable_to_non_nullable
-              as int,
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
@@ -102,7 +129,7 @@ class _$GetAddressEventCopyWithImpl<$Res, $Val extends GetAddressEvent>
 
 /// @nodoc
 abstract class _$$GetAddressEventImplCopyWith<$Res>
-    implements $GetAddressEventCopyWith<$Res> {
+    implements $AddressEventCopyWith<$Res> {
   factory _$$GetAddressEventImplCopyWith(_$GetAddressEventImpl value,
           $Res Function(_$GetAddressEventImpl) then) =
       __$$GetAddressEventImplCopyWithImpl<$Res>;
@@ -113,7 +140,7 @@ abstract class _$$GetAddressEventImplCopyWith<$Res>
 
 /// @nodoc
 class __$$GetAddressEventImplCopyWithImpl<$Res>
-    extends _$GetAddressEventCopyWithImpl<$Res, _$GetAddressEventImpl>
+    extends _$AddressEventCopyWithImpl<$Res, _$GetAddressEventImpl>
     implements _$$GetAddressEventImplCopyWith<$Res> {
   __$$GetAddressEventImplCopyWithImpl(
       _$GetAddressEventImpl _value, $Res Function(_$GetAddressEventImpl) _then)
@@ -145,7 +172,9 @@ class __$$GetAddressEventImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$GetAddressEventImpl implements _GetAddressEvent {
+class _$GetAddressEventImpl
+    with DiagnosticableTreeMixin
+    implements _GetAddressEvent {
   const _$GetAddressEventImpl(
       {required this.limit, required this.skip, required this.id});
 
@@ -157,8 +186,18 @@ class _$GetAddressEventImpl implements _GetAddressEvent {
   final String id;
 
   @override
-  String toString() {
-    return 'GetAddressEvent.getAddress(limit: $limit, skip: $skip, id: $id)';
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+    return 'AddressEvent.getAddress(limit: $limit, skip: $skip, id: $id)';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties
+      ..add(DiagnosticsProperty('type', 'AddressEvent.getAddress'))
+      ..add(DiagnosticsProperty('limit', limit))
+      ..add(DiagnosticsProperty('skip', skip))
+      ..add(DiagnosticsProperty('id', id));
   }
 
   @override
@@ -185,6 +224,17 @@ class _$GetAddressEventImpl implements _GetAddressEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(int limit, int skip, String id) getAddress,
+    required TResult Function(
+            String id,
+            String addressType,
+            String fullName,
+            String address,
+            String pinCode,
+            String directionToReach,
+            double locationLatitude,
+            double locationLongitude)
+        addAddress,
+    required TResult Function(String id) selectedAddress,
   }) {
     return getAddress(limit, skip, id);
   }
@@ -193,6 +243,17 @@ class _$GetAddressEventImpl implements _GetAddressEvent {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(int limit, int skip, String id)? getAddress,
+    TResult? Function(
+            String id,
+            String addressType,
+            String fullName,
+            String address,
+            String pinCode,
+            String directionToReach,
+            double locationLatitude,
+            double locationLongitude)?
+        addAddress,
+    TResult? Function(String id)? selectedAddress,
   }) {
     return getAddress?.call(limit, skip, id);
   }
@@ -201,6 +262,17 @@ class _$GetAddressEventImpl implements _GetAddressEvent {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(int limit, int skip, String id)? getAddress,
+    TResult Function(
+            String id,
+            String addressType,
+            String fullName,
+            String address,
+            String pinCode,
+            String directionToReach,
+            double locationLatitude,
+            double locationLongitude)?
+        addAddress,
+    TResult Function(String id)? selectedAddress,
     required TResult orElse(),
   }) {
     if (getAddress != null) {
@@ -213,6 +285,8 @@ class _$GetAddressEventImpl implements _GetAddressEvent {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_GetAddressEvent value) getAddress,
+    required TResult Function(_AddAddressEvent value) addAddress,
+    required TResult Function(_SelectedAddressEvent value) selectedAddress,
   }) {
     return getAddress(this);
   }
@@ -221,6 +295,8 @@ class _$GetAddressEventImpl implements _GetAddressEvent {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_GetAddressEvent value)? getAddress,
+    TResult? Function(_AddAddressEvent value)? addAddress,
+    TResult? Function(_SelectedAddressEvent value)? selectedAddress,
   }) {
     return getAddress?.call(this);
   }
@@ -229,6 +305,8 @@ class _$GetAddressEventImpl implements _GetAddressEvent {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_GetAddressEvent value)? getAddress,
+    TResult Function(_AddAddressEvent value)? addAddress,
+    TResult Function(_SelectedAddressEvent value)? selectedAddress,
     required TResult orElse(),
   }) {
     if (getAddress != null) {
@@ -238,15 +316,13 @@ class _$GetAddressEventImpl implements _GetAddressEvent {
   }
 }
 
-abstract class _GetAddressEvent implements GetAddressEvent {
+abstract class _GetAddressEvent implements AddressEvent {
   const factory _GetAddressEvent(
       {required final int limit,
       required final int skip,
       required final String id}) = _$GetAddressEventImpl;
 
-  @override
   int get limit;
-  @override
   int get skip;
   @override
   String get id;
@@ -257,159 +333,8 @@ abstract class _GetAddressEvent implements GetAddressEvent {
 }
 
 /// @nodoc
-mixin _$AddAddressEvent {
-  String get id => throw _privateConstructorUsedError;
-  String get addressType => throw _privateConstructorUsedError;
-  String get fullName => throw _privateConstructorUsedError;
-  String get addres => throw _privateConstructorUsedError;
-  String get pinCode => throw _privateConstructorUsedError;
-  String get directionToReach => throw _privateConstructorUsedError;
-  double get locationLatitude => throw _privateConstructorUsedError;
-  double get locationLongitude => throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function(
-            String id,
-            String addressType,
-            String fullName,
-            String addres,
-            String pinCode,
-            String directionToReach,
-            double locationLatitude,
-            double locationLongitude)
-        addAddress,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(
-            String id,
-            String addressType,
-            String fullName,
-            String addres,
-            String pinCode,
-            String directionToReach,
-            double locationLatitude,
-            double locationLongitude)?
-        addAddress,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function(
-            String id,
-            String addressType,
-            String fullName,
-            String addres,
-            String pinCode,
-            String directionToReach,
-            double locationLatitude,
-            double locationLongitude)?
-        addAddress,
-    required TResult orElse(),
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_AddAddressEvent value) addAddress,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_AddAddressEvent value)? addAddress,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_AddAddressEvent value)? addAddress,
-    required TResult orElse(),
-  }) =>
-      throw _privateConstructorUsedError;
-
-  @JsonKey(ignore: true)
-  $AddAddressEventCopyWith<AddAddressEvent> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class $AddAddressEventCopyWith<$Res> {
-  factory $AddAddressEventCopyWith(
-          AddAddressEvent value, $Res Function(AddAddressEvent) then) =
-      _$AddAddressEventCopyWithImpl<$Res, AddAddressEvent>;
-  @useResult
-  $Res call(
-      {String id,
-      String addressType,
-      String fullName,
-      String addres,
-      String pinCode,
-      String directionToReach,
-      double locationLatitude,
-      double locationLongitude});
-}
-
-/// @nodoc
-class _$AddAddressEventCopyWithImpl<$Res, $Val extends AddAddressEvent>
-    implements $AddAddressEventCopyWith<$Res> {
-  _$AddAddressEventCopyWithImpl(this._value, this._then);
-
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
-
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? id = null,
-    Object? addressType = null,
-    Object? fullName = null,
-    Object? addres = null,
-    Object? pinCode = null,
-    Object? directionToReach = null,
-    Object? locationLatitude = null,
-    Object? locationLongitude = null,
-  }) {
-    return _then(_value.copyWith(
-      id: null == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as String,
-      addressType: null == addressType
-          ? _value.addressType
-          : addressType // ignore: cast_nullable_to_non_nullable
-              as String,
-      fullName: null == fullName
-          ? _value.fullName
-          : fullName // ignore: cast_nullable_to_non_nullable
-              as String,
-      addres: null == addres
-          ? _value.addres
-          : addres // ignore: cast_nullable_to_non_nullable
-              as String,
-      pinCode: null == pinCode
-          ? _value.pinCode
-          : pinCode // ignore: cast_nullable_to_non_nullable
-              as String,
-      directionToReach: null == directionToReach
-          ? _value.directionToReach
-          : directionToReach // ignore: cast_nullable_to_non_nullable
-              as String,
-      locationLatitude: null == locationLatitude
-          ? _value.locationLatitude
-          : locationLatitude // ignore: cast_nullable_to_non_nullable
-              as double,
-      locationLongitude: null == locationLongitude
-          ? _value.locationLongitude
-          : locationLongitude // ignore: cast_nullable_to_non_nullable
-              as double,
-    ) as $Val);
-  }
-}
-
-/// @nodoc
 abstract class _$$AddAddressEventImplCopyWith<$Res>
-    implements $AddAddressEventCopyWith<$Res> {
+    implements $AddressEventCopyWith<$Res> {
   factory _$$AddAddressEventImplCopyWith(_$AddAddressEventImpl value,
           $Res Function(_$AddAddressEventImpl) then) =
       __$$AddAddressEventImplCopyWithImpl<$Res>;
@@ -419,7 +344,7 @@ abstract class _$$AddAddressEventImplCopyWith<$Res>
       {String id,
       String addressType,
       String fullName,
-      String addres,
+      String address,
       String pinCode,
       String directionToReach,
       double locationLatitude,
@@ -428,7 +353,7 @@ abstract class _$$AddAddressEventImplCopyWith<$Res>
 
 /// @nodoc
 class __$$AddAddressEventImplCopyWithImpl<$Res>
-    extends _$AddAddressEventCopyWithImpl<$Res, _$AddAddressEventImpl>
+    extends _$AddressEventCopyWithImpl<$Res, _$AddAddressEventImpl>
     implements _$$AddAddressEventImplCopyWith<$Res> {
   __$$AddAddressEventImplCopyWithImpl(
       _$AddAddressEventImpl _value, $Res Function(_$AddAddressEventImpl) _then)
@@ -440,7 +365,7 @@ class __$$AddAddressEventImplCopyWithImpl<$Res>
     Object? id = null,
     Object? addressType = null,
     Object? fullName = null,
-    Object? addres = null,
+    Object? address = null,
     Object? pinCode = null,
     Object? directionToReach = null,
     Object? locationLatitude = null,
@@ -459,9 +384,9 @@ class __$$AddAddressEventImplCopyWithImpl<$Res>
           ? _value.fullName
           : fullName // ignore: cast_nullable_to_non_nullable
               as String,
-      addres: null == addres
-          ? _value.addres
-          : addres // ignore: cast_nullable_to_non_nullable
+      address: null == address
+          ? _value.address
+          : address // ignore: cast_nullable_to_non_nullable
               as String,
       pinCode: null == pinCode
           ? _value.pinCode
@@ -485,12 +410,14 @@ class __$$AddAddressEventImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$AddAddressEventImpl implements _AddAddressEvent {
+class _$AddAddressEventImpl
+    with DiagnosticableTreeMixin
+    implements _AddAddressEvent {
   const _$AddAddressEventImpl(
       {required this.id,
       required this.addressType,
       required this.fullName,
-      required this.addres,
+      required this.address,
       required this.pinCode,
       required this.directionToReach,
       required this.locationLatitude,
@@ -503,7 +430,7 @@ class _$AddAddressEventImpl implements _AddAddressEvent {
   @override
   final String fullName;
   @override
-  final String addres;
+  final String address;
   @override
   final String pinCode;
   @override
@@ -514,8 +441,23 @@ class _$AddAddressEventImpl implements _AddAddressEvent {
   final double locationLongitude;
 
   @override
-  String toString() {
-    return 'AddAddressEvent.addAddress(id: $id, addressType: $addressType, fullName: $fullName, addres: $addres, pinCode: $pinCode, directionToReach: $directionToReach, locationLatitude: $locationLatitude, locationLongitude: $locationLongitude)';
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+    return 'AddressEvent.addAddress(id: $id, addressType: $addressType, fullName: $fullName, address: $address, pinCode: $pinCode, directionToReach: $directionToReach, locationLatitude: $locationLatitude, locationLongitude: $locationLongitude)';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties
+      ..add(DiagnosticsProperty('type', 'AddressEvent.addAddress'))
+      ..add(DiagnosticsProperty('id', id))
+      ..add(DiagnosticsProperty('addressType', addressType))
+      ..add(DiagnosticsProperty('fullName', fullName))
+      ..add(DiagnosticsProperty('address', address))
+      ..add(DiagnosticsProperty('pinCode', pinCode))
+      ..add(DiagnosticsProperty('directionToReach', directionToReach))
+      ..add(DiagnosticsProperty('locationLatitude', locationLatitude))
+      ..add(DiagnosticsProperty('locationLongitude', locationLongitude));
   }
 
   @override
@@ -528,7 +470,7 @@ class _$AddAddressEventImpl implements _AddAddressEvent {
                 other.addressType == addressType) &&
             (identical(other.fullName, fullName) ||
                 other.fullName == fullName) &&
-            (identical(other.addres, addres) || other.addres == addres) &&
+            (identical(other.address, address) || other.address == address) &&
             (identical(other.pinCode, pinCode) || other.pinCode == pinCode) &&
             (identical(other.directionToReach, directionToReach) ||
                 other.directionToReach == directionToReach) &&
@@ -540,7 +482,7 @@ class _$AddAddressEventImpl implements _AddAddressEvent {
 
   @override
   int get hashCode => Object.hash(runtimeType, id, addressType, fullName,
-      addres, pinCode, directionToReach, locationLatitude, locationLongitude);
+      address, pinCode, directionToReach, locationLatitude, locationLongitude);
 
   @JsonKey(ignore: true)
   @override
@@ -552,56 +494,62 @@ class _$AddAddressEventImpl implements _AddAddressEvent {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
+    required TResult Function(int limit, int skip, String id) getAddress,
     required TResult Function(
             String id,
             String addressType,
             String fullName,
-            String addres,
+            String address,
             String pinCode,
             String directionToReach,
             double locationLatitude,
             double locationLongitude)
         addAddress,
+    required TResult Function(String id) selectedAddress,
   }) {
-    return addAddress(id, addressType, fullName, addres, pinCode,
+    return addAddress(id, addressType, fullName, address, pinCode,
         directionToReach, locationLatitude, locationLongitude);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(int limit, int skip, String id)? getAddress,
     TResult? Function(
             String id,
             String addressType,
             String fullName,
-            String addres,
+            String address,
             String pinCode,
             String directionToReach,
             double locationLatitude,
             double locationLongitude)?
         addAddress,
+    TResult? Function(String id)? selectedAddress,
   }) {
-    return addAddress?.call(id, addressType, fullName, addres, pinCode,
+    return addAddress?.call(id, addressType, fullName, address, pinCode,
         directionToReach, locationLatitude, locationLongitude);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
+    TResult Function(int limit, int skip, String id)? getAddress,
     TResult Function(
             String id,
             String addressType,
             String fullName,
-            String addres,
+            String address,
             String pinCode,
             String directionToReach,
             double locationLatitude,
             double locationLongitude)?
         addAddress,
+    TResult Function(String id)? selectedAddress,
     required TResult orElse(),
   }) {
     if (addAddress != null) {
-      return addAddress(id, addressType, fullName, addres, pinCode,
+      return addAddress(id, addressType, fullName, address, pinCode,
           directionToReach, locationLatitude, locationLongitude);
     }
     return orElse();
@@ -610,7 +558,9 @@ class _$AddAddressEventImpl implements _AddAddressEvent {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
+    required TResult Function(_GetAddressEvent value) getAddress,
     required TResult Function(_AddAddressEvent value) addAddress,
+    required TResult Function(_SelectedAddressEvent value) selectedAddress,
   }) {
     return addAddress(this);
   }
@@ -618,7 +568,9 @@ class _$AddAddressEventImpl implements _AddAddressEvent {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_GetAddressEvent value)? getAddress,
     TResult? Function(_AddAddressEvent value)? addAddress,
+    TResult? Function(_SelectedAddressEvent value)? selectedAddress,
   }) {
     return addAddress?.call(this);
   }
@@ -626,7 +578,9 @@ class _$AddAddressEventImpl implements _AddAddressEvent {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
+    TResult Function(_GetAddressEvent value)? getAddress,
     TResult Function(_AddAddressEvent value)? addAddress,
+    TResult Function(_SelectedAddressEvent value)? selectedAddress,
     required TResult orElse(),
   }) {
     if (addAddress != null) {
@@ -636,12 +590,12 @@ class _$AddAddressEventImpl implements _AddAddressEvent {
   }
 }
 
-abstract class _AddAddressEvent implements AddAddressEvent {
+abstract class _AddAddressEvent implements AddressEvent {
   const factory _AddAddressEvent(
       {required final String id,
       required final String addressType,
       required final String fullName,
-      required final String addres,
+      required final String address,
       required final String pinCode,
       required final String directionToReach,
       required final double locationLatitude,
@@ -649,19 +603,12 @@ abstract class _AddAddressEvent implements AddAddressEvent {
 
   @override
   String get id;
-  @override
   String get addressType;
-  @override
   String get fullName;
-  @override
-  String get addres;
-  @override
+  String get address;
   String get pinCode;
-  @override
   String get directionToReach;
-  @override
   double get locationLatitude;
-  @override
   double get locationLongitude;
   @override
   @JsonKey(ignore: true)
@@ -670,83 +617,8 @@ abstract class _AddAddressEvent implements AddAddressEvent {
 }
 
 /// @nodoc
-mixin _$SelectedAddressEvent {
-  String get id => throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function(String id) selectedAddress,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(String id)? selectedAddress,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String id)? selectedAddress,
-    required TResult orElse(),
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_SelectedAddressEvent value) selectedAddress,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_SelectedAddressEvent value)? selectedAddress,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_SelectedAddressEvent value)? selectedAddress,
-    required TResult orElse(),
-  }) =>
-      throw _privateConstructorUsedError;
-
-  @JsonKey(ignore: true)
-  $SelectedAddressEventCopyWith<SelectedAddressEvent> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class $SelectedAddressEventCopyWith<$Res> {
-  factory $SelectedAddressEventCopyWith(SelectedAddressEvent value,
-          $Res Function(SelectedAddressEvent) then) =
-      _$SelectedAddressEventCopyWithImpl<$Res, SelectedAddressEvent>;
-  @useResult
-  $Res call({String id});
-}
-
-/// @nodoc
-class _$SelectedAddressEventCopyWithImpl<$Res,
-        $Val extends SelectedAddressEvent>
-    implements $SelectedAddressEventCopyWith<$Res> {
-  _$SelectedAddressEventCopyWithImpl(this._value, this._then);
-
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
-
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? id = null,
-  }) {
-    return _then(_value.copyWith(
-      id: null == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as String,
-    ) as $Val);
-  }
-}
-
-/// @nodoc
 abstract class _$$SelectedAddressEventImplCopyWith<$Res>
-    implements $SelectedAddressEventCopyWith<$Res> {
+    implements $AddressEventCopyWith<$Res> {
   factory _$$SelectedAddressEventImplCopyWith(_$SelectedAddressEventImpl value,
           $Res Function(_$SelectedAddressEventImpl) then) =
       __$$SelectedAddressEventImplCopyWithImpl<$Res>;
@@ -757,7 +629,7 @@ abstract class _$$SelectedAddressEventImplCopyWith<$Res>
 
 /// @nodoc
 class __$$SelectedAddressEventImplCopyWithImpl<$Res>
-    extends _$SelectedAddressEventCopyWithImpl<$Res, _$SelectedAddressEventImpl>
+    extends _$AddressEventCopyWithImpl<$Res, _$SelectedAddressEventImpl>
     implements _$$SelectedAddressEventImplCopyWith<$Res> {
   __$$SelectedAddressEventImplCopyWithImpl(_$SelectedAddressEventImpl _value,
       $Res Function(_$SelectedAddressEventImpl) _then)
@@ -779,15 +651,25 @@ class __$$SelectedAddressEventImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$SelectedAddressEventImpl implements _SelectedAddressEvent {
+class _$SelectedAddressEventImpl
+    with DiagnosticableTreeMixin
+    implements _SelectedAddressEvent {
   const _$SelectedAddressEventImpl({required this.id});
 
   @override
   final String id;
 
   @override
-  String toString() {
-    return 'SelectedAddressEvent.selectedAddress(id: $id)';
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+    return 'AddressEvent.selectedAddress(id: $id)';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties
+      ..add(DiagnosticsProperty('type', 'AddressEvent.selectedAddress'))
+      ..add(DiagnosticsProperty('id', id));
   }
 
   @override
@@ -812,6 +694,17 @@ class _$SelectedAddressEventImpl implements _SelectedAddressEvent {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
+    required TResult Function(int limit, int skip, String id) getAddress,
+    required TResult Function(
+            String id,
+            String addressType,
+            String fullName,
+            String address,
+            String pinCode,
+            String directionToReach,
+            double locationLatitude,
+            double locationLongitude)
+        addAddress,
     required TResult Function(String id) selectedAddress,
   }) {
     return selectedAddress(id);
@@ -820,6 +713,17 @@ class _$SelectedAddressEventImpl implements _SelectedAddressEvent {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(int limit, int skip, String id)? getAddress,
+    TResult? Function(
+            String id,
+            String addressType,
+            String fullName,
+            String address,
+            String pinCode,
+            String directionToReach,
+            double locationLatitude,
+            double locationLongitude)?
+        addAddress,
     TResult? Function(String id)? selectedAddress,
   }) {
     return selectedAddress?.call(id);
@@ -828,6 +732,17 @@ class _$SelectedAddressEventImpl implements _SelectedAddressEvent {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
+    TResult Function(int limit, int skip, String id)? getAddress,
+    TResult Function(
+            String id,
+            String addressType,
+            String fullName,
+            String address,
+            String pinCode,
+            String directionToReach,
+            double locationLatitude,
+            double locationLongitude)?
+        addAddress,
     TResult Function(String id)? selectedAddress,
     required TResult orElse(),
   }) {
@@ -840,6 +755,8 @@ class _$SelectedAddressEventImpl implements _SelectedAddressEvent {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
+    required TResult Function(_GetAddressEvent value) getAddress,
+    required TResult Function(_AddAddressEvent value) addAddress,
     required TResult Function(_SelectedAddressEvent value) selectedAddress,
   }) {
     return selectedAddress(this);
@@ -848,6 +765,8 @@ class _$SelectedAddressEventImpl implements _SelectedAddressEvent {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_GetAddressEvent value)? getAddress,
+    TResult? Function(_AddAddressEvent value)? addAddress,
     TResult? Function(_SelectedAddressEvent value)? selectedAddress,
   }) {
     return selectedAddress?.call(this);
@@ -856,6 +775,8 @@ class _$SelectedAddressEventImpl implements _SelectedAddressEvent {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
+    TResult Function(_GetAddressEvent value)? getAddress,
+    TResult Function(_AddAddressEvent value)? addAddress,
     TResult Function(_SelectedAddressEvent value)? selectedAddress,
     required TResult orElse(),
   }) {
@@ -866,7 +787,7 @@ class _$SelectedAddressEventImpl implements _SelectedAddressEvent {
   }
 }
 
-abstract class _SelectedAddressEvent implements SelectedAddressEvent {
+abstract class _SelectedAddressEvent implements AddressEvent {
   const factory _SelectedAddressEvent({required final String id}) =
       _$SelectedAddressEventImpl;
 

@@ -24,13 +24,17 @@ class NewRequestBloc extends Bloc<NewRequestEvent, NewRequestState> {
         addressId: event.addressId,
         serviceId: event.serviceId,
         isRecurringService: event.isRecurringService,
+        note: event.note,
+        serviceDateSlot: event.serviceDateSlot,
+        serviceDateTimeSlot: event.serviceDateTimeSlot
         
       );
       emit(state.copyWith(
         status: true,
           productImageBaseUrl: response.productImageBaseUrl,
           serviceImageBaseUrl: response.serviceImageBaseUrl,
-          serviceRequestImageBaseUrl: response.requestImageBaseUrl));
+          serviceRequestImageBaseUrl: response.requestImageBaseUrl,
+        ));
 
     } catch (e) {
       // errors 

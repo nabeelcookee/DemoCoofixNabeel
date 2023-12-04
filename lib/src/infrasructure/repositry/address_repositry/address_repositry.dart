@@ -9,18 +9,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 @LazySingleton(as: IGetAddress)
 class GetAddressRepository implements IGetAddress {
-  // @override
-  // Future<AddressModel> addAddres(
-  //     {required String id,
-  //     required String addressType,
-  //     required String fullName,
-  //     required String addAddres,
-  //     required String pinCode,
-  //     required String directionToReach,
-  //     required double locationLatitude,
-  //     required double locationLongitude}) async {
 
-  // }
 
   @override
   Future<List<AddressModel>> getAddress(

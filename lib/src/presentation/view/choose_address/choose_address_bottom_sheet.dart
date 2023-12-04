@@ -2,8 +2,8 @@ import 'dart:developer';
 
 import 'package:coofix/app/router/router_constants.dart';
 import 'package:coofix/src/application/address_bloc/address_bloc.dart';
-import 'package:coofix/src/application/address_bloc/address_event.dart';
 import 'package:coofix/src/application/address_bloc/address_state.dart';
+import 'package:coofix/src/application/new_request_bloc/bloc/new_request_bloc.dart';
 import 'package:coofix/src/presentation/core/constants/constants.dart';
 import 'package:coofix/src/presentation/core/constants/images.dart';
 import 'package:coofix/src/presentation/core/constants/strings.dart';
@@ -17,7 +17,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class ChooseAddressBottomSheet extends StatefulWidget {
-  const ChooseAddressBottomSheet({super.key});
+  const ChooseAddressBottomSheet(
+      {super.key,
+      required this.selectedtime,
+      required this.selectedServieceId,
+      required this.selectedDate});
+  final String selectedtime;
+  final String selectedServieceId;
+  final String selectedDate;
 
   @override
   State<ChooseAddressBottomSheet> createState() =>
@@ -26,16 +33,19 @@ class ChooseAddressBottomSheet extends StatefulWidget {
 
 class _ChooseAddressBottomSheetState extends State<ChooseAddressBottomSheet> {
   final selectedValue = ValueNotifier(0);
+  late String addressid = "";
   @override
   void initState() {
     context
         .read<AddressBloc>()
-        .add(const GetAddressEvent.getAddress(limit: 0, skip: 0, id: ""));
+        .add(const AddressEvent.getAddress(limit: 0, skip: 0, id: ""));
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
+    print("selected service id  from address page${widget.selectedServieceId}");
+    print("selected time is ${widget.selectedtime}");
     final kSize = MediaQuery.of(context).size;
     return DraggableScrollableSheet(
       initialChildSize: 0.7,
@@ -96,7 +106,7 @@ class _ChooseAddressBottomSheetState extends State<ChooseAddressBottomSheet> {
                     ),
                   )
                 ]),
-                _footerButton(kSize)
+                _footerButton(kSize, addressid)
               ],
             ),
           ),
@@ -118,10 +128,10 @@ class _ChooseAddressBottomSheetState extends State<ChooseAddressBottomSheet> {
                   splashColor: AppColors.transparent,
                   onTap: () {
                     selectedValue.value = index;
-                    context.read<SelectedAddressBloc>().add(
-                        SelectedAddressEvent.selectedAddress(
+                    context.read<AddressBloc>().add(
+                        AddressEvent.selectedAddress(
                             id: state.address[selectedValue.value].id));
-
+                    addressid = state.address[selectedValue.value].id;
                     log(state.address[selectedValue.value].id,
                         name: "selected address id ");
                   },
@@ -202,7 +212,7 @@ class _ChooseAddressBottomSheetState extends State<ChooseAddressBottomSheet> {
     );
   }
 
-  Widget _footerButton(Size kSize) {
+  Widget _footerButton(Size kSize, String addressId) {
     return Positioned(
       bottom: kSize.height * .019,
       right: kSize.width * 0.005,
@@ -212,6 +222,14 @@ class _ChooseAddressBottomSheetState extends State<ChooseAddressBottomSheet> {
           PrimaryButton(
             text: AppStrings.continueButtonText,
             onPressed: () {
+              context.read<NewRequestBloc>().add(NewRequestEvent.newrequest(
+                  id: "",
+                  serviceId: widget.selectedServieceId,
+                  note: "Ac reparing ",
+                  serviceDateSlot: widget.selectedDate.toString(),
+                  serviceDateTimeSlot: widget.selectedtime,
+                  addressId: addressid,
+                  isRecurringService: false));
               Navigator.pushNamed(context, RouterConstants.requestSuccessRoute);
             },
           ),

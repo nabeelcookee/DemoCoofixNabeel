@@ -1,21 +1,25 @@
 import 'dart:async';
 import 'package:bloc/bloc.dart';
-import 'package:coofix/src/application/address_bloc/address_event.dart';
 import 'package:coofix/src/application/address_bloc/address_state.dart';
 import 'package:coofix/src/domain/domain/models/get_address_model/get_address_model.dart';
 import 'package:coofix/src/domain/domain/repositories/i_address_repositry.dart';
 import 'package:flutter/foundation.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
+part 'address_event.dart';
+part 'address_bloc.freezed.dart';
 
 @injectable
-class AddressBloc extends Bloc<GetAddressEvent, AddressState> {
+class AddressBloc extends Bloc<AddressEvent, AddressState> {
   final IGetAddress iGetAddress;
 
   AddressBloc(this.iGetAddress) : super(AddressState.initial()) {
-    on<GetAddressEvent>(_getAddress);
+    on<_GetAddressEvent>(_getAddress);
+    on<_AddAddressEvent>(_addAddress);
+    on<_SelectedAddressEvent>(_selectedAddress);
   }
   FutureOr<void> _getAddress(
-      GetAddressEvent event, Emitter<AddressState> emit) async {
+      _GetAddressEvent event, Emitter<AddressState> emit) async {
     try {
       emit(state.copyWith());
       final response = await iGetAddress.getAddress(
@@ -34,22 +38,14 @@ class AddressBloc extends Bloc<GetAddressEvent, AddressState> {
       );
     }
   }
-}
 
-@injectable
-class AddAddressBloc extends Bloc<AddAddressEvent, AddressState> {
-  final IGetAddress iGetAddress;
-
-  AddAddressBloc(this.iGetAddress) : super(AddressState.initial()) {
-    on<AddAddressEvent>(_addAddress);
-  }
   FutureOr<void> _addAddress(
-      AddAddressEvent event, Emitter<AddressState> emit) async {
+      _AddAddressEvent event, Emitter<AddressState> emit) async {
     try {
       emit(state.copyWith(status: false));
       final response = await iGetAddress.addAddres(
         id: event.id,
-        addres: event.addres,
+        addres: event.address,
         addressType: event.addressType,
         directionToReach: event.directionToReach,
         fullName: event.fullName,
@@ -57,9 +53,10 @@ class AddAddressBloc extends Bloc<AddAddressEvent, AddressState> {
         locationLongitude: event.locationLongitude,
         pinCode: event.pinCode,
       );
- 
+
       final List<AddressModel> addressList = [response];
-      emit(state.copyWith(status: true,
+      emit(state.copyWith(
+        status: true,
         address: addressList,
       ));
     } catch (e) {
@@ -67,31 +64,20 @@ class AddAddressBloc extends Bloc<AddAddressEvent, AddressState> {
         print('Error in getaddress: $e');
       }
       emit(
-        state.copyWith(
-          errorMessage: "$e",status: false
-        ),
+        state.copyWith(errorMessage: "$e", status: false),
       );
     }
   }
-}
 
-@injectable
-class SelectedAddressBloc extends Bloc<SelectedAddressEvent, AddressState> {
-  final IGetAddress iGetAddress;
-
-  SelectedAddressBloc(this.iGetAddress) : super(AddressState.initial()) {
-    on<SelectedAddressEvent>(_selectedAddress);
-  }
   FutureOr<void> _selectedAddress(
-      SelectedAddressEvent event, Emitter<AddressState> emit) async {
+      _SelectedAddressEvent event, Emitter<AddressState> emit) async {
     try {
       emit(state.copyWith(status: false));
-      final response = await iGetAddress.selectedAddress(
-        id: event.id
-      );
- 
+      final response = await iGetAddress.selectedAddress(id: event.id);
+
       final List<AddressModel> addressList = [response];
-      emit(state.copyWith(status: true,
+      emit(state.copyWith(
+        status: true,
         address: addressList,
       ));
     } catch (e) {
@@ -99,9 +85,7 @@ class SelectedAddressBloc extends Bloc<SelectedAddressEvent, AddressState> {
         print('Error in getaddress: $e');
       }
       emit(
-        state.copyWith(
-          errorMessage: "$e",status: false
-        ),
+        state.copyWith(errorMessage: "$e", status: false),
       );
     }
   }

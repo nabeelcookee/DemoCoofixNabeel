@@ -16,8 +16,9 @@ import 'package:flutter/material.dart';
 import '../widgets/custom_app_bar.dart';
 
 class ServiceRqstInstructionsView extends StatefulWidget {
-  const ServiceRqstInstructionsView({super.key});
+  const ServiceRqstInstructionsView({super.key , required this.selectedServieceId});
 
+  final String selectedServieceId;
   @override
   State<ServiceRqstInstructionsView> createState() =>
       _ServiceRqstInstructionsViewState();
@@ -30,6 +31,7 @@ class _ServiceRqstInstructionsViewState
   List<String> selectedImages = [];
   @override
   Widget build(BuildContext context) {
+    print("from notes page serviece id ${widget.selectedServieceId}");
     final kSize = MediaQuery.of(context).size;
     return Scaffold(
       resizeToAvoidBottomInset: false,
@@ -167,7 +169,9 @@ class _ServiceRqstInstructionsViewState
                         text: AppStrings.requestService,
                         onPressed: () {
                           Navigator.pushNamed(
-                              context, RouterConstants.requestDateAndTimeRoute);
+                              context, RouterConstants.requestDateAndTimeRoute,
+                              arguments:widget.selectedServieceId );
+
                         },
                       ),
                       SizedBox(

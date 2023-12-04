@@ -15,7 +15,10 @@ class NewRequestRepositry implements INewRequestRepositry {
       {required String id,
       required String serviceId,
       required String addressId,
-      required bool isRecurringService}) async {
+      required bool isRecurringService,
+      required String note,
+      required String serviceDateSlot,
+      required String serviceDateTimeSlot}) async {
     try {
       SharedPreferences prefs = await SharedPreferences.getInstance();
       if (prefs.getString('access_token') == null) {
@@ -34,9 +37,21 @@ class NewRequestRepositry implements INewRequestRepositry {
         ApiEndpoints.newRequest,
         data: data,
         options: Options(
-          headers: {"TockenValied": AppConstants.tockenValied},
+          headers: {
+            "Authorization": "Bearer ${prefs.getString('access_token')}",
+          },
         ),
       );
+
+      print("Response status: ${response.statusCode}");
+      print("Response data: ${response.data}");
+      if (kDebugMode) {
+        print(
+            " new request  accsess token is ${prefs.getString('access_token')}");
+        print(' new request  Response status code: ${response.statusCode}');
+        print(' new request  Response headers: ${response.headers}');
+        print(' new request Response body: ${response.data}');
+      }
       if (response.statusCode == 200) {
         final NewRequestModel newRequestData =
             NewRequestModel.fromJson(response.data);

@@ -17,10 +17,8 @@ final _privateConstructorUsedError = UnsupportedError(
 /// @nodoc
 mixin _$NewRequestEvent {
   String get id => throw _privateConstructorUsedError;
-  String get productSaleId => throw _privateConstructorUsedError;
   String get serviceId => throw _privateConstructorUsedError;
   String get note => throw _privateConstructorUsedError;
-  List<String> get serviceImages => throw _privateConstructorUsedError;
   String get serviceDateSlot => throw _privateConstructorUsedError;
   String get serviceDateTimeSlot => throw _privateConstructorUsedError;
   String get addressId => throw _privateConstructorUsedError;
@@ -29,10 +27,8 @@ mixin _$NewRequestEvent {
   TResult when<TResult extends Object?>({
     required TResult Function(
             String id,
-            String productSaleId,
             String serviceId,
             String note,
-            List<String> serviceImages,
             String serviceDateSlot,
             String serviceDateTimeSlot,
             String addressId,
@@ -44,10 +40,8 @@ mixin _$NewRequestEvent {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(
             String id,
-            String productSaleId,
             String serviceId,
             String note,
-            List<String> serviceImages,
             String serviceDateSlot,
             String serviceDateTimeSlot,
             String addressId,
@@ -59,10 +53,8 @@ mixin _$NewRequestEvent {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(
             String id,
-            String productSaleId,
             String serviceId,
             String note,
-            List<String> serviceImages,
             String serviceDateSlot,
             String serviceDateTimeSlot,
             String addressId,
@@ -101,10 +93,8 @@ abstract class $NewRequestEventCopyWith<$Res> {
   @useResult
   $Res call(
       {String id,
-      String productSaleId,
       String serviceId,
       String note,
-      List<String> serviceImages,
       String serviceDateSlot,
       String serviceDateTimeSlot,
       String addressId,
@@ -125,10 +115,8 @@ class _$NewRequestEventCopyWithImpl<$Res, $Val extends NewRequestEvent>
   @override
   $Res call({
     Object? id = null,
-    Object? productSaleId = null,
     Object? serviceId = null,
     Object? note = null,
-    Object? serviceImages = null,
     Object? serviceDateSlot = null,
     Object? serviceDateTimeSlot = null,
     Object? addressId = null,
@@ -139,10 +127,6 @@ class _$NewRequestEventCopyWithImpl<$Res, $Val extends NewRequestEvent>
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as String,
-      productSaleId: null == productSaleId
-          ? _value.productSaleId
-          : productSaleId // ignore: cast_nullable_to_non_nullable
-              as String,
       serviceId: null == serviceId
           ? _value.serviceId
           : serviceId // ignore: cast_nullable_to_non_nullable
@@ -151,10 +135,6 @@ class _$NewRequestEventCopyWithImpl<$Res, $Val extends NewRequestEvent>
           ? _value.note
           : note // ignore: cast_nullable_to_non_nullable
               as String,
-      serviceImages: null == serviceImages
-          ? _value.serviceImages
-          : serviceImages // ignore: cast_nullable_to_non_nullable
-              as List<String>,
       serviceDateSlot: null == serviceDateSlot
           ? _value.serviceDateSlot
           : serviceDateSlot // ignore: cast_nullable_to_non_nullable
@@ -185,10 +165,8 @@ abstract class _$$newrequestImplCopyWith<$Res>
   @useResult
   $Res call(
       {String id,
-      String productSaleId,
       String serviceId,
       String note,
-      List<String> serviceImages,
       String serviceDateSlot,
       String serviceDateTimeSlot,
       String addressId,
@@ -207,10 +185,8 @@ class __$$newrequestImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? id = null,
-    Object? productSaleId = null,
     Object? serviceId = null,
     Object? note = null,
-    Object? serviceImages = null,
     Object? serviceDateSlot = null,
     Object? serviceDateTimeSlot = null,
     Object? addressId = null,
@@ -221,10 +197,6 @@ class __$$newrequestImplCopyWithImpl<$Res>
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as String,
-      productSaleId: null == productSaleId
-          ? _value.productSaleId
-          : productSaleId // ignore: cast_nullable_to_non_nullable
-              as String,
       serviceId: null == serviceId
           ? _value.serviceId
           : serviceId // ignore: cast_nullable_to_non_nullable
@@ -233,10 +205,6 @@ class __$$newrequestImplCopyWithImpl<$Res>
           ? _value.note
           : note // ignore: cast_nullable_to_non_nullable
               as String,
-      serviceImages: null == serviceImages
-          ? _value._serviceImages
-          : serviceImages // ignore: cast_nullable_to_non_nullable
-              as List<String>,
       serviceDateSlot: null == serviceDateSlot
           ? _value.serviceDateSlot
           : serviceDateSlot // ignore: cast_nullable_to_non_nullable
@@ -262,32 +230,19 @@ class __$$newrequestImplCopyWithImpl<$Res>
 class _$newrequestImpl implements _newrequest {
   _$newrequestImpl(
       {required this.id,
-      required this.productSaleId,
       required this.serviceId,
       required this.note,
-      required final List<String> serviceImages,
       required this.serviceDateSlot,
       required this.serviceDateTimeSlot,
       required this.addressId,
-      required this.isRecurringService})
-      : _serviceImages = serviceImages;
+      required this.isRecurringService});
 
   @override
   final String id;
   @override
-  final String productSaleId;
-  @override
   final String serviceId;
   @override
   final String note;
-  final List<String> _serviceImages;
-  @override
-  List<String> get serviceImages {
-    if (_serviceImages is EqualUnmodifiableListView) return _serviceImages;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_serviceImages);
-  }
-
   @override
   final String serviceDateSlot;
   @override
@@ -299,7 +254,7 @@ class _$newrequestImpl implements _newrequest {
 
   @override
   String toString() {
-    return 'NewRequestEvent.newrequest(id: $id, productSaleId: $productSaleId, serviceId: $serviceId, note: $note, serviceImages: $serviceImages, serviceDateSlot: $serviceDateSlot, serviceDateTimeSlot: $serviceDateTimeSlot, addressId: $addressId, isRecurringService: $isRecurringService)';
+    return 'NewRequestEvent.newrequest(id: $id, serviceId: $serviceId, note: $note, serviceDateSlot: $serviceDateSlot, serviceDateTimeSlot: $serviceDateTimeSlot, addressId: $addressId, isRecurringService: $isRecurringService)';
   }
 
   @override
@@ -308,13 +263,9 @@ class _$newrequestImpl implements _newrequest {
         (other.runtimeType == runtimeType &&
             other is _$newrequestImpl &&
             (identical(other.id, id) || other.id == id) &&
-            (identical(other.productSaleId, productSaleId) ||
-                other.productSaleId == productSaleId) &&
             (identical(other.serviceId, serviceId) ||
                 other.serviceId == serviceId) &&
             (identical(other.note, note) || other.note == note) &&
-            const DeepCollectionEquality()
-                .equals(other._serviceImages, _serviceImages) &&
             (identical(other.serviceDateSlot, serviceDateSlot) ||
                 other.serviceDateSlot == serviceDateSlot) &&
             (identical(other.serviceDateTimeSlot, serviceDateTimeSlot) ||
@@ -326,17 +277,8 @@ class _$newrequestImpl implements _newrequest {
   }
 
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      id,
-      productSaleId,
-      serviceId,
-      note,
-      const DeepCollectionEquality().hash(_serviceImages),
-      serviceDateSlot,
-      serviceDateTimeSlot,
-      addressId,
-      isRecurringService);
+  int get hashCode => Object.hash(runtimeType, id, serviceId, note,
+      serviceDateSlot, serviceDateTimeSlot, addressId, isRecurringService);
 
   @JsonKey(ignore: true)
   @override
@@ -349,18 +291,16 @@ class _$newrequestImpl implements _newrequest {
   TResult when<TResult extends Object?>({
     required TResult Function(
             String id,
-            String productSaleId,
             String serviceId,
             String note,
-            List<String> serviceImages,
             String serviceDateSlot,
             String serviceDateTimeSlot,
             String addressId,
             bool isRecurringService)
         newrequest,
   }) {
-    return newrequest(id, productSaleId, serviceId, note, serviceImages,
-        serviceDateSlot, serviceDateTimeSlot, addressId, isRecurringService);
+    return newrequest(id, serviceId, note, serviceDateSlot, serviceDateTimeSlot,
+        addressId, isRecurringService);
   }
 
   @override
@@ -368,18 +308,16 @@ class _$newrequestImpl implements _newrequest {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(
             String id,
-            String productSaleId,
             String serviceId,
             String note,
-            List<String> serviceImages,
             String serviceDateSlot,
             String serviceDateTimeSlot,
             String addressId,
             bool isRecurringService)?
         newrequest,
   }) {
-    return newrequest?.call(id, productSaleId, serviceId, note, serviceImages,
-        serviceDateSlot, serviceDateTimeSlot, addressId, isRecurringService);
+    return newrequest?.call(id, serviceId, note, serviceDateSlot,
+        serviceDateTimeSlot, addressId, isRecurringService);
   }
 
   @override
@@ -387,10 +325,8 @@ class _$newrequestImpl implements _newrequest {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(
             String id,
-            String productSaleId,
             String serviceId,
             String note,
-            List<String> serviceImages,
             String serviceDateSlot,
             String serviceDateTimeSlot,
             String addressId,
@@ -399,8 +335,8 @@ class _$newrequestImpl implements _newrequest {
     required TResult orElse(),
   }) {
     if (newrequest != null) {
-      return newrequest(id, productSaleId, serviceId, note, serviceImages,
-          serviceDateSlot, serviceDateTimeSlot, addressId, isRecurringService);
+      return newrequest(id, serviceId, note, serviceDateSlot,
+          serviceDateTimeSlot, addressId, isRecurringService);
     }
     return orElse();
   }
@@ -437,10 +373,8 @@ class _$newrequestImpl implements _newrequest {
 abstract class _newrequest implements NewRequestEvent {
   factory _newrequest(
       {required final String id,
-      required final String productSaleId,
       required final String serviceId,
       required final String note,
-      required final List<String> serviceImages,
       required final String serviceDateSlot,
       required final String serviceDateTimeSlot,
       required final String addressId,
@@ -449,13 +383,9 @@ abstract class _newrequest implements NewRequestEvent {
   @override
   String get id;
   @override
-  String get productSaleId;
-  @override
   String get serviceId;
   @override
   String get note;
-  @override
-  List<String> get serviceImages;
   @override
   String get serviceDateSlot;
   @override

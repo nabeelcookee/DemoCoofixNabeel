@@ -23,6 +23,7 @@ class ServiceRequestView extends StatefulWidget {
 }
 
 class _ServiceRequestViewState extends State<ServiceRequestView> {
+  String? ServiceId;
   @override
   void initState() {
     context
@@ -33,7 +34,7 @@ class _ServiceRequestViewState extends State<ServiceRequestView> {
 
   @override
   Widget build(BuildContext context) {
-    String? ServiceId;
+    print("ServiceId is ${ServiceId}");
     final kSize = MediaQuery.of(context).size;
     return BlocBuilder<GetServicesBloc, ServiceState>(
       builder: (context, state) {
@@ -63,8 +64,9 @@ class _ServiceRequestViewState extends State<ServiceRequestView> {
                           Expanded(
                             child: ServiceGridTile(
                                 getServicesId: (String serviceId) {
-                              log(serviceId, name: "serviceId from request");
+                              setState(() {});
                               ServiceId = serviceId;
+                              print("service id is.. ${ServiceId}");
                             }),
                           )
                         ],
@@ -95,6 +97,7 @@ class _ServiceRequestViewState extends State<ServiceRequestView> {
             child: PrimaryButton(
               text: AppStrings.continueButtonText,
               onPressed: () {
+                print("to boottum sheet ${selecterServiceId.toString()}");
                 showModalBottomSheet(
                   backgroundColor: AppColors.secondaryColor,
                   isScrollControlled: true,

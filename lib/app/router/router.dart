@@ -55,12 +55,14 @@ class AppRouter {
           builder: (_) => const ServiceRequestView(),
         );
       case RouterConstants.notesAndRestrictionRoute:
+        final arg = settings.arguments as String;
         return MaterialPageRoute<ServiceRqstInstructionsView>(
-          builder: (_) => const ServiceRqstInstructionsView(),
+          builder: (_) =>  ServiceRqstInstructionsView(selectedServieceId:arg  ),
         );
       case RouterConstants.requestDateAndTimeRoute:
+      final arg =settings.arguments as String;
         return MaterialPageRoute<ServiceRqstDateTimeView>(
-          builder: (_) => const ServiceRqstDateTimeView(),
+          builder: (_) =>  ServiceRqstDateTimeView(selectedServieceId: arg),
         );
       case RouterConstants.manageAddressRoute:
         return MaterialPageRoute<ManageDetailScreen>(

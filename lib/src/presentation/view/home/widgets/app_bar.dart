@@ -1,7 +1,10 @@
 
+import 'dart:developer';
+
 import 'package:coofix/app/router/router_constants.dart';
 import 'package:coofix/src/application/get_servieces/get_services_bloc.dart';
 import 'package:coofix/src/application/get_servieces/get_services_event.dart';
+import 'package:coofix/src/application/get_servieces/get_services_state.dart';
 import 'package:coofix/src/application/new_request_bloc/bloc/new_request_bloc.dart';
 import 'package:coofix/src/application/new_request_bloc/bloc/new_request_state.dart';
 import 'package:coofix/src/presentation/core/constants/constants.dart';
@@ -39,7 +42,7 @@ class HomeAppBar extends StatelessWidget {
                 .copyWith(fontSize: kSize.height * 0.0184),
           ),
           const Spacer(),
-          BlocBuilder<NewRequestBloc, NewRequestState>(
+          BlocBuilder<GetServicesBloc, ServiceState>(
             builder: (context, state) {
 
               return TextButton(
@@ -49,6 +52,7 @@ class HomeAppBar extends StatelessWidget {
                     Navigator.pushNamed(
                         context, RouterConstants.serviceRequestRoute);
                   context.read<GetServicesBloc>().add(GetServicesEvent.getServices(limit: 0, skip: 0, id: ""));
+                  
                   },
                   child: Row(
                     children: [

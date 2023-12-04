@@ -1,7 +1,6 @@
 import 'dart:io';
 
 import 'package:coofix/src/application/address_bloc/address_bloc.dart';
-import 'package:coofix/src/application/address_bloc/address_event.dart';
 import 'package:coofix/src/application/address_bloc/address_state.dart';
 import 'package:coofix/src/presentation/core/theme/typography.dart';
 import 'package:coofix/src/presentation/core/values/form_validators.dart';
@@ -121,13 +120,13 @@ class _AllTextFormFieldState extends State<AllTextFormField> {
                           text: "Add",
                           onPressed: () {
                             if (formKey.currentState!.validate()) {
-                              context.read<AddAddressBloc>().add(AddAddressEvent.addAddress(
+                              context.read<AddressBloc>().add(AddressEvent.addAddress(
                                   id: "",
                                   addressType: selectedIndex == 0
                                       ? "Home"
                                       : (selectedIndex == 1 ? "Work" : "Other"),
                                   fullName: fullNameController.text,
-                                  addres: addressController.text,
+                                  address: addressController.text,
                                   pinCode: pincodeController.text,
                                   directionToReach: directionToReachController.text,
                                   locationLatitude: 1.2,

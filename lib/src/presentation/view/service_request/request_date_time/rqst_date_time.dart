@@ -1,5 +1,4 @@
 import 'package:coofix/src/application/address_bloc/address_bloc.dart';
-import 'package:coofix/src/application/address_bloc/address_event.dart';
 import 'package:coofix/src/domain/domain/models/get_address_model/get_address_model.dart';
 import 'package:coofix/src/presentation/core/constants/constants.dart';
 import 'package:coofix/src/presentation/core/constants/strings.dart';
@@ -15,19 +14,22 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_holo_date_picker/flutter_holo_date_picker.dart';
 
 class ServiceRqstDateTimeView extends StatefulWidget {
-  const ServiceRqstDateTimeView({super.key});
-
+  const ServiceRqstDateTimeView({super.key, required this.selectedServieceId});
+  final String selectedServieceId;
   @override
   State<ServiceRqstDateTimeView> createState() =>
       _ServiceRqstDateTimeViewState();
 }
 
 class _ServiceRqstDateTimeViewState extends State<ServiceRqstDateTimeView> {
+  late final String selectedServieceId;
   DateTime selectedDate = DateTime.now();
   List<String> time = ['Morning', 'Afternoon'];
   final selectedIndex = ValueNotifier(1);
+  late String selectedtime = "Afternoon";
   @override
   Widget build(BuildContext context) {
+    print("service id from dates page ${widget.selectedServieceId}");
     final kSize = MediaQuery.of(context).size;
     return Scaffold(
       backgroundColor: AppColors.secondaryColor,
@@ -88,7 +90,11 @@ class _ServiceRqstDateTimeViewState extends State<ServiceRqstDateTimeView> {
                           child: Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: List.generate(
-                                  2, (index) => timeWidget(kSize, index))),
+                                  2,
+                                  (index) => timeWidget(
+                                        kSize,
+                                        index,
+                                      ))),
                         );
                       },
                     ),
@@ -96,7 +102,16 @@ class _ServiceRqstDateTimeViewState extends State<ServiceRqstDateTimeView> {
                     PrimaryButton(
                       text: AppStrings.continueButtonText,
                       onPressed: () {
-                       context.read<AddressBloc>().add(const   GetAddressEvent.getAddress(limit: 0, skip: 0, id: "")) ;
+                        print("selectedDate =${selectedDate}");
+
+                        context.read<AddressBloc>().add(
+                            const AddressEvent.getAddress(
+                                limit: 0, skip: 0, id: ""));
+
+                        selectedtime =
+                       selectedtime = selectedIndex.value==0? "Mornig" : "Afternoon";
+                        print("selectedtime = ...${selectedtime}");
+                        selectedServieceId = widget.selectedServieceId;
                         showModalBottomSheet(
                           context: context,
                           isDismissible: true,
@@ -108,7 +123,11 @@ class _ServiceRqstDateTimeViewState extends State<ServiceRqstDateTimeView> {
                                   topRight:
                                       Radius.circular(kSize.height * 0.0315))),
                           builder: (context) {
-                            return const ChooseAddressBottomSheet();
+                            return ChooseAddressBottomSheet(
+                              selectedtime: selectedtime,
+                              selectedServieceId: selectedServieceId,
+                              selectedDate: selectedDate.toString(),
+                            );
                           },
                         );
                       },
@@ -120,11 +139,19 @@ class _ServiceRqstDateTimeViewState extends State<ServiceRqstDateTimeView> {
           )),
     );
   }
-  Widget timeWidget(Size kSize, int index) {
+
+  Widget timeWidget(
+    Size kSize,
+    int index,
+  ) {
     return Expanded(
       child: InkWell(
         onTap: () {
           selectedIndex.value = index;
+
+           print("selected ${selectedDate}");
+           selectedtime = selectedIndex.value==0? "Mornig" : "Afternoon";
+            print("selected time ${selectedtime}");
         },
         child: Container(
           alignment: Alignment.center,

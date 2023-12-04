@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:coofix/src/application/get_servieces/get_services_bloc.dart';
 import 'package:coofix/src/application/get_servieces/get_services_state.dart';
 import 'package:coofix/src/presentation/core/constants/images.dart';
@@ -6,16 +8,16 @@ import 'package:coofix/src/presentation/core/theme/colors.dart';
 import 'package:coofix/src/presentation/core/theme/typography.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:injectable/injectable.dart';
 
 class ServiceGridTile extends StatefulWidget {
-  const ServiceGridTile({super.key , required this. getServicesId});
- final void Function(String serviceId) getServicesId;
+  const ServiceGridTile({super.key, required this.getServicesId});
+  final void Function(String serviceId) getServicesId;
   @override
   State<ServiceGridTile> createState() => _ServiceGridTileState();
 }
+
 class _ServiceGridTileState extends State<ServiceGridTile> {
-  int selected = -1; 
+  int selected = -1;
 
   @override
   Widget build(BuildContext context) {
@@ -39,12 +41,12 @@ class _ServiceGridTileState extends State<ServiceGridTile> {
               onTap: () {
                 setState(() {
                   if (selected == index) {
-             
                     selected = -1;
-                  } else {
                   
+                  } else {
                     selected = index;
-                      widget.getServicesId( state.services[selected].id);
+                    widget.getServicesId(state.services[selected].id);
+                    print("Selected Service ID: ${state.services[selected].id}");
                   }
                 });
               },
@@ -62,7 +64,9 @@ class _ServiceGridTileState extends State<ServiceGridTile> {
     );
   }
 
-  Widget serviceGridTile(Size kSize, String name, String shortDescription, int index, {required bool isSelected}) {
+  Widget serviceGridTile(
+      Size kSize, String name, String shortDescription, int index,
+      {required bool isSelected}) {
     return Stack(
       fit: StackFit.expand,
       children: [
@@ -76,7 +80,9 @@ class _ServiceGridTileState extends State<ServiceGridTile> {
                 isSelected
                     ? AppColors.blackColor.withOpacity(.7)
                     : AppColors.blackColor.withOpacity(.02),
-                isSelected ? AppColors.blackColor : AppColors.blackColor.withOpacity(.6),
+                isSelected
+                    ? AppColors.blackColor
+                    : AppColors.blackColor.withOpacity(.6),
               ],
               begin: Alignment.topCenter,
               end: Alignment.bottomCenter,

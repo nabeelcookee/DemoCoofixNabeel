@@ -10,12 +10,13 @@ import 'package:coofix/src/presentation/core/values/no_glow_scroll_behaviour.dar
 import 'package:coofix/src/presentation/core/widgets/custom_gradient_tile.dart';
 import 'package:coofix/src/presentation/core/widgets/footer_button.dart';
 import 'package:coofix/src/presentation/core/widgets/primary_button.dart';
+import 'package:coofix/src/presentation/view/service_request/instructions/service_rqst_instruction.dart';
 import 'package:flutter/material.dart';
 
 class ServiceRequestBottomSheet extends StatefulWidget {
   const ServiceRequestBottomSheet({super.key , required this.serviceId});
   final String serviceId;
-
+  
   @override
   State<ServiceRequestBottomSheet> createState() =>
       _ServiceRequestBottomSheetState();
@@ -25,6 +26,7 @@ class _ServiceRequestBottomSheetState extends State<ServiceRequestBottomSheet> {
   final selected = ValueNotifier([-1]);
   @override
   Widget build(BuildContext context) {
+    print(" from bootum sheet ${ widget.serviceId }");
     final kSize = MediaQuery.of(context).size;
     return DraggableScrollableSheet(
       initialChildSize: 0.7,
@@ -79,7 +81,7 @@ class _ServiceRequestBottomSheetState extends State<ServiceRequestBottomSheet> {
                     )
                   ],
                 ),
-                _footerButton(kSize)
+                _footerButton(kSize , widget.serviceId)
               ],
             ),
           ),
@@ -183,7 +185,7 @@ class _ServiceRequestBottomSheetState extends State<ServiceRequestBottomSheet> {
     );
   }
 
-  Widget _footerButton(Size kSize) {
+  Widget _footerButton(Size kSize ,String selectedServieceId) {
     return Positioned(
       bottom: kSize.height * .019,
       right: kSize.width * 0.044,
@@ -194,7 +196,8 @@ class _ServiceRequestBottomSheetState extends State<ServiceRequestBottomSheet> {
             text: AppStrings.continueButtonText,
             onPressed: () {
               Navigator.pushNamed(
-                  context, RouterConstants.notesAndRestrictionRoute);
+                  context, RouterConstants.notesAndRestrictionRoute,
+                 arguments:  selectedServieceId);
             },
           ),
           SizedBox(
