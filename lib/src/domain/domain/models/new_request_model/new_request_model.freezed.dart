@@ -20,16 +20,38 @@ NewRequestModel _$NewRequestModelFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$NewRequestModel {
-  @JsonKey(name: 'status')
-  bool get status => throw _privateConstructorUsedError;
-  @JsonKey(name: 'message')
-  String get message => throw _privateConstructorUsedError;
+  @JsonKey(name: '_id')
+  String get id => throw _privateConstructorUsedError;
+  @JsonKey(name: 'row_id')
+  int get rowId => throw _privateConstructorUsedError;
+  @JsonKey(name: 'customer')
+  String get customer => throw _privateConstructorUsedError;
+  @JsonKey(name: 'customerAddress')
+  String get customerAddress => throw _privateConstructorUsedError;
+  @JsonKey(name: 'technician')
+  String? get technician => throw _privateConstructorUsedError;
+  @JsonKey(name: 'productSerialNumber')
+  String get productSerialNumber => throw _privateConstructorUsedError;
+  @JsonKey(name: 'isRecurringService')
+  bool get isRecurringService => throw _privateConstructorUsedError;
+  @JsonKey(name: 'serviceDateSlot')
+  String? get serviceDateSlot => throw _privateConstructorUsedError;
+  @JsonKey(name: 'serviceDateTimeSlot')
+  String get serviceDateTimeSlot => throw _privateConstructorUsedError;
+  @JsonKey(name: 'note')
+  String get note => throw _privateConstructorUsedError;
   @JsonKey(name: 'service_request_image_base_url')
-  String get requestImageBaseUrl => throw _privateConstructorUsedError;
+  String get servicerequestimagebaseurl => throw _privateConstructorUsedError;
   @JsonKey(name: 'product_image_base_url')
-  String get productImageBaseUrl => throw _privateConstructorUsedError;
+  String get productimagebaseurl => throw _privateConstructorUsedError;
   @JsonKey(name: 'service_image_base_url')
-  String get serviceImageBaseUrl => throw _privateConstructorUsedError;
+  String get serviceimagebaseurl => throw _privateConstructorUsedError;
+  @JsonKey(name: 'status')
+  String get status => throw _privateConstructorUsedError;
+  @JsonKey(name: 'createdAt')
+  String get createdAt => throw _privateConstructorUsedError;
+  @JsonKey(name: 'updatedAt')
+  String get updatedAt => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -44,12 +66,23 @@ abstract class $NewRequestModelCopyWith<$Res> {
       _$NewRequestModelCopyWithImpl<$Res, NewRequestModel>;
   @useResult
   $Res call(
-      {@JsonKey(name: 'status') bool status,
-      @JsonKey(name: 'message') String message,
+      {@JsonKey(name: '_id') String id,
+      @JsonKey(name: 'row_id') int rowId,
+      @JsonKey(name: 'customer') String customer,
+      @JsonKey(name: 'customerAddress') String customerAddress,
+      @JsonKey(name: 'technician') String? technician,
+      @JsonKey(name: 'productSerialNumber') String productSerialNumber,
+      @JsonKey(name: 'isRecurringService') bool isRecurringService,
+      @JsonKey(name: 'serviceDateSlot') String? serviceDateSlot,
+      @JsonKey(name: 'serviceDateTimeSlot') String serviceDateTimeSlot,
+      @JsonKey(name: 'note') String note,
       @JsonKey(name: 'service_request_image_base_url')
-      String requestImageBaseUrl,
-      @JsonKey(name: 'product_image_base_url') String productImageBaseUrl,
-      @JsonKey(name: 'service_image_base_url') String serviceImageBaseUrl});
+      String servicerequestimagebaseurl,
+      @JsonKey(name: 'product_image_base_url') String productimagebaseurl,
+      @JsonKey(name: 'service_image_base_url') String serviceimagebaseurl,
+      @JsonKey(name: 'status') String status,
+      @JsonKey(name: 'createdAt') String createdAt,
+      @JsonKey(name: 'updatedAt') String updatedAt});
 }
 
 /// @nodoc
@@ -65,32 +98,87 @@ class _$NewRequestModelCopyWithImpl<$Res, $Val extends NewRequestModel>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? id = null,
+    Object? rowId = null,
+    Object? customer = null,
+    Object? customerAddress = null,
+    Object? technician = freezed,
+    Object? productSerialNumber = null,
+    Object? isRecurringService = null,
+    Object? serviceDateSlot = freezed,
+    Object? serviceDateTimeSlot = null,
+    Object? note = null,
+    Object? servicerequestimagebaseurl = null,
+    Object? productimagebaseurl = null,
+    Object? serviceimagebaseurl = null,
     Object? status = null,
-    Object? message = null,
-    Object? requestImageBaseUrl = null,
-    Object? productImageBaseUrl = null,
-    Object? serviceImageBaseUrl = null,
+    Object? createdAt = null,
+    Object? updatedAt = null,
   }) {
     return _then(_value.copyWith(
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String,
+      rowId: null == rowId
+          ? _value.rowId
+          : rowId // ignore: cast_nullable_to_non_nullable
+              as int,
+      customer: null == customer
+          ? _value.customer
+          : customer // ignore: cast_nullable_to_non_nullable
+              as String,
+      customerAddress: null == customerAddress
+          ? _value.customerAddress
+          : customerAddress // ignore: cast_nullable_to_non_nullable
+              as String,
+      technician: freezed == technician
+          ? _value.technician
+          : technician // ignore: cast_nullable_to_non_nullable
+              as String?,
+      productSerialNumber: null == productSerialNumber
+          ? _value.productSerialNumber
+          : productSerialNumber // ignore: cast_nullable_to_non_nullable
+              as String,
+      isRecurringService: null == isRecurringService
+          ? _value.isRecurringService
+          : isRecurringService // ignore: cast_nullable_to_non_nullable
+              as bool,
+      serviceDateSlot: freezed == serviceDateSlot
+          ? _value.serviceDateSlot
+          : serviceDateSlot // ignore: cast_nullable_to_non_nullable
+              as String?,
+      serviceDateTimeSlot: null == serviceDateTimeSlot
+          ? _value.serviceDateTimeSlot
+          : serviceDateTimeSlot // ignore: cast_nullable_to_non_nullable
+              as String,
+      note: null == note
+          ? _value.note
+          : note // ignore: cast_nullable_to_non_nullable
+              as String,
+      servicerequestimagebaseurl: null == servicerequestimagebaseurl
+          ? _value.servicerequestimagebaseurl
+          : servicerequestimagebaseurl // ignore: cast_nullable_to_non_nullable
+              as String,
+      productimagebaseurl: null == productimagebaseurl
+          ? _value.productimagebaseurl
+          : productimagebaseurl // ignore: cast_nullable_to_non_nullable
+              as String,
+      serviceimagebaseurl: null == serviceimagebaseurl
+          ? _value.serviceimagebaseurl
+          : serviceimagebaseurl // ignore: cast_nullable_to_non_nullable
+              as String,
       status: null == status
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
-              as bool,
-      message: null == message
-          ? _value.message
-          : message // ignore: cast_nullable_to_non_nullable
               as String,
-      requestImageBaseUrl: null == requestImageBaseUrl
-          ? _value.requestImageBaseUrl
-          : requestImageBaseUrl // ignore: cast_nullable_to_non_nullable
+      createdAt: null == createdAt
+          ? _value.createdAt
+          : createdAt // ignore: cast_nullable_to_non_nullable
               as String,
-      productImageBaseUrl: null == productImageBaseUrl
-          ? _value.productImageBaseUrl
-          : productImageBaseUrl // ignore: cast_nullable_to_non_nullable
-              as String,
-      serviceImageBaseUrl: null == serviceImageBaseUrl
-          ? _value.serviceImageBaseUrl
-          : serviceImageBaseUrl // ignore: cast_nullable_to_non_nullable
+      updatedAt: null == updatedAt
+          ? _value.updatedAt
+          : updatedAt // ignore: cast_nullable_to_non_nullable
               as String,
     ) as $Val);
   }
@@ -105,12 +193,23 @@ abstract class _$$NewRequestModelImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {@JsonKey(name: 'status') bool status,
-      @JsonKey(name: 'message') String message,
+      {@JsonKey(name: '_id') String id,
+      @JsonKey(name: 'row_id') int rowId,
+      @JsonKey(name: 'customer') String customer,
+      @JsonKey(name: 'customerAddress') String customerAddress,
+      @JsonKey(name: 'technician') String? technician,
+      @JsonKey(name: 'productSerialNumber') String productSerialNumber,
+      @JsonKey(name: 'isRecurringService') bool isRecurringService,
+      @JsonKey(name: 'serviceDateSlot') String? serviceDateSlot,
+      @JsonKey(name: 'serviceDateTimeSlot') String serviceDateTimeSlot,
+      @JsonKey(name: 'note') String note,
       @JsonKey(name: 'service_request_image_base_url')
-      String requestImageBaseUrl,
-      @JsonKey(name: 'product_image_base_url') String productImageBaseUrl,
-      @JsonKey(name: 'service_image_base_url') String serviceImageBaseUrl});
+      String servicerequestimagebaseurl,
+      @JsonKey(name: 'product_image_base_url') String productimagebaseurl,
+      @JsonKey(name: 'service_image_base_url') String serviceimagebaseurl,
+      @JsonKey(name: 'status') String status,
+      @JsonKey(name: 'createdAt') String createdAt,
+      @JsonKey(name: 'updatedAt') String updatedAt});
 }
 
 /// @nodoc
@@ -124,32 +223,87 @@ class __$$NewRequestModelImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? id = null,
+    Object? rowId = null,
+    Object? customer = null,
+    Object? customerAddress = null,
+    Object? technician = freezed,
+    Object? productSerialNumber = null,
+    Object? isRecurringService = null,
+    Object? serviceDateSlot = freezed,
+    Object? serviceDateTimeSlot = null,
+    Object? note = null,
+    Object? servicerequestimagebaseurl = null,
+    Object? productimagebaseurl = null,
+    Object? serviceimagebaseurl = null,
     Object? status = null,
-    Object? message = null,
-    Object? requestImageBaseUrl = null,
-    Object? productImageBaseUrl = null,
-    Object? serviceImageBaseUrl = null,
+    Object? createdAt = null,
+    Object? updatedAt = null,
   }) {
     return _then(_$NewRequestModelImpl(
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String,
+      rowId: null == rowId
+          ? _value.rowId
+          : rowId // ignore: cast_nullable_to_non_nullable
+              as int,
+      customer: null == customer
+          ? _value.customer
+          : customer // ignore: cast_nullable_to_non_nullable
+              as String,
+      customerAddress: null == customerAddress
+          ? _value.customerAddress
+          : customerAddress // ignore: cast_nullable_to_non_nullable
+              as String,
+      technician: freezed == technician
+          ? _value.technician
+          : technician // ignore: cast_nullable_to_non_nullable
+              as String?,
+      productSerialNumber: null == productSerialNumber
+          ? _value.productSerialNumber
+          : productSerialNumber // ignore: cast_nullable_to_non_nullable
+              as String,
+      isRecurringService: null == isRecurringService
+          ? _value.isRecurringService
+          : isRecurringService // ignore: cast_nullable_to_non_nullable
+              as bool,
+      serviceDateSlot: freezed == serviceDateSlot
+          ? _value.serviceDateSlot
+          : serviceDateSlot // ignore: cast_nullable_to_non_nullable
+              as String?,
+      serviceDateTimeSlot: null == serviceDateTimeSlot
+          ? _value.serviceDateTimeSlot
+          : serviceDateTimeSlot // ignore: cast_nullable_to_non_nullable
+              as String,
+      note: null == note
+          ? _value.note
+          : note // ignore: cast_nullable_to_non_nullable
+              as String,
+      servicerequestimagebaseurl: null == servicerequestimagebaseurl
+          ? _value.servicerequestimagebaseurl
+          : servicerequestimagebaseurl // ignore: cast_nullable_to_non_nullable
+              as String,
+      productimagebaseurl: null == productimagebaseurl
+          ? _value.productimagebaseurl
+          : productimagebaseurl // ignore: cast_nullable_to_non_nullable
+              as String,
+      serviceimagebaseurl: null == serviceimagebaseurl
+          ? _value.serviceimagebaseurl
+          : serviceimagebaseurl // ignore: cast_nullable_to_non_nullable
+              as String,
       status: null == status
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
-              as bool,
-      message: null == message
-          ? _value.message
-          : message // ignore: cast_nullable_to_non_nullable
               as String,
-      requestImageBaseUrl: null == requestImageBaseUrl
-          ? _value.requestImageBaseUrl
-          : requestImageBaseUrl // ignore: cast_nullable_to_non_nullable
+      createdAt: null == createdAt
+          ? _value.createdAt
+          : createdAt // ignore: cast_nullable_to_non_nullable
               as String,
-      productImageBaseUrl: null == productImageBaseUrl
-          ? _value.productImageBaseUrl
-          : productImageBaseUrl // ignore: cast_nullable_to_non_nullable
-              as String,
-      serviceImageBaseUrl: null == serviceImageBaseUrl
-          ? _value.serviceImageBaseUrl
-          : serviceImageBaseUrl // ignore: cast_nullable_to_non_nullable
+      updatedAt: null == updatedAt
+          ? _value.updatedAt
+          : updatedAt // ignore: cast_nullable_to_non_nullable
               as String,
     ));
   }
@@ -159,35 +313,79 @@ class __$$NewRequestModelImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$NewRequestModelImpl implements _NewRequestModel {
   _$NewRequestModelImpl(
-      {@JsonKey(name: 'status') this.status = false,
-      @JsonKey(name: 'message') this.message = '',
+      {@JsonKey(name: '_id') this.id = "",
+      @JsonKey(name: 'row_id') this.rowId = 0,
+      @JsonKey(name: 'customer') this.customer = "",
+      @JsonKey(name: 'customerAddress') this.customerAddress = "",
+      @JsonKey(name: 'technician') this.technician = "",
+      @JsonKey(name: 'productSerialNumber') this.productSerialNumber = "",
+      @JsonKey(name: 'isRecurringService') this.isRecurringService = false,
+      @JsonKey(name: 'serviceDateSlot') this.serviceDateSlot = "",
+      @JsonKey(name: 'serviceDateTimeSlot') this.serviceDateTimeSlot = "",
+      @JsonKey(name: 'note') this.note = "",
       @JsonKey(name: 'service_request_image_base_url')
-      this.requestImageBaseUrl = '',
-      @JsonKey(name: 'product_image_base_url') this.productImageBaseUrl = '',
-      @JsonKey(name: 'service_image_base_url') this.serviceImageBaseUrl = ''});
+      this.servicerequestimagebaseurl = "",
+      @JsonKey(name: 'product_image_base_url') this.productimagebaseurl = "",
+      @JsonKey(name: 'service_image_base_url') this.serviceimagebaseurl = '',
+      @JsonKey(name: 'status') this.status = "",
+      @JsonKey(name: 'createdAt') this.createdAt = "",
+      @JsonKey(name: 'updatedAt') this.updatedAt = ""});
 
   factory _$NewRequestModelImpl.fromJson(Map<String, dynamic> json) =>
       _$$NewRequestModelImplFromJson(json);
 
   @override
-  @JsonKey(name: 'status')
-  final bool status;
+  @JsonKey(name: '_id')
+  final String id;
   @override
-  @JsonKey(name: 'message')
-  final String message;
+  @JsonKey(name: 'row_id')
+  final int rowId;
+  @override
+  @JsonKey(name: 'customer')
+  final String customer;
+  @override
+  @JsonKey(name: 'customerAddress')
+  final String customerAddress;
+  @override
+  @JsonKey(name: 'technician')
+  final String? technician;
+  @override
+  @JsonKey(name: 'productSerialNumber')
+  final String productSerialNumber;
+  @override
+  @JsonKey(name: 'isRecurringService')
+  final bool isRecurringService;
+  @override
+  @JsonKey(name: 'serviceDateSlot')
+  final String? serviceDateSlot;
+  @override
+  @JsonKey(name: 'serviceDateTimeSlot')
+  final String serviceDateTimeSlot;
+  @override
+  @JsonKey(name: 'note')
+  final String note;
   @override
   @JsonKey(name: 'service_request_image_base_url')
-  final String requestImageBaseUrl;
+  final String servicerequestimagebaseurl;
   @override
   @JsonKey(name: 'product_image_base_url')
-  final String productImageBaseUrl;
+  final String productimagebaseurl;
   @override
   @JsonKey(name: 'service_image_base_url')
-  final String serviceImageBaseUrl;
+  final String serviceimagebaseurl;
+  @override
+  @JsonKey(name: 'status')
+  final String status;
+  @override
+  @JsonKey(name: 'createdAt')
+  final String createdAt;
+  @override
+  @JsonKey(name: 'updatedAt')
+  final String updatedAt;
 
   @override
   String toString() {
-    return 'NewRequestModel(status: $status, message: $message, requestImageBaseUrl: $requestImageBaseUrl, productImageBaseUrl: $productImageBaseUrl, serviceImageBaseUrl: $serviceImageBaseUrl)';
+    return 'NewRequestModel(id: $id, rowId: $rowId, customer: $customer, customerAddress: $customerAddress, technician: $technician, productSerialNumber: $productSerialNumber, isRecurringService: $isRecurringService, serviceDateSlot: $serviceDateSlot, serviceDateTimeSlot: $serviceDateTimeSlot, note: $note, servicerequestimagebaseurl: $servicerequestimagebaseurl, productimagebaseurl: $productimagebaseurl, serviceimagebaseurl: $serviceimagebaseurl, status: $status, createdAt: $createdAt, updatedAt: $updatedAt)';
   }
 
   @override
@@ -195,20 +393,58 @@ class _$NewRequestModelImpl implements _NewRequestModel {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$NewRequestModelImpl &&
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.rowId, rowId) || other.rowId == rowId) &&
+            (identical(other.customer, customer) ||
+                other.customer == customer) &&
+            (identical(other.customerAddress, customerAddress) ||
+                other.customerAddress == customerAddress) &&
+            (identical(other.technician, technician) ||
+                other.technician == technician) &&
+            (identical(other.productSerialNumber, productSerialNumber) ||
+                other.productSerialNumber == productSerialNumber) &&
+            (identical(other.isRecurringService, isRecurringService) ||
+                other.isRecurringService == isRecurringService) &&
+            (identical(other.serviceDateSlot, serviceDateSlot) ||
+                other.serviceDateSlot == serviceDateSlot) &&
+            (identical(other.serviceDateTimeSlot, serviceDateTimeSlot) ||
+                other.serviceDateTimeSlot == serviceDateTimeSlot) &&
+            (identical(other.note, note) || other.note == note) &&
+            (identical(other.servicerequestimagebaseurl,
+                    servicerequestimagebaseurl) ||
+                other.servicerequestimagebaseurl ==
+                    servicerequestimagebaseurl) &&
+            (identical(other.productimagebaseurl, productimagebaseurl) ||
+                other.productimagebaseurl == productimagebaseurl) &&
+            (identical(other.serviceimagebaseurl, serviceimagebaseurl) ||
+                other.serviceimagebaseurl == serviceimagebaseurl) &&
             (identical(other.status, status) || other.status == status) &&
-            (identical(other.message, message) || other.message == message) &&
-            (identical(other.requestImageBaseUrl, requestImageBaseUrl) ||
-                other.requestImageBaseUrl == requestImageBaseUrl) &&
-            (identical(other.productImageBaseUrl, productImageBaseUrl) ||
-                other.productImageBaseUrl == productImageBaseUrl) &&
-            (identical(other.serviceImageBaseUrl, serviceImageBaseUrl) ||
-                other.serviceImageBaseUrl == serviceImageBaseUrl));
+            (identical(other.createdAt, createdAt) ||
+                other.createdAt == createdAt) &&
+            (identical(other.updatedAt, updatedAt) ||
+                other.updatedAt == updatedAt));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, status, message,
-      requestImageBaseUrl, productImageBaseUrl, serviceImageBaseUrl);
+  int get hashCode => Object.hash(
+      runtimeType,
+      id,
+      rowId,
+      customer,
+      customerAddress,
+      technician,
+      productSerialNumber,
+      isRecurringService,
+      serviceDateSlot,
+      serviceDateTimeSlot,
+      note,
+      servicerequestimagebaseurl,
+      productimagebaseurl,
+      serviceimagebaseurl,
+      status,
+      createdAt,
+      updatedAt);
 
   @JsonKey(ignore: true)
   @override
@@ -227,32 +463,76 @@ class _$NewRequestModelImpl implements _NewRequestModel {
 
 abstract class _NewRequestModel implements NewRequestModel {
   factory _NewRequestModel(
-      {@JsonKey(name: 'status') final bool status,
-      @JsonKey(name: 'message') final String message,
+      {@JsonKey(name: '_id') final String id,
+      @JsonKey(name: 'row_id') final int rowId,
+      @JsonKey(name: 'customer') final String customer,
+      @JsonKey(name: 'customerAddress') final String customerAddress,
+      @JsonKey(name: 'technician') final String? technician,
+      @JsonKey(name: 'productSerialNumber') final String productSerialNumber,
+      @JsonKey(name: 'isRecurringService') final bool isRecurringService,
+      @JsonKey(name: 'serviceDateSlot') final String? serviceDateSlot,
+      @JsonKey(name: 'serviceDateTimeSlot') final String serviceDateTimeSlot,
+      @JsonKey(name: 'note') final String note,
       @JsonKey(name: 'service_request_image_base_url')
-      final String requestImageBaseUrl,
-      @JsonKey(name: 'product_image_base_url') final String productImageBaseUrl,
-      @JsonKey(name: 'service_image_base_url')
-      final String serviceImageBaseUrl}) = _$NewRequestModelImpl;
+      final String servicerequestimagebaseurl,
+      @JsonKey(name: 'product_image_base_url') final String productimagebaseurl,
+      @JsonKey(name: 'service_image_base_url') final String serviceimagebaseurl,
+      @JsonKey(name: 'status') final String status,
+      @JsonKey(name: 'createdAt') final String createdAt,
+      @JsonKey(name: 'updatedAt')
+      final String updatedAt}) = _$NewRequestModelImpl;
 
   factory _NewRequestModel.fromJson(Map<String, dynamic> json) =
       _$NewRequestModelImpl.fromJson;
 
   @override
-  @JsonKey(name: 'status')
-  bool get status;
+  @JsonKey(name: '_id')
+  String get id;
   @override
-  @JsonKey(name: 'message')
-  String get message;
+  @JsonKey(name: 'row_id')
+  int get rowId;
+  @override
+  @JsonKey(name: 'customer')
+  String get customer;
+  @override
+  @JsonKey(name: 'customerAddress')
+  String get customerAddress;
+  @override
+  @JsonKey(name: 'technician')
+  String? get technician;
+  @override
+  @JsonKey(name: 'productSerialNumber')
+  String get productSerialNumber;
+  @override
+  @JsonKey(name: 'isRecurringService')
+  bool get isRecurringService;
+  @override
+  @JsonKey(name: 'serviceDateSlot')
+  String? get serviceDateSlot;
+  @override
+  @JsonKey(name: 'serviceDateTimeSlot')
+  String get serviceDateTimeSlot;
+  @override
+  @JsonKey(name: 'note')
+  String get note;
   @override
   @JsonKey(name: 'service_request_image_base_url')
-  String get requestImageBaseUrl;
+  String get servicerequestimagebaseurl;
   @override
   @JsonKey(name: 'product_image_base_url')
-  String get productImageBaseUrl;
+  String get productimagebaseurl;
   @override
   @JsonKey(name: 'service_image_base_url')
-  String get serviceImageBaseUrl;
+  String get serviceimagebaseurl;
+  @override
+  @JsonKey(name: 'status')
+  String get status;
+  @override
+  @JsonKey(name: 'createdAt')
+  String get createdAt;
+  @override
+  @JsonKey(name: 'updatedAt')
+  String get updatedAt;
   @override
   @JsonKey(ignore: true)
   _$$NewRequestModelImplCopyWith<_$NewRequestModelImpl> get copyWith =>

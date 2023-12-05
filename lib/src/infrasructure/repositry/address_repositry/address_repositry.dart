@@ -124,7 +124,7 @@ class GetAddressRepository implements IGetAddress {
         "id": id,
         "addressType": addressType,
         "fullName": fullName,
-        "address": addAddres,
+        "address": addres,
         "pinCode": pinCode,
         "directionToReach": directionToReach,
         "locationLatitude": locationLatitude,
@@ -142,10 +142,10 @@ class GetAddressRepository implements IGetAddress {
         }),
       );
       if (kDebugMode) {
-        print("get Address access token is ${prefs.getString('access_token')}");
-        print('Get Address Response status code: ${response.statusCode}');
-        print('Get Address Response headers: ${response.headers}');
-        print('Get Address Response body: ${response.data}');
+        print("add Address access token is ${prefs.getString('access_token')}");
+        print('add Address Response status code: ${response.statusCode}');
+        print('add Address Response headers: ${response.headers}');
+        print('add Address Response body: ${response.data}');
       }
 
       if (response.statusCode == 200) {

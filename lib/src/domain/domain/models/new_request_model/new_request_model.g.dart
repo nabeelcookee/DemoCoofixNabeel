@@ -9,20 +9,42 @@ part of 'new_request_model.dart';
 _$NewRequestModelImpl _$$NewRequestModelImplFromJson(
         Map<String, dynamic> json) =>
     _$NewRequestModelImpl(
-      status: json['status'] as bool? ?? false,
-      message: json['message'] as String? ?? '',
-      requestImageBaseUrl:
-          json['service_request_image_base_url'] as String? ?? '',
-      productImageBaseUrl: json['product_image_base_url'] as String? ?? '',
-      serviceImageBaseUrl: json['service_image_base_url'] as String? ?? '',
+      id: json['_id'] as String? ?? "",
+      rowId: json['row_id'] as int? ?? 0,
+      customer: json['customer'] as String? ?? "",
+      customerAddress: json['customerAddress'] as String? ?? "",
+      technician: json['technician'] as String? ?? "",
+      productSerialNumber: json['productSerialNumber'] as String? ?? "",
+      isRecurringService: json['isRecurringService'] as bool? ?? false,
+      serviceDateSlot: json['serviceDateSlot'] as String? ?? "",
+      serviceDateTimeSlot: json['serviceDateTimeSlot'] as String? ?? "",
+      note: json['note'] as String? ?? "",
+      servicerequestimagebaseurl:
+          json['service_request_image_base_url'] as String? ?? "",
+      productimagebaseurl: json['product_image_base_url'] as String? ?? "",
+      serviceimagebaseurl: json['service_image_base_url'] as String? ?? '',
+      status: json['status'] as String? ?? "",
+      createdAt: json['createdAt'] as String? ?? "",
+      updatedAt: json['updatedAt'] as String? ?? "",
     );
 
 Map<String, dynamic> _$$NewRequestModelImplToJson(
         _$NewRequestModelImpl instance) =>
     <String, dynamic>{
+      '_id': instance.id,
+      'row_id': instance.rowId,
+      'customer': instance.customer,
+      'customerAddress': instance.customerAddress,
+      'technician': instance.technician,
+      'productSerialNumber': instance.productSerialNumber,
+      'isRecurringService': instance.isRecurringService,
+      'serviceDateSlot': instance.serviceDateSlot,
+      'serviceDateTimeSlot': instance.serviceDateTimeSlot,
+      'note': instance.note,
+      'service_request_image_base_url': instance.servicerequestimagebaseurl,
+      'product_image_base_url': instance.productimagebaseurl,
+      'service_image_base_url': instance.serviceimagebaseurl,
       'status': instance.status,
-      'message': instance.message,
-      'service_request_image_base_url': instance.requestImageBaseUrl,
-      'product_image_base_url': instance.productImageBaseUrl,
-      'service_image_base_url': instance.serviceImageBaseUrl,
+      'createdAt': instance.createdAt,
+      'updatedAt': instance.updatedAt,
     };

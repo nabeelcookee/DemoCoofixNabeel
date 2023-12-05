@@ -18,9 +18,7 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$NewRequestState {
   bool get status => throw _privateConstructorUsedError;
   String get message => throw _privateConstructorUsedError;
-  String get serviceRequestImageBaseUrl => throw _privateConstructorUsedError;
-  String get productImageBaseUrl => throw _privateConstructorUsedError;
-  String get serviceImageBaseUrl => throw _privateConstructorUsedError;
+  List<NewRequestModel> get requestDatas => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $NewRequestStateCopyWith<NewRequestState> get copyWith =>
@@ -33,12 +31,7 @@ abstract class $NewRequestStateCopyWith<$Res> {
           NewRequestState value, $Res Function(NewRequestState) then) =
       _$NewRequestStateCopyWithImpl<$Res, NewRequestState>;
   @useResult
-  $Res call(
-      {bool status,
-      String message,
-      String serviceRequestImageBaseUrl,
-      String productImageBaseUrl,
-      String serviceImageBaseUrl});
+  $Res call({bool status, String message, List<NewRequestModel> requestDatas});
 }
 
 /// @nodoc
@@ -56,9 +49,7 @@ class _$NewRequestStateCopyWithImpl<$Res, $Val extends NewRequestState>
   $Res call({
     Object? status = null,
     Object? message = null,
-    Object? serviceRequestImageBaseUrl = null,
-    Object? productImageBaseUrl = null,
-    Object? serviceImageBaseUrl = null,
+    Object? requestDatas = null,
   }) {
     return _then(_value.copyWith(
       status: null == status
@@ -69,18 +60,10 @@ class _$NewRequestStateCopyWithImpl<$Res, $Val extends NewRequestState>
           ? _value.message
           : message // ignore: cast_nullable_to_non_nullable
               as String,
-      serviceRequestImageBaseUrl: null == serviceRequestImageBaseUrl
-          ? _value.serviceRequestImageBaseUrl
-          : serviceRequestImageBaseUrl // ignore: cast_nullable_to_non_nullable
-              as String,
-      productImageBaseUrl: null == productImageBaseUrl
-          ? _value.productImageBaseUrl
-          : productImageBaseUrl // ignore: cast_nullable_to_non_nullable
-              as String,
-      serviceImageBaseUrl: null == serviceImageBaseUrl
-          ? _value.serviceImageBaseUrl
-          : serviceImageBaseUrl // ignore: cast_nullable_to_non_nullable
-              as String,
+      requestDatas: null == requestDatas
+          ? _value.requestDatas
+          : requestDatas // ignore: cast_nullable_to_non_nullable
+              as List<NewRequestModel>,
     ) as $Val);
   }
 }
@@ -93,12 +76,7 @@ abstract class _$$NewRequestStateImplCopyWith<$Res>
       __$$NewRequestStateImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call(
-      {bool status,
-      String message,
-      String serviceRequestImageBaseUrl,
-      String productImageBaseUrl,
-      String serviceImageBaseUrl});
+  $Res call({bool status, String message, List<NewRequestModel> requestDatas});
 }
 
 /// @nodoc
@@ -114,9 +92,7 @@ class __$$NewRequestStateImplCopyWithImpl<$Res>
   $Res call({
     Object? status = null,
     Object? message = null,
-    Object? serviceRequestImageBaseUrl = null,
-    Object? productImageBaseUrl = null,
-    Object? serviceImageBaseUrl = null,
+    Object? requestDatas = null,
   }) {
     return _then(_$NewRequestStateImpl(
       status: null == status
@@ -127,18 +103,10 @@ class __$$NewRequestStateImplCopyWithImpl<$Res>
           ? _value.message
           : message // ignore: cast_nullable_to_non_nullable
               as String,
-      serviceRequestImageBaseUrl: null == serviceRequestImageBaseUrl
-          ? _value.serviceRequestImageBaseUrl
-          : serviceRequestImageBaseUrl // ignore: cast_nullable_to_non_nullable
-              as String,
-      productImageBaseUrl: null == productImageBaseUrl
-          ? _value.productImageBaseUrl
-          : productImageBaseUrl // ignore: cast_nullable_to_non_nullable
-              as String,
-      serviceImageBaseUrl: null == serviceImageBaseUrl
-          ? _value.serviceImageBaseUrl
-          : serviceImageBaseUrl // ignore: cast_nullable_to_non_nullable
-              as String,
+      requestDatas: null == requestDatas
+          ? _value._requestDatas
+          : requestDatas // ignore: cast_nullable_to_non_nullable
+              as List<NewRequestModel>,
     ));
   }
 }
@@ -149,24 +117,24 @@ class _$NewRequestStateImpl implements _NewRequestState {
   _$NewRequestStateImpl(
       {required this.status,
       required this.message,
-      required this.serviceRequestImageBaseUrl,
-      required this.productImageBaseUrl,
-      required this.serviceImageBaseUrl});
+      required final List<NewRequestModel> requestDatas})
+      : _requestDatas = requestDatas;
 
   @override
   final bool status;
   @override
   final String message;
+  final List<NewRequestModel> _requestDatas;
   @override
-  final String serviceRequestImageBaseUrl;
-  @override
-  final String productImageBaseUrl;
-  @override
-  final String serviceImageBaseUrl;
+  List<NewRequestModel> get requestDatas {
+    if (_requestDatas is EqualUnmodifiableListView) return _requestDatas;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_requestDatas);
+  }
 
   @override
   String toString() {
-    return 'NewRequestState(status: $status, message: $message, serviceRequestImageBaseUrl: $serviceRequestImageBaseUrl, productImageBaseUrl: $productImageBaseUrl, serviceImageBaseUrl: $serviceImageBaseUrl)';
+    return 'NewRequestState(status: $status, message: $message, requestDatas: $requestDatas)';
   }
 
   @override
@@ -176,19 +144,13 @@ class _$NewRequestStateImpl implements _NewRequestState {
             other is _$NewRequestStateImpl &&
             (identical(other.status, status) || other.status == status) &&
             (identical(other.message, message) || other.message == message) &&
-            (identical(other.serviceRequestImageBaseUrl,
-                    serviceRequestImageBaseUrl) ||
-                other.serviceRequestImageBaseUrl ==
-                    serviceRequestImageBaseUrl) &&
-            (identical(other.productImageBaseUrl, productImageBaseUrl) ||
-                other.productImageBaseUrl == productImageBaseUrl) &&
-            (identical(other.serviceImageBaseUrl, serviceImageBaseUrl) ||
-                other.serviceImageBaseUrl == serviceImageBaseUrl));
+            const DeepCollectionEquality()
+                .equals(other._requestDatas, _requestDatas));
   }
 
   @override
   int get hashCode => Object.hash(runtimeType, status, message,
-      serviceRequestImageBaseUrl, productImageBaseUrl, serviceImageBaseUrl);
+      const DeepCollectionEquality().hash(_requestDatas));
 
   @JsonKey(ignore: true)
   @override
@@ -200,22 +162,17 @@ class _$NewRequestStateImpl implements _NewRequestState {
 
 abstract class _NewRequestState implements NewRequestState {
   factory _NewRequestState(
-      {required final bool status,
-      required final String message,
-      required final String serviceRequestImageBaseUrl,
-      required final String productImageBaseUrl,
-      required final String serviceImageBaseUrl}) = _$NewRequestStateImpl;
+          {required final bool status,
+          required final String message,
+          required final List<NewRequestModel> requestDatas}) =
+      _$NewRequestStateImpl;
 
   @override
   bool get status;
   @override
   String get message;
   @override
-  String get serviceRequestImageBaseUrl;
-  @override
-  String get productImageBaseUrl;
-  @override
-  String get serviceImageBaseUrl;
+  List<NewRequestModel> get requestDatas;
   @override
   @JsonKey(ignore: true)
   _$$NewRequestStateImplCopyWith<_$NewRequestStateImpl> get copyWith =>

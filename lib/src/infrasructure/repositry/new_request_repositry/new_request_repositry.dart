@@ -21,6 +21,7 @@ class NewRequestRepositry implements INewRequestRepositry {
       required String serviceDateTimeSlot}) async {
     try {
       SharedPreferences prefs = await SharedPreferences.getInstance();
+      print("new request  accsess token is ${prefs.getString('access_token')}");
       if (prefs.getString('access_token') == null) {
         print("Invalid_Token");
         throw Exception("Invalid_Token");
@@ -30,6 +31,9 @@ class NewRequestRepositry implements INewRequestRepositry {
         'id': id,
         'addressId': addressId,
         'isRecurringService': isRecurringService,
+        'serviceDateTimeSlot': serviceDateTimeSlot,
+        'serviceDateSlot': serviceDateSlot,
+        'note': note
       };
       var dio = Dio();
       dio.interceptors.add(Dionterceptor());
@@ -53,15 +57,29 @@ class NewRequestRepositry implements INewRequestRepositry {
         print(' new request Response body: ${response.data}');
       }
       if (response.statusCode == 200) {
-        final NewRequestModel newRequestData =
-            NewRequestModel.fromJson(response.data);
-        return newRequestData;
-      } else {
-        throw DioException(
+        if (response.data is List) {
+          return response.data
+              .map<NewRequestModel>((item) => NewRequestModel.fromJson(item))
+              .toList();
+        } else if (response.data is Map<String, dynamic>) {
+          final NewRequestModel newRequestData =
+              NewRequestModel.fromJson(response.data);
+          return newRequestData;
+        } else {
+          throw DioException(
             error: "Failed",
             requestOptions: RequestOptions(),
             type: DioExceptionType.badResponse,
-            response: response);
+            response: response,
+          );
+        }
+      } else {
+        throw DioException(
+          error: "Failed",
+          requestOptions: RequestOptions(),
+          type: DioExceptionType.badResponse,
+          response: response,
+        );
       }
     } catch (e) {
       if (kDebugMode) {
@@ -69,5 +87,78 @@ class NewRequestRepositry implements INewRequestRepositry {
       }
       rethrow;
     }
+  }
+
+  @override
+  Future<List<NewRequestModel>> listRequests({
+    required int limit,
+    required int skip,
+    required String id,
+    required String status,
+    required String productSaleId,
+  }) async {
+    try {
+      SharedPreferences prefs = await SharedPreferences.getInstance();
+      print("Access token: ${prefs.getString('access_token')}");
+
+      if (prefs.getString('access_token') == null) {
+        print("Invalid Token");
+        throw Exception("Invalid Token");
+      }
+
+      final Map<String, dynamic> data = {
+        'id': id,
+        'limit': limit,
+        'skip': skip,
+        'status': status,
+        'productSaleId': productSaleId,
+      };
+
+      var dio = Dio();
+      dio.interceptors.add(Dionterceptor());
+
+      final response = await dio.post(
+        ApiEndpoints.listAllRequests,
+        data: data,
+        options: Options(
+          headers: {
+            "Authorization": "Bearer ${prefs.getString('access_token')}",
+          },
+        ),
+      );
+
+      if (kDebugMode) {
+        print("Access token: ${prefs.getString('access_token')}");
+        print('list request Response status code: ${response.statusCode}');
+        print('list request Response headers: ${response.headers}');
+        print('list request Response body: ${response.data}');
+      }
+
+      if (response.statusCode == 200) {
+        if (response.data is List) {
+          print("list request Response body${response.data}");
+          return response.data
+              .map<NewRequestModel>((item) => NewRequestModel.fromJson(item))
+              .toList();
+        } else {
+          throw DioException(
+            error: "Failed",
+            requestOptions: RequestOptions(),
+            type: DioExceptionType.badResponse,
+            response: response,
+          );
+        }
+      } else {
+        throw DioException(
+          error: "Failed",
+          requestOptions: RequestOptions(),
+          type: DioExceptionType.badResponse,
+          response: response,
+        );
+      }
+    } catch (e) {
+      print("Error: $e");
+    }
+    throw Exception("");
   }
 }

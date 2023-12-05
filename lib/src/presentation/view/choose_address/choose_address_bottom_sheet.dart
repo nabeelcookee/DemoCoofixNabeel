@@ -4,6 +4,7 @@ import 'package:coofix/app/router/router_constants.dart';
 import 'package:coofix/src/application/address_bloc/address_bloc.dart';
 import 'package:coofix/src/application/address_bloc/address_state.dart';
 import 'package:coofix/src/application/new_request_bloc/bloc/new_request_bloc.dart';
+import 'package:coofix/src/application/new_request_bloc/bloc/new_request_state.dart';
 import 'package:coofix/src/presentation/core/constants/constants.dart';
 import 'package:coofix/src/presentation/core/constants/images.dart';
 import 'package:coofix/src/presentation/core/constants/strings.dart';
@@ -219,47 +220,62 @@ class _ChooseAddressBottomSheetState extends State<ChooseAddressBottomSheet> {
       left: kSize.width * 0.005,
       child: Column(
         children: [
-          PrimaryButton(
-            text: AppStrings.continueButtonText,
-            onPressed: () {
-              context.read<NewRequestBloc>().add(NewRequestEvent.newrequest(
-                  id: "",
-                  serviceId: widget.selectedServieceId,
-                  note: "Ac reparing ",
-                  serviceDateSlot: widget.selectedDate.toString(),
-                  serviceDateTimeSlot: widget.selectedtime,
-                  addressId: addressid,
-                  isRecurringService: false));
-              Navigator.pushNamed(context, RouterConstants.requestSuccessRoute);
+          BlocBuilder<NewRequestBloc, NewRequestState>(
+            builder: (context, state) {
+              return PrimaryButton(
+                text: AppStrings.continueButtonText,
+                onPressed: () async {
+                  // Assuming your API call is asynchronous
+                  try {
+                    // Perform your API call here
+                    context.read<NewRequestBloc>().add(
+                          NewRequestEvent.newrequest(
+                            id: "",
+                            serviceId: widget.selectedServieceId,
+                            note: "Ac repairing",
+                            serviceDateSlot: widget.selectedDate.toString(),
+                            serviceDateTimeSlot: widget.selectedtime,
+                            addressId: addressid,
+                            isRecurringService: false,
+                          ),
+                        );
+
+                    Navigator.pushNamed(
+                        context, RouterConstants.requestSuccessRoute);
+                  } catch (error) {
+                    print("API call failed: $error");
+                  }
+                },
+              );
             },
           ),
           SizedBox(
             height: kSize.height * .02,
           ),
           FooterButton(
-              width: kSize.width,
-              onTap: () {
-                Navigator.pushNamed(
-                    context, RouterConstants.addNewAddressRoute);
-              },
-              label: '',
-              child: Row(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  Text(
-                    AppStrings.addNewAddress,
-                    style: AppTypography.soraSemiBold.copyWith(
-                        fontSize: kSize.height * 0.019,
-                        color: AppColors.primaryColor),
+            width: kSize.width,
+            onTap: () {
+              Navigator.pushNamed(context, RouterConstants.addNewAddressRoute);
+            },
+            label: '',
+            child: Row(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Text(
+                  AppStrings.addNewAddress,
+                  style: AppTypography.soraSemiBold.copyWith(
+                    fontSize: kSize.height * 0.019,
+                    color: AppColors.primaryColor,
                   ),
-                  SizedBox(
-                    width: kSize.width * .02,
-                  ),
-                  Image.asset(AppImages.arrowIcon,
-                      height: kSize.height * 0.0295,
-                      color: AppColors.blackColor),
-                ],
-              ))
+                ),
+                SizedBox(
+                  width: kSize.width * .02,
+                ),
+                Image.asset(AppImages.arrowIcon,
+                    height: kSize.height * 0.0295, color: AppColors.blackColor),
+              ],
+            ),
+          ),
         ],
       ),
     );

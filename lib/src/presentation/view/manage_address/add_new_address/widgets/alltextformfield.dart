@@ -129,15 +129,13 @@ class _AllTextFormFieldState extends State<AllTextFormField> {
                                   address: addressController.text,
                                   pinCode: pincodeController.text,
                                   directionToReach: directionToReachController.text,
-                                  locationLatitude: 1.2,
-                                  locationLongitude: 1.2));
+                                  locationLatitude: 10.9920763,
+                                  locationLongitude: 76.227287));
                               fullNameController.clear();
                               addressController.clear();
                               pincodeController.clear();
                               directionToReachController.clear();
-                              if (state.status==true) {
-                                Navigator.pop(context);
-                              }
+                               Navigator.pop(context);
                             }
                           },
                         );

@@ -11,4 +11,12 @@ class NewRequestEvent with _$NewRequestEvent {
     required String addressId,
     required bool isRecurringService,
   })=_newrequest;
+
+  factory NewRequestEvent.listRequests({
+    required String id,
+    required int limit,
+    required int skip,
+    required String status,
+    required String productSaleId,
+  })= _listRequests;
 }

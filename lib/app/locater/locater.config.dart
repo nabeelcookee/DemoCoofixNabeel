@@ -22,10 +22,10 @@ import 'package:coofix/src/domain/domain/repositories/i_get_serviece_repositry.d
     as _i7;
 import 'package:coofix/src/domain/domain/repositories/i_request_repositry.dart'
     as _i9;
+import 'package:coofix/src/infrasructure/repositry/address_repositry/address_repositry.dart'
+    as _i6;
 import 'package:coofix/src/infrasructure/repositry/auth_repositry/auth_repositry.dart'
     as _i4;
-import 'package:coofix/src/infrasructure/repositry/get_address_repositry/get_address_repositry.dart'
-    as _i6;
 import 'package:coofix/src/infrasructure/repositry/get_servieces_repositry/get_servieces_repositry.dart'
     as _i8;
 import 'package:coofix/src/infrasructure/repositry/new_request_repositry/new_request_repositry.dart'

@@ -59,6 +59,7 @@ class AddressBloc extends Bloc<AddressEvent, AddressState> {
         status: true,
         address: addressList,
       ));
+      print("addressList.length${addressList.length}");
     } catch (e) {
       if (kDebugMode) {
         print('Error in getaddress: $e');

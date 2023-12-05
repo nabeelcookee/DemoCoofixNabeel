@@ -1,21 +1,30 @@
+import 'package:coofix/src/application/new_request_bloc/bloc/new_request_bloc.dart';
+import 'package:coofix/src/application/new_request_bloc/bloc/new_request_state.dart';
 import 'package:coofix/src/presentation/core/constants/strings.dart';
 import 'package:coofix/src/presentation/core/theme/colors.dart';
 import 'package:coofix/src/presentation/core/theme/typography.dart';
 import 'package:coofix/src/presentation/core/values/no_glow_scroll_behaviour.dart';
 import 'package:coofix/src/presentation/view/requests/widgets/filter_list.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'widgets/request_tile.dart';
 
 class RequestView extends StatefulWidget {
 const RequestView({super.key});
-
+  
   @override
   State<RequestView> createState() => _RequestViewState();
 }
 
 class _RequestViewState extends State<RequestView> {
   List<String> filterList = ["All Requests", 'In Progress', 'Completed'];
+  @override
+  void initState() {
+   context.read<NewRequestBloc>().add(NewRequestEvent.listRequests(id: "", limit: 0, 
+   skip: 0, status: "", productSaleId: ""));
+    super.initState();
+  }
   @override
   Widget build(BuildContext context) {
     final kSize = MediaQuery.of(context).size;
@@ -80,16 +89,32 @@ class _RequestViewState extends State<RequestView> {
       ),
     );
   }
+ Widget requestList(Size kSize) {
+  return BlocBuilder<NewRequestBloc, NewRequestState>(
+    builder: (context, state) {
+      if (state.requestDatas.isEmpty) {
+        return Center(
+          child: Text(
+            "requests not  available",
+            style: AppTypography.soraRegular.copyWith(
+              fontSize: kSize.height * 0.019,
+              color: AppColors.blueGrey1,
+            ),
+          ),
+        );
+      } else {
+        return ListView.builder(
+          shrinkWrap: true,
+          primary: false,
+          padding: EdgeInsets.zero,
+          itemCount: state.requestDatas.length,
+          itemBuilder: (context, index) {
+            return RequestTile(index: index);
+          },
+        );
+      }
+    },
+  );
+}
 
-  Widget requestList(Size kSize) {
-    return ListView.builder(
-      shrinkWrap: true,
-      primary: false,
-      padding: EdgeInsets.zero,
-      itemCount: 3,
-      itemBuilder: (context, index) {
-        return const RequestTile();
-      },
-    );
-  }
 }

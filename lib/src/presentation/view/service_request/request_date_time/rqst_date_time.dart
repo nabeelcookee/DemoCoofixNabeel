@@ -11,6 +11,7 @@ import 'package:coofix/src/presentation/view/service_request/widgets/custom_app_
 import 'package:coofix/src/presentation/view/service_request/widgets/spinner_date_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:intl/intl.dart';
 import 'package:flutter_holo_date_picker/flutter_holo_date_picker.dart';
 
 class ServiceRqstDateTimeView extends StatefulWidget {
@@ -22,6 +23,11 @@ class ServiceRqstDateTimeView extends StatefulWidget {
 }
 
 class _ServiceRqstDateTimeViewState extends State<ServiceRqstDateTimeView> {
+  @override
+  void initState() {
+    context.read<AddressBloc>().add( const AddressEvent.getAddress(limit: 0, skip: 0, id: ""));
+    super.initState();
+  }
   late final String selectedServieceId;
   DateTime selectedDate = DateTime.now();
   List<String> time = ['Morning', 'Afternoon'];
@@ -108,10 +114,13 @@ class _ServiceRqstDateTimeViewState extends State<ServiceRqstDateTimeView> {
                             const AddressEvent.getAddress(
                                 limit: 0, skip: 0, id: ""));
 
-                        selectedtime =
-                       selectedtime = selectedIndex.value==0? "Mornig" : "Afternoon";
+                        selectedtime = selectedtime =
+                            selectedIndex.value == 0 ? "Mornig" : "Afternoon";
                         print("selectedtime = ...${selectedtime}");
                         selectedServieceId = widget.selectedServieceId;
+
+                        String formattedDate =
+                            DateFormat('yyyy-MM-dd').format(selectedDate);
                         showModalBottomSheet(
                           context: context,
                           isDismissible: true,
@@ -126,7 +135,7 @@ class _ServiceRqstDateTimeViewState extends State<ServiceRqstDateTimeView> {
                             return ChooseAddressBottomSheet(
                               selectedtime: selectedtime,
                               selectedServieceId: selectedServieceId,
-                              selectedDate: selectedDate.toString(),
+                              selectedDate: formattedDate
                             );
                           },
                         );
@@ -149,9 +158,9 @@ class _ServiceRqstDateTimeViewState extends State<ServiceRqstDateTimeView> {
         onTap: () {
           selectedIndex.value = index;
 
-           print("selected ${selectedDate}");
-           selectedtime = selectedIndex.value==0? "Mornig" : "Afternoon";
-            print("selected time ${selectedtime}");
+          print("selected ${selectedDate}");
+          selectedtime = selectedIndex.value == 0 ? "Mornig" : "Afternoon";
+          print("selected time ${selectedtime}");
         },
         child: Container(
           alignment: Alignment.center,
