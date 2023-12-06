@@ -37,17 +37,17 @@ mixin _$ProdectEvent {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_ProdectSalesEvent value) getProdects,
+    required TResult Function(_prodectSalesEvent value) getProdects,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_ProdectSalesEvent value)? getProdects,
+    TResult? Function(_prodectSalesEvent value)? getProdects,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_ProdectSalesEvent value)? getProdects,
+    TResult Function(_prodectSalesEvent value)? getProdects,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -101,22 +101,22 @@ class _$ProdectEventCopyWithImpl<$Res, $Val extends ProdectEvent>
 }
 
 /// @nodoc
-abstract class _$$ProdectSalesEventImplCopyWith<$Res>
+abstract class _$$prodectSalesEventImplCopyWith<$Res>
     implements $ProdectEventCopyWith<$Res> {
-  factory _$$ProdectSalesEventImplCopyWith(_$ProdectSalesEventImpl value,
-          $Res Function(_$ProdectSalesEventImpl) then) =
-      __$$ProdectSalesEventImplCopyWithImpl<$Res>;
+  factory _$$prodectSalesEventImplCopyWith(_$prodectSalesEventImpl value,
+          $Res Function(_$prodectSalesEventImpl) then) =
+      __$$prodectSalesEventImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({int skip, int limit, String id});
 }
 
 /// @nodoc
-class __$$ProdectSalesEventImplCopyWithImpl<$Res>
-    extends _$ProdectEventCopyWithImpl<$Res, _$ProdectSalesEventImpl>
-    implements _$$ProdectSalesEventImplCopyWith<$Res> {
-  __$$ProdectSalesEventImplCopyWithImpl(_$ProdectSalesEventImpl _value,
-      $Res Function(_$ProdectSalesEventImpl) _then)
+class __$$prodectSalesEventImplCopyWithImpl<$Res>
+    extends _$ProdectEventCopyWithImpl<$Res, _$prodectSalesEventImpl>
+    implements _$$prodectSalesEventImplCopyWith<$Res> {
+  __$$prodectSalesEventImplCopyWithImpl(_$prodectSalesEventImpl _value,
+      $Res Function(_$prodectSalesEventImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -126,7 +126,7 @@ class __$$ProdectSalesEventImplCopyWithImpl<$Res>
     Object? limit = null,
     Object? id = null,
   }) {
-    return _then(_$ProdectSalesEventImpl(
+    return _then(_$prodectSalesEventImpl(
       skip: null == skip
           ? _value.skip
           : skip // ignore: cast_nullable_to_non_nullable
@@ -145,8 +145,8 @@ class __$$ProdectSalesEventImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$ProdectSalesEventImpl implements _ProdectSalesEvent {
-  const _$ProdectSalesEventImpl(
+class _$prodectSalesEventImpl implements _prodectSalesEvent {
+  _$prodectSalesEventImpl(
       {required this.skip, required this.limit, required this.id});
 
   @override
@@ -165,7 +165,7 @@ class _$ProdectSalesEventImpl implements _ProdectSalesEvent {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$ProdectSalesEventImpl &&
+            other is _$prodectSalesEventImpl &&
             (identical(other.skip, skip) || other.skip == skip) &&
             (identical(other.limit, limit) || other.limit == limit) &&
             (identical(other.id, id) || other.id == id));
@@ -177,8 +177,8 @@ class _$ProdectSalesEventImpl implements _ProdectSalesEvent {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$ProdectSalesEventImplCopyWith<_$ProdectSalesEventImpl> get copyWith =>
-      __$$ProdectSalesEventImplCopyWithImpl<_$ProdectSalesEventImpl>(
+  _$$prodectSalesEventImplCopyWith<_$prodectSalesEventImpl> get copyWith =>
+      __$$prodectSalesEventImplCopyWithImpl<_$prodectSalesEventImpl>(
           this, _$identity);
 
   @override
@@ -212,7 +212,7 @@ class _$ProdectSalesEventImpl implements _ProdectSalesEvent {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_ProdectSalesEvent value) getProdects,
+    required TResult Function(_prodectSalesEvent value) getProdects,
   }) {
     return getProdects(this);
   }
@@ -220,7 +220,7 @@ class _$ProdectSalesEventImpl implements _ProdectSalesEvent {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_ProdectSalesEvent value)? getProdects,
+    TResult? Function(_prodectSalesEvent value)? getProdects,
   }) {
     return getProdects?.call(this);
   }
@@ -228,7 +228,7 @@ class _$ProdectSalesEventImpl implements _ProdectSalesEvent {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_ProdectSalesEvent value)? getProdects,
+    TResult Function(_prodectSalesEvent value)? getProdects,
     required TResult orElse(),
   }) {
     if (getProdects != null) {
@@ -238,11 +238,11 @@ class _$ProdectSalesEventImpl implements _ProdectSalesEvent {
   }
 }
 
-abstract class _ProdectSalesEvent implements ProdectEvent {
-  const factory _ProdectSalesEvent(
+abstract class _prodectSalesEvent implements ProdectEvent {
+  factory _prodectSalesEvent(
       {required final int skip,
       required final int limit,
-      required final String id}) = _$ProdectSalesEventImpl;
+      required final String id}) = _$prodectSalesEventImpl;
 
   @override
   int get skip;
@@ -252,6 +252,6 @@ abstract class _ProdectSalesEvent implements ProdectEvent {
   String get id;
   @override
   @JsonKey(ignore: true)
-  _$$ProdectSalesEventImplCopyWith<_$ProdectSalesEventImpl> get copyWith =>
+  _$$prodectSalesEventImplCopyWith<_$prodectSalesEventImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
