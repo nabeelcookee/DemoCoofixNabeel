@@ -19,4 +19,6 @@ class ApiEndpoints{
   static const String selectedAddress ="${ApiUrl.baseUrl}/profile/address/select";
 
   static const String  listAllRequests = "${ApiUrl.baseUrl}/profile/service_request/list";
+
+  static const String  getProdects= "${ApiUrl.baseUrl}/profile/product_sales/list";
 }

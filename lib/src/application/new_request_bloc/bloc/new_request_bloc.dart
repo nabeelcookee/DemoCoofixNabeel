@@ -27,7 +27,7 @@ class NewRequestBloc extends Bloc<NewRequestEvent, NewRequestState> {
           id: event.id,
           status: event.status,
           productSaleId: event.productSaleId);
-      emit(state.copyWith(requestDatas: response));
+      emit(state.copyWith(requestDatas: response,));
       print("listall requests${response.length}");
     } catch (e) {
       print("errorr is ${e}");

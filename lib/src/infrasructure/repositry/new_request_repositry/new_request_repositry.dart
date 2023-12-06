@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:coofix/app/interceptar/dio_interceptor.dart';
 import 'package:coofix/app/services/apiservices/api.dart';
 import 'package:coofix/src/domain/domain/models/new_request_model/new_request_model.dart';
@@ -88,7 +90,6 @@ class NewRequestRepositry implements INewRequestRepositry {
       rethrow;
     }
   }
-
   @override
   Future<List<NewRequestModel>> listRequests({
     required int limit,
@@ -113,7 +114,7 @@ class NewRequestRepositry implements INewRequestRepositry {
         'status': status,
         'productSaleId': productSaleId,
       };
-
+ 
       var dio = Dio();
       dio.interceptors.add(Dionterceptor());
 
@@ -126,7 +127,6 @@ class NewRequestRepositry implements INewRequestRepositry {
           },
         ),
       );
-
       if (kDebugMode) {
         print("Access token: ${prefs.getString('access_token')}");
         print('list request Response status code: ${response.statusCode}');
@@ -134,28 +134,23 @@ class NewRequestRepositry implements INewRequestRepositry {
         print('list request Response body: ${response.data}');
       }
 
-      if (response.statusCode == 200) {
-        if (response.data is List) {
-          print("list request Response body${response.data}");
-          return response.data
-              .map<NewRequestModel>((item) => NewRequestModel.fromJson(item))
-              .toList();
-        } else {
-          throw DioException(
-            error: "Failed",
-            requestOptions: RequestOptions(),
-            type: DioExceptionType.badResponse,
-            response: response,
-          );
-        }
-      } else {
-        throw DioException(
-          error: "Failed",
-          requestOptions: RequestOptions(),
-          type: DioExceptionType.badResponse,
-          response: response,
-        );
-      }
+       if (response.data is Map<String, dynamic>) {
+  final Map<String, dynamic> responseData = response.data;
+  log(responseData.toString(), name: "response.data");
+
+  final List<NewRequestModel> requestList = [];
+  for (var element in responseData['data'] as List) {
+    requestList.add(NewRequestModel.fromJson(element));
+   AppConstants.servicerequestimagebaseurl = responseData['service_request_image_base_url'] ;
+   AppConstants.prodectImageBaseUrl= responseData['product_image_base_url'];
+   AppConstants.serviceimagebaseurl=responseData['service_image_base_url'];
+   AppConstants.technicianimagebaseurl=responseData['technician_image_base_url'];
+   
+  }
+  return requestList;
+} else {
+  throw Exception("Unexpected response type: ${response.data.runtimeType}");
+}
     } catch (e) {
       print("Error: $e");
     }

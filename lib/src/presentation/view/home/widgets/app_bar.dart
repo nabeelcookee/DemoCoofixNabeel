@@ -1,4 +1,3 @@
-
 import 'dart:developer';
 
 import 'package:coofix/app/router/router_constants.dart';
@@ -44,15 +43,11 @@ class HomeAppBar extends StatelessWidget {
           const Spacer(),
           BlocBuilder<GetServicesBloc, ServiceState>(
             builder: (context, state) {
-
               return TextButton(
                   onPressed: () {
-                    // TODO
-                
                     Navigator.pushNamed(
                         context, RouterConstants.serviceRequestRoute);
-                  context.read<GetServicesBloc>().add(GetServicesEvent.getServices(limit: 0, skip: 0, id: ""));
-                  
+                    // context.read<GetServicesBloc>().add(GetServicesEvent.getServices(limit: 0, skip: 0, id: ""));
                   },
                   child: Row(
                     children: [
