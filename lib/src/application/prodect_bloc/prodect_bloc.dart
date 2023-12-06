@@ -6,7 +6,6 @@ import 'package:injectable/injectable.dart';
 
 part 'prodect_event.dart';
  part 'prodect_bloc.freezed.dart';
-// Prodect listing Bloc
 @injectable
 class ProdectBloc extends Bloc<ProdectEvent, ProdectState> {
    IProdectSales iProdectSales; 
