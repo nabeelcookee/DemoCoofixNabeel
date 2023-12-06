@@ -1,6 +1,7 @@
 import 'package:coofix/app/locater/locater.dart';
 import 'package:coofix/src/application/address_bloc/address_bloc.dart';
 import 'package:coofix/src/application/auth_bloc/auth_bloc.dart';
+import 'package:coofix/src/application/get_banner_bloc/banner_bloc.dart';
 import 'package:coofix/src/application/get_servieces/get_services_bloc.dart';
 import 'package:coofix/src/application/new_request_bloc/bloc/new_request_bloc.dart';
 import 'package:coofix/src/application/prodect_bloc/prodect_bloc.dart';
@@ -12,4 +13,5 @@ List<BlocProvider> kBlocProviders = [
   BlocProvider<NewRequestBloc>(create: (context) => getIt<NewRequestBloc>()),
   BlocProvider<AddressBloc>(create: (context) => getIt<AddressBloc>()),
   BlocProvider<ProdectBloc>(create: (context) => getIt<ProdectBloc>()),
+   BlocProvider<BannerBloc>(create: (context) => getIt<BannerBloc>()),
 ];

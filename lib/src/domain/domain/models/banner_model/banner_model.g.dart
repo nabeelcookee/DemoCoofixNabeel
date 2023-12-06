@@ -13,6 +13,7 @@ _$BannerModelImpl _$$BannerModelImplFromJson(Map<String, dynamic> json) =>
       promoTitle: json['promo_title'] as String?,
       offerTitle: json['offer_title'] as String?,
       image: json['image'] as String?,
+      banneImage: json['image_base_url'] as String?,
     );
 
 Map<String, dynamic> _$$BannerModelImplToJson(_$BannerModelImpl instance) =>
@@ -22,4 +23,5 @@ Map<String, dynamic> _$$BannerModelImplToJson(_$BannerModelImpl instance) =>
       'promo_title': instance.promoTitle,
       'offer_title': instance.offerTitle,
       'image': instance.image,
+      'image_base_url': instance.banneImage,
     };

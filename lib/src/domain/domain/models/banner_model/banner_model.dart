@@ -12,6 +12,8 @@ class BannerModel with _$BannerModel {
     @JsonKey(name: 'promo_title') String? promoTitle,
     @JsonKey(name: 'offer_title') String? offerTitle,
     @JsonKey(name: 'image') String? image,
+    @JsonKey(name: 'image_base_url') String? banneImage,
+
   }) = _BannerModel;
 
   factory BannerModel.fromJson(Map<String, dynamic> json) =>

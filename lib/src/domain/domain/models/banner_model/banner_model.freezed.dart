@@ -30,6 +30,8 @@ mixin _$BannerModel {
   String? get offerTitle => throw _privateConstructorUsedError;
   @JsonKey(name: 'image')
   String? get image => throw _privateConstructorUsedError;
+  @JsonKey(name: 'image_base_url')
+  String? get banneImage => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -48,7 +50,8 @@ abstract class $BannerModelCopyWith<$Res> {
       @JsonKey(name: 'title') String? title,
       @JsonKey(name: 'promo_title') String? promoTitle,
       @JsonKey(name: 'offer_title') String? offerTitle,
-      @JsonKey(name: 'image') String? image});
+      @JsonKey(name: 'image') String? image,
+      @JsonKey(name: 'image_base_url') String? banneImage});
 }
 
 /// @nodoc
@@ -69,6 +72,7 @@ class _$BannerModelCopyWithImpl<$Res, $Val extends BannerModel>
     Object? promoTitle = freezed,
     Object? offerTitle = freezed,
     Object? image = freezed,
+    Object? banneImage = freezed,
   }) {
     return _then(_value.copyWith(
       id: freezed == id
@@ -91,6 +95,10 @@ class _$BannerModelCopyWithImpl<$Res, $Val extends BannerModel>
           ? _value.image
           : image // ignore: cast_nullable_to_non_nullable
               as String?,
+      banneImage: freezed == banneImage
+          ? _value.banneImage
+          : banneImage // ignore: cast_nullable_to_non_nullable
+              as String?,
     ) as $Val);
   }
 }
@@ -108,7 +116,8 @@ abstract class _$$BannerModelImplCopyWith<$Res>
       @JsonKey(name: 'title') String? title,
       @JsonKey(name: 'promo_title') String? promoTitle,
       @JsonKey(name: 'offer_title') String? offerTitle,
-      @JsonKey(name: 'image') String? image});
+      @JsonKey(name: 'image') String? image,
+      @JsonKey(name: 'image_base_url') String? banneImage});
 }
 
 /// @nodoc
@@ -127,6 +136,7 @@ class __$$BannerModelImplCopyWithImpl<$Res>
     Object? promoTitle = freezed,
     Object? offerTitle = freezed,
     Object? image = freezed,
+    Object? banneImage = freezed,
   }) {
     return _then(_$BannerModelImpl(
       id: freezed == id
@@ -149,6 +159,10 @@ class __$$BannerModelImplCopyWithImpl<$Res>
           ? _value.image
           : image // ignore: cast_nullable_to_non_nullable
               as String?,
+      banneImage: freezed == banneImage
+          ? _value.banneImage
+          : banneImage // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
@@ -161,7 +175,8 @@ class _$BannerModelImpl implements _BannerModel {
       @JsonKey(name: 'title') this.title,
       @JsonKey(name: 'promo_title') this.promoTitle,
       @JsonKey(name: 'offer_title') this.offerTitle,
-      @JsonKey(name: 'image') this.image});
+      @JsonKey(name: 'image') this.image,
+      @JsonKey(name: 'image_base_url') this.banneImage});
 
   factory _$BannerModelImpl.fromJson(Map<String, dynamic> json) =>
       _$$BannerModelImplFromJson(json);
@@ -181,10 +196,13 @@ class _$BannerModelImpl implements _BannerModel {
   @override
   @JsonKey(name: 'image')
   final String? image;
+  @override
+  @JsonKey(name: 'image_base_url')
+  final String? banneImage;
 
   @override
   String toString() {
-    return 'BannerModel(id: $id, title: $title, promoTitle: $promoTitle, offerTitle: $offerTitle, image: $image)';
+    return 'BannerModel(id: $id, title: $title, promoTitle: $promoTitle, offerTitle: $offerTitle, image: $image, banneImage: $banneImage)';
   }
 
   @override
@@ -198,13 +216,15 @@ class _$BannerModelImpl implements _BannerModel {
                 other.promoTitle == promoTitle) &&
             (identical(other.offerTitle, offerTitle) ||
                 other.offerTitle == offerTitle) &&
-            (identical(other.image, image) || other.image == image));
+            (identical(other.image, image) || other.image == image) &&
+            (identical(other.banneImage, banneImage) ||
+                other.banneImage == banneImage));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, id, title, promoTitle, offerTitle, image);
+  int get hashCode => Object.hash(
+      runtimeType, id, title, promoTitle, offerTitle, image, banneImage);
 
   @JsonKey(ignore: true)
   @override
@@ -222,11 +242,13 @@ class _$BannerModelImpl implements _BannerModel {
 
 abstract class _BannerModel implements BannerModel {
   factory _BannerModel(
-      {@JsonKey(name: '_id') final String? id,
-      @JsonKey(name: 'title') final String? title,
-      @JsonKey(name: 'promo_title') final String? promoTitle,
-      @JsonKey(name: 'offer_title') final String? offerTitle,
-      @JsonKey(name: 'image') final String? image}) = _$BannerModelImpl;
+          {@JsonKey(name: '_id') final String? id,
+          @JsonKey(name: 'title') final String? title,
+          @JsonKey(name: 'promo_title') final String? promoTitle,
+          @JsonKey(name: 'offer_title') final String? offerTitle,
+          @JsonKey(name: 'image') final String? image,
+          @JsonKey(name: 'image_base_url') final String? banneImage}) =
+      _$BannerModelImpl;
 
   factory _BannerModel.fromJson(Map<String, dynamic> json) =
       _$BannerModelImpl.fromJson;
@@ -246,6 +268,9 @@ abstract class _BannerModel implements BannerModel {
   @override
   @JsonKey(name: 'image')
   String? get image;
+  @override
+  @JsonKey(name: 'image_base_url')
+  String? get banneImage;
   @override
   @JsonKey(ignore: true)
   _$$BannerModelImplCopyWith<_$BannerModelImpl> get copyWith =>

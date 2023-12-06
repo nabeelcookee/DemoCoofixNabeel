@@ -1,3 +1,4 @@
+import 'package:coofix/src/application/get_banner_bloc/banner_bloc.dart';
 import 'package:coofix/src/application/get_servieces/get_services_bloc.dart';
 import 'package:coofix/src/application/get_servieces/get_services_event.dart';
 import 'package:coofix/src/domain/domain/models/get_servieces/get_servieces_model.dart';
@@ -26,6 +27,7 @@ class _HomeViewState extends State<HomeView> {
     context
         .read<GetServicesBloc>()
         .add(const GetServicesEvent.getServices(limit: 0, skip: 0, id: ""));
+        context.read<BannerBloc>().add(BannerEvent.getBanner());
     super.initState();
   }
 
