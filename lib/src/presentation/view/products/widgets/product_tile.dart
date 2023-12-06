@@ -6,6 +6,7 @@ import 'package:coofix/src/presentation/core/theme/colors.dart';
 import 'package:coofix/src/presentation/core/theme/typography.dart';
 import 'package:coofix/src/presentation/core/widgets/custom_gradient_tile.dart';
 import 'package:coofix/src/presentation/core/widgets/footer_button.dart';
+import 'package:coofix/src/presentation/view/service_request/service_request/service_request_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -21,7 +22,7 @@ class _ProductsTileState extends State<ProductsTile> {
   void initState() {
     context
         .read<ProdectBloc>()
-        .add(ProdectEvent.getProdects(skip: 0, limit: 0, id: ""));
+        .add(const  ProdectEvent.getProdects(skip: 0, limit: 0, id: ""));
     super.initState();
   }
 

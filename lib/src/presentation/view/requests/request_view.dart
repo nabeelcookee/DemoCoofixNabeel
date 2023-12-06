@@ -19,46 +19,55 @@ const RequestView({super.key});
 
 class _RequestViewState extends State<RequestView> {
   List<String> filterList = ["All Requests", 'In Progress', 'Completed'];
+
+
+  Future<void> onrefrush()async{
+   context.read<NewRequestBloc>().add(NewRequestEvent.listRequests(id: "", limit: 0, 
+   skip: 0, status: "", productSaleId: ""));
+  }
   @override
   void initState() {
    context.read<NewRequestBloc>().add(NewRequestEvent.listRequests(id: "", limit: 0, 
    skip: 0, status: "", productSaleId: ""));
+   onrefrush();
     super.initState();
   }
   @override
-  Widget build(BuildContext context) {
+ Widget build(BuildContext context) {
     final kSize = MediaQuery.of(context).size;
-    return ScrollConfiguration(
-      behavior: NoGlowScrollBehaviour(),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          SizedBox(height: kSize.height * 0.0515),
-          Padding(
-            padding: EdgeInsets.symmetric(horizontal: kSize.width * 0.044),
-            child: Text(
-              AppStrings.myRequests,
-              style: AppTypography.soraSemiBold.copyWith(
-                fontSize: kSize.height * 0.02857,
+    return RefreshIndicator(
+      onRefresh: onrefrush,
+      child: ScrollConfiguration(
+        behavior: NoGlowScrollBehaviour(),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            SizedBox(height: kSize.height * 0.0515),
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: kSize.width * 0.044),
+              child: Text(
+                AppStrings.myRequests,
+                style: AppTypography.soraSemiBold.copyWith(
+                  fontSize: kSize.height * 0.02857,
+                ),
               ),
             ),
-          ),
-          SizedBox(
-            height: kSize.height * 0.02105,
-          ),
-          FilterList(
-            filterList: filterList,
-            onSelected: (value) {},
-          ),
-          SizedBox(
-            height: kSize.height * 0.02105,
-          ),
-          monthDateList(kSize)
-        ],
+            SizedBox(
+              height: kSize.height * 0.02105,
+            ),
+            FilterList(
+              filterList: filterList,
+              onSelected: (value) {},
+            ),
+            SizedBox(
+              height: kSize.height * 0.02105,
+            ),
+            monthDateList(kSize),
+          ],
+        ),
       ),
     );
   }
-
   Widget monthDateList(Size kSize) {
     return Expanded(
       child: ListView.builder(

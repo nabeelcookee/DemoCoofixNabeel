@@ -2,6 +2,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:json_annotation/json_annotation.dart';
  part 'prodect_model.freezed.dart';
 part 'prodect_model.g.dart';
+// Prodect listing Model class
 @freezed
 class ProductPurchaseModel with _$ProductPurchaseModel {
   factory ProductPurchaseModel({

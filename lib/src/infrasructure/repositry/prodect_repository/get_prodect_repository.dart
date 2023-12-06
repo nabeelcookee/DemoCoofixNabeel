@@ -9,7 +9,7 @@ import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
 import 'package:injectable/injectable.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-
+// Prodect listing api calling repositroy
 @LazySingleton(as: IProdectSales) 
 class GetProdectRepositry implements IProdectSales {
   @override

@@ -2,6 +2,7 @@
 import 'package:coofix/src/domain/domain/models/prodect_model/prodect_model.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
  part 'prodect_state.freezed.dart';
+ // Prodect listing State
 @freezed
  abstract class ProdectState with _$ProdectState {
    factory ProdectState({
