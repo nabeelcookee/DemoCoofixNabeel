@@ -23,4 +23,6 @@ class ApiEndpoints{
   static const String  getProdects= "${ApiUrl.baseUrl}/profile/product_sales/list";
 
   static const String  getBanner ="${ApiUrl.baseUrl}/general/get_banner_data";
+
+  static const String updateProfile ="${ApiUrl.baseUrl}/profile/update_profile";
 }

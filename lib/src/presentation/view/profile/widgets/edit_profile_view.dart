@@ -1,3 +1,5 @@
+
+import 'package:coofix/src/application/profile_bloc/profile_bloc.dart';
 import 'package:coofix/src/presentation/core/constants/constants.dart';
 import 'package:coofix/src/presentation/core/theme/colors.dart';
 import 'package:coofix/src/presentation/core/theme/typography.dart';
@@ -5,6 +7,7 @@ import 'package:coofix/src/presentation/core/values/form_validators.dart';
 import 'package:coofix/src/presentation/core/widgets/custom_textfield.dart';
 import 'package:coofix/src/presentation/core/widgets/primary_button.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class EditProfileBottomSheet extends StatefulWidget {
   const EditProfileBottomSheet({super.key});
@@ -16,6 +19,10 @@ class EditProfileBottomSheet extends StatefulWidget {
 class _EditProfileBottomSheetState extends State<EditProfileBottomSheet> {
   TextEditingController nameController = TextEditingController();
   final formKey = GlobalKey<FormState>();
+  @override
+  void initState() {
+        super.initState();
+  }
   @override
   Widget build(BuildContext context) {
     final kSize = MediaQuery.of(context).size;
@@ -66,6 +73,7 @@ class _EditProfileBottomSheetState extends State<EditProfileBottomSheet> {
               text: 'Submit',
               onPressed: () {
                 if (formKey.currentState!.validate()) {
+                  context.read<ProfileBloc>().add(ProfileEvent.upadeProfile(name: nameController.text));
                   Navigator.pop(context);
                 }
               },

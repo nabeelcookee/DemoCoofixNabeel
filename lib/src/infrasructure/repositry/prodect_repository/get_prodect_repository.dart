@@ -30,7 +30,7 @@ class GetProdectRepositry implements IProdectSales {
           headers: {
             "Authorization": "Bearer ${prefs.getString('access_token')}",
           },
-        ),
+        ),  
       );
       if (kDebugMode) {
         print(
@@ -41,13 +41,14 @@ class GetProdectRepositry implements IProdectSales {
       }
       if (response.data is Map<String, dynamic>) {
         final Map<String, dynamic> responseData = response.data;
-        log(responseData.toString(), name: "response.data");
+        print("prodect list data :${responseData}");
 
         final List<ProductPurchaseModel> prodectList = [];
-        for (var element in responseData as List) {
+        for (var element in responseData['data'] as List) {
           prodectList.add(ProductPurchaseModel.fromJson(element));
           AppConstants.prodectImageBaseUrl = responseData['image_base_url'];
         }
+        print("prodect list is :${prodectList}");
         return prodectList;
       } else {
         throw Exception(

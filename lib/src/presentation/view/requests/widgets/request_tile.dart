@@ -15,13 +15,15 @@ class RequestTile extends StatefulWidget {
   @override
   State<RequestTile> createState() => _RequestTileState();
 }
-  
+
 class _RequestTileState extends State<RequestTile> {
   @override
   void initState() {
- context.read<NewRequestBloc>().add(NewRequestEvent.listRequests(id: "", limit: 0, skip: 0, status: "", productSaleId: ""));
+    context.read<NewRequestBloc>().add(NewRequestEvent.listRequests(
+        id: "", limit: 0, skip: 0, status: "", productSaleId: ""));
     super.initState();
   }
+
   @override
   Widget build(BuildContext context) {
     final kSize = MediaQuery.of(context).size;
@@ -33,9 +35,10 @@ class _RequestTileState extends State<RequestTile> {
       },
       child: BlocBuilder<NewRequestBloc, NewRequestState>(
         builder: (context, state) {
-       final  date = state.requestDatas[widget.index].serviceDateSlot;
-        DateTime  dateslot= DateTime.parse(date!);
-        String formattedDate = "${dateslot.year}-${dateslot.month}-${dateslot.day}";
+          final date = state.requestDatas[widget.index].serviceDateSlot;
+          DateTime dateslot = DateTime.parse(date!);
+          String formattedDate =
+              "${dateslot.year}-${dateslot.month}-${dateslot.day}";
           return Container(
             alignment: Alignment.center,
             padding: const EdgeInsets.all(1),
@@ -106,8 +109,7 @@ class _RequestTileState extends State<RequestTile> {
                     height: kSize.height * .01,
                   ),
                   Text(
-                   
-                    "${ formattedDate.toString()} ${state.requestDatas[widget.index].serviceDateTimeSlot}",
+                      "${formattedDate.toString()} ${state.requestDatas[widget.index].serviceDateTimeSlot}",
                       style: AppTypography.soraSemiBold.copyWith(
                           color: AppColors.primaryColor,
                           fontSize: kSize.height * 0.0190)),

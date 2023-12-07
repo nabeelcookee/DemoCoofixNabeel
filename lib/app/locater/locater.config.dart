@@ -8,15 +8,16 @@
 // coverage:ignore-file
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
-import 'package:coofix/src/application/address_bloc/address_bloc.dart' as _i17;
-import 'package:coofix/src/application/auth_bloc/auth_bloc.dart' as _i18;
+import 'package:coofix/src/application/address_bloc/address_bloc.dart' as _i20;
+import 'package:coofix/src/application/auth_bloc/auth_bloc.dart' as _i21;
 import 'package:coofix/src/application/get_banner_bloc/banner_bloc.dart'
-    as _i19;
+    as _i22;
 import 'package:coofix/src/application/get_servieces/get_services_bloc.dart'
-    as _i20;
+    as _i23;
 import 'package:coofix/src/application/new_request_bloc/bloc/new_request_bloc.dart'
-    as _i15;
-import 'package:coofix/src/application/prodect_bloc/prodect_bloc.dart' as _i16;
+    as _i17;
+import 'package:coofix/src/application/prodect_bloc/prodect_bloc.dart' as _i18;
+import 'package:coofix/src/application/profile_bloc/profile_bloc.dart' as _i19;
 import 'package:coofix/src/domain/domain/repositories/i_address_repositry.dart'
     as _i5;
 import 'package:coofix/src/domain/domain/repositories/i_auth_repository.dart'
@@ -27,6 +28,8 @@ import 'package:coofix/src/domain/domain/repositories/i_get_serviece_repositry.d
     as _i9;
 import 'package:coofix/src/domain/domain/repositories/i_prodect_repository.dart'
     as _i13;
+import 'package:coofix/src/domain/domain/repositories/i_profile_repositry.dart'
+    as _i15;
 import 'package:coofix/src/domain/domain/repositories/i_request_repositry.dart'
     as _i11;
 import 'package:coofix/src/infrasructure/repositry/address_repositry/address_repositry.dart'
@@ -41,6 +44,8 @@ import 'package:coofix/src/infrasructure/repositry/new_request_repositry/new_req
     as _i12;
 import 'package:coofix/src/infrasructure/repositry/prodect_repository/get_prodect_repository.dart'
     as _i14;
+import 'package:coofix/src/infrasructure/repositry/profile_repositry/update_profile_repositry.dart'
+    as _i16;
 import 'package:get_it/get_it.dart' as _i1;
 import 'package:injectable/injectable.dart' as _i2;
 
@@ -62,16 +67,20 @@ extension GetItInjectableX on _i1.GetIt {
     gh.lazySingleton<_i11.INewRequestRepositry>(
         () => _i12.NewRequestRepositry());
     gh.lazySingleton<_i13.IProdectSales>(() => _i14.GetProdectRepositry());
-    gh.factory<_i15.NewRequestBloc>(
-        () => _i15.NewRequestBloc(gh<_i11.INewRequestRepositry>()));
-    gh.factory<_i16.ProdectBloc>(
-        () => _i16.ProdectBloc(gh<_i13.IProdectSales>()));
-    gh.factory<_i17.AddressBloc>(() => _i17.AddressBloc(gh<_i5.IGetAddress>()));
-    gh.factory<_i18.AuthBloc>(() => _i18.AuthBloc(gh<_i3.IAuthRepository>()));
-    gh.factory<_i19.BannerBloc>(
-        () => _i19.BannerBloc(gh<_i7.IGetBannerRepositry>()));
-    gh.factory<_i20.GetServicesBloc>(
-        () => _i20.GetServicesBloc(gh<_i9.IGetServieces>()));
+    gh.lazySingleton<_i15.IgetProfileRepositry>(
+        () => _i16.UpdateProfileRepositry());
+    gh.factory<_i17.NewRequestBloc>(
+        () => _i17.NewRequestBloc(gh<_i11.INewRequestRepositry>()));
+    gh.factory<_i18.ProdectBloc>(
+        () => _i18.ProdectBloc(gh<_i13.IProdectSales>()));
+    gh.factory<_i19.ProfileBloc>(
+        () => _i19.ProfileBloc(gh<_i15.IgetProfileRepositry>()));
+    gh.factory<_i20.AddressBloc>(() => _i20.AddressBloc(gh<_i5.IGetAddress>()));
+    gh.factory<_i21.AuthBloc>(() => _i21.AuthBloc(gh<_i3.IAuthRepository>()));
+    gh.factory<_i22.BannerBloc>(
+        () => _i22.BannerBloc(gh<_i7.IGetBannerRepositry>()));
+    gh.factory<_i23.GetServicesBloc>(
+        () => _i23.GetServicesBloc(gh<_i9.IGetServieces>()));
     return this;
   }
 }

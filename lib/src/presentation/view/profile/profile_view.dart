@@ -1,12 +1,15 @@
 import 'dart:io';
-
 import 'package:coofix/app/router/router_constants.dart';
+import 'package:coofix/src/application/profile_bloc/profile_bloc.dart';
+import 'package:coofix/src/application/profile_bloc/profile_state.dart';
 import 'package:coofix/src/presentation/core/constants/constants.dart';
 import 'package:coofix/src/presentation/core/constants/images.dart';
 import 'package:coofix/src/presentation/core/theme/colors.dart';
 import 'package:coofix/src/presentation/core/theme/typography.dart';
 import 'package:coofix/src/presentation/view/profile/widgets/edit_profile_view.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:image_cropper/image_cropper.dart';
 import 'package:image_picker/image_picker.dart';
 
@@ -19,7 +22,11 @@ class ProfileView extends StatefulWidget {
 
 class _ProfileViewState extends State<ProfileView> {
   CroppedFile? imageFile;
-
+@override
+  void initState() {
+  
+    super.initState();
+  }
   @override
   Widget build(BuildContext context) {
     final kSize = MediaQuery.of(context).size;
@@ -32,109 +39,123 @@ class _ProfileViewState extends State<ProfileView> {
             height: kSize.height * .07,
           ),
           Center(
-            child: Column(
-              children: [
-                Stack(
-                  clipBehavior: Clip.none,
-                  alignment: Alignment.bottomCenter,
+            child: BlocBuilder<ProfileBloc, ProfileState>(
+              builder: (context, state) {
+                if (kDebugMode) {
+                  print("name : ${state.name}");
+                }
+                if (kDebugMode) {
+                  print("phone :${state.phoneNumber}");
+                }
+                return Column(
                   children: [
-                    Container(
-                      clipBehavior: Clip.antiAlias,
-                      height: kSize.height * 0.126,
-                      width: kSize.height * 0.126,
-                      decoration: const BoxDecoration(shape: BoxShape.circle),
-                      child: imageFile == null
-                          ? Image.asset(AppImages.serviceMan, fit: BoxFit.cover)
-                          : Image.file(File(imageFile!.path),
-                              fit: BoxFit.cover),
-                    ),
-                    Positioned(
-                      bottom: -10,
-                      child: InkWell(
-                        onTap: () {
-                          showModalBottomSheet(
-                            context: context,
-                            isScrollControlled: true,
-                            builder: (context) {
-                              return Wrap(
-                                children: [
-                                  bottomSheet(),
-                                ],
+                    Stack(
+                      clipBehavior: Clip.none,
+                      alignment: Alignment.bottomCenter,
+                      children: [
+                        Container(
+                          clipBehavior: Clip.antiAlias,
+                          height: kSize.height * 0.126,
+                          width: kSize.height * 0.126,
+                          decoration:
+                              const BoxDecoration(shape: BoxShape.circle),
+                          child: imageFile == null
+                              ? Image.asset(AppImages.serviceMan,
+                                  fit: BoxFit.cover)
+                              : Image.file(File(imageFile!.path),
+                                  fit: BoxFit.cover),
+                        ),
+                        Positioned(
+                          bottom: -10,
+                          child: InkWell(
+                            onTap: () {
+                              showModalBottomSheet(
+                                context: context,
+                                isScrollControlled: true,
+                                builder: (context) {
+                                  return Wrap(
+                                    children: [
+                                      bottomSheet(),
+                                    ],
+                                  );
+                                },
                               );
                             },
-                          );
-                        },
-                        child: Container(
-                            alignment: Alignment.center,
-                            height: kSize.height * 0.04,
-                            width: kSize.height * 0.04,
-                            decoration: BoxDecoration(
-                                shape: BoxShape.circle,
-                                boxShadow: [
-                                  BoxShadow(
-                                      color:
-                                          AppColors.blackColor.withOpacity(.08),
-                                      blurRadius: 20,
-                                      offset: const Offset(-10, 4))
-                                ],
-                                color: AppColors.secondaryColor),
-                            child: Image.asset(AppImages.galleryIcon,
-                                height: kSize.height * .021)),
-                      ),
-                    ),
-                  ],
-                ),
-                SizedBox(
-                  height: kSize.height * .015,
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Text(
-                      'Maddy Sam',
-                      style: AppTypography.soraSemiBold
-                          .copyWith(fontSize: kSize.height * 0.031),
+                            child: Container(
+                                alignment: Alignment.center,
+                                height: kSize.height * 0.04,
+                                width: kSize.height * 0.04,
+                                decoration: BoxDecoration(
+                                    shape: BoxShape.circle,
+                                    boxShadow: [
+                                      BoxShadow(
+                                          color: AppColors.blackColor
+                                              .withOpacity(.08),
+                                          blurRadius: 20,
+                                          offset: const Offset(-10, 4))
+                                    ],
+                                    color: AppColors.secondaryColor),
+                                child: Image.asset(AppImages.galleryIcon,
+                                    height: kSize.height * .021)),
+                          ),
+                        ),
+                      ],
                     ),
                     SizedBox(
-                      width: kSize.width * .025,
+                      height: kSize.height * .015,
                     ),
-                    InkWell(
-                      onTap: () {
-                        showModalBottomSheet(
-                          context: context,
-                          enableDrag: true,
-                          isScrollControlled: true,
-                          shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.only(
-                                  topLeft: Radius.circular(kSize.height * .022),
-                                  topRight:
-                                      Radius.circular(kSize.height * .022))),
-                          builder: (context) {
-                            return const EditProfileBottomSheet();
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        
+                        Text(
+                          state.name ?? "Robby",
+                          style: AppTypography.soraSemiBold
+                              .copyWith(fontSize: kSize.height * 0.031),
+                        ),
+                        SizedBox(
+                          width: kSize.width * .025,
+                        ),
+                        InkWell(
+                          onTap: () {
+                            showModalBottomSheet(
+                              context: context,
+                              enableDrag: true,
+                              isScrollControlled: true,
+                              shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.only(
+                                      topLeft:
+                                          Radius.circular(kSize.height * .022),
+                                      topRight: Radius.circular(
+                                          kSize.height * .022))),
+                              builder: (context) {
+                                return const EditProfileBottomSheet();
+                              },
+                            );
                           },
-                        );
-                      },
-                      child: Image.asset(
-                        AppImages.profilEditIcon,
-                        height: kSize.height * .018,
-                        color: AppColors.blueColor,
-                      ),
-                    )
+                          child: Image.asset(
+                            AppImages.profilEditIcon,
+                            height: kSize.height * .018,
+                            color: AppColors.blueColor,
+                          ),
+                        )
+                      ],
+                    ),
+                    SizedBox(
+                      height: kSize.height * .01,
+                    ),
+                    Text(
+                     state.phoneNumber ,
+                      style: AppTypography.soraRegular.copyWith(
+                          fontSize: kSize.height * 0.019,
+                          color: AppColors.blueGrey1),
+                    ),
+                    SizedBox(
+                      height: kSize.height * .04,
+                    ),
                   ],
-                ),
-                SizedBox(
-                  height: kSize.height * .01,
-                ),
-                Text(
-                  '+1 555-123-4567',
-                  style: AppTypography.soraRegular.copyWith(
-                      fontSize: kSize.height * 0.019,
-                      color: AppColors.blueGrey1),
-                ),
-                SizedBox(
-                  height: kSize.height * .04,
-                ),
-              ],
+                );
+              },
             ),
           ),
           profileDataTile(
