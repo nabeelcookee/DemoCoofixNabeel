@@ -47,8 +47,9 @@ class AppRouter {
           builder: (_) => const RequestDetailView(),
         );
       case RouterConstants.serviceDetailRoute:
+       int?index;
         return MaterialPageRoute<ServiceDetailView>(
-          builder: (_) => const ServiceDetailView(),
+          builder: (_) =>  ServiceDetailView(index: index??0,),
         );
       case RouterConstants.serviceRequestRoute:
         return MaterialPageRoute<ServiceRequestView>(

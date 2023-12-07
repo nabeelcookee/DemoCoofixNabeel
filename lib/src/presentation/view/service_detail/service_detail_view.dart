@@ -11,16 +11,18 @@ import 'package:flutter/material.dart';
 import 'widgets/service_details.dart';
 
 class ServiceDetailView extends StatefulWidget {
-  const ServiceDetailView({super.key});
-
+  const ServiceDetailView({super.key ,required this.index});
+  final int index;
   @override
   State<ServiceDetailView> createState() => _ServiceDetailViewState();
 }
 
 class _ServiceDetailViewState extends State<ServiceDetailView> {
   bool active = false;
+ 
   @override
   Widget build(BuildContext context) {
+  
     final kSize = MediaQuery.of(context).size;
     return Scaffold(
       backgroundColor: AppColors.secondaryColor,
@@ -68,7 +70,7 @@ class _ServiceDetailViewState extends State<ServiceDetailView> {
               ),
               SliverList(
                   delegate: SliverChildListDelegate([
-                const ServiceDetailsData(),
+                 ServiceDetailsData(index:widget.index),
               ]))
             ],
           ),

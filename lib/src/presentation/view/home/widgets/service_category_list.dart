@@ -33,12 +33,8 @@ class _ServiceCategoryListState extends State<ServiceCategoryList> {
   Widget build(BuildContext context) {
     final kSize = MediaQuery.of(context).size;
     return BlocConsumer<GetServicesBloc, ServiceState>(
-      listener: (context, state) {
-        
-      },
-      
+      listener: (context, state) {},
       builder: (context, state) {
-       
         if (state.services.isEmpty) {
           return const SizedBox(
             width: 100,
@@ -64,10 +60,14 @@ class _ServiceCategoryListState extends State<ServiceCategoryList> {
                     mainAxisCellCount: 2.3,
                     child: InkWell(
                       onTap: () {
+                       
+                        context.read<GetServicesBloc>().add(
+                              const GetServicesEvent.getServices(
+                                  limit: 0, skip: 0, id: ""),
+                            );
                         Navigator.pushNamed(
-                          context,
-                          RouterConstants.serviceDetailRoute,
-                        );
+                            context, RouterConstants.serviceDetailRoute,
+                             );
                       },
                       child: Stack(
                         fit: StackFit.expand,
@@ -83,8 +83,8 @@ class _ServiceCategoryListState extends State<ServiceCategoryList> {
                                 kSize.height * 0.01578,
                               ),
                               child: Image.asset(
-                                AppImages.serviceMan,   
-                              //  "${AppConstants.ImageBaseUrl}/${state.services[index].image}",
+                                AppImages.serviceMan,
+                                //  "${AppConstants.ImageBaseUrl}/${state.services[index].image}",
                                 fit: BoxFit.cover,
                               ),
                             ),
