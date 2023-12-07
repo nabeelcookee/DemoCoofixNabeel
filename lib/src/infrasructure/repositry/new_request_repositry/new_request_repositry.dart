@@ -13,7 +13,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 @LazySingleton(as: INewRequestRepositry)
 class NewRequestRepositry implements INewRequestRepositry {
   @override
-  Future<NewRequestModel> newrequest(
+  Future<List<NewRequestModel>> newrequest(
       {required String id,
       required String serviceId,
       required String addressId,
@@ -58,30 +58,21 @@ class NewRequestRepositry implements INewRequestRepositry {
         print(' new request  Response headers: ${response.headers}');
         print(' new request Response body: ${response.data}');
       }
-      if (response.statusCode == 200) {
-        if (response.data is List) {
-          return response.data
-              .map<NewRequestModel>((item) => NewRequestModel.fromJson(item))
-              .toList();
-        } else if (response.data is Map<String, dynamic>) {
-          final NewRequestModel newRequestData =
-              NewRequestModel.fromJson(response.data);
-          return newRequestData;
-        } else {
-          throw DioException(
-            error: "Failed",
-            requestOptions: RequestOptions(),
-            type: DioExceptionType.badResponse,
-            response: response,
-          );
+      if (response.data is Map<String, dynamic>) {
+        final Map<String, dynamic> responseData = response.data;
+        log(responseData.toString(), name: "response.data");
+
+        final List<NewRequestModel> rquestList = [];
+        for (var element in responseData as List) {
+          rquestList.add(NewRequestModel.fromJson(element));
+          AppConstants.servicIimageBaseUrl =responseData['service_image_base_url'];
+          AppConstants.prodectImageBaseUrl=responseData['service_request_image_base_url'];
+          AppConstants.servicerequestimagebaseurl = responseData['service_request_image_base_url'];
         }
+        return rquestList;
       } else {
-        throw DioException(
-          error: "Failed",
-          requestOptions: RequestOptions(),
-          type: DioExceptionType.badResponse,
-          response: response,
-        );
+        throw Exception(
+            "Unexpected response type: ${response.data.runtimeType}");
       }
     } catch (e) {
       if (kDebugMode) {

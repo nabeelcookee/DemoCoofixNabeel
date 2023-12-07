@@ -84,7 +84,7 @@ class _RequestViewState extends State<RequestView> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                'June 2023',
+                '',
                 style: AppTypography.soraRegular.copyWith(
                     fontSize: kSize.height * 0.0147,
                     color: AppColors.blueGrey1),

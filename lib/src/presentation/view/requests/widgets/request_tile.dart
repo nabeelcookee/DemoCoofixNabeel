@@ -33,6 +33,9 @@ class _RequestTileState extends State<RequestTile> {
       },
       child: BlocBuilder<NewRequestBloc, NewRequestState>(
         builder: (context, state) {
+       final  date = state.requestDatas[widget.index].serviceDateSlot;
+        DateTime  dateslot= DateTime.parse(date!);
+        String formattedDate = "${dateslot.year}-${dateslot.month}-${dateslot.day}";
           return Container(
             alignment: Alignment.center,
             padding: const EdgeInsets.all(1),
@@ -103,7 +106,8 @@ class _RequestTileState extends State<RequestTile> {
                     height: kSize.height * .01,
                   ),
                   Text(
-                      "${state.requestDatas[widget.index].serviceDateSlot.toString()}${state.requestDatas[widget.index].serviceDateTimeSlot}",
+                   
+                    "${ formattedDate.toString()} ${state.requestDatas[widget.index].serviceDateTimeSlot}",
                       style: AppTypography.soraSemiBold.copyWith(
                           color: AppColors.primaryColor,
                           fontSize: kSize.height * 0.0190)),

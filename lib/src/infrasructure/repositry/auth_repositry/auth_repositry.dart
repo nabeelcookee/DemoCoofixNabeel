@@ -82,11 +82,11 @@ void saveAccessTokenToPrefs(String accessToken) async {
         print("checkAuth Success");
         return user;
       } else {
-        throw Exception('Failed to check authentication..1');
+        throw Exception('Failed to check authentication..');
       }
     } catch (error) {
       print('Error: $error');
-      throw Exception('Failed to check authentication..2');
+      throw Exception('Failed to check authentication..');
     }
   }
 
@@ -113,6 +113,7 @@ void saveAccessTokenToPrefs(String accessToken) async {
       if (response.statusCode == 200) {
         final userModel = AppUser.fromJson(response.data);
         log(userModel.accessToken,name: "accssess token");
+        
         saveAccessTokenToPrefs(userModel.accessToken);
         log(response.data.toString(),name: "from verify");
         print('accsess tokent is ${userModel.accessToken}');

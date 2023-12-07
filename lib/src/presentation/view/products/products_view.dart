@@ -26,6 +26,7 @@ class _ProductsViewState extends State<ProductsView> {
 
   @override
   Widget build(BuildContext context) {
+   final int index;
     final kSize = MediaQuery.of(context).size;
     return ScrollConfiguration(
       behavior: NoGlowScrollBehaviour(),
@@ -53,7 +54,7 @@ class _ProductsViewState extends State<ProductsView> {
                     itemCount: state.prodectList.length,
                     padding: EdgeInsets.only(bottom: kSize.height * .1),
                     itemBuilder: (context, index) {
-                      return const ProductsTile();
+                      return  ProductsTile(index: index,);
                     },
                   ),
                 );

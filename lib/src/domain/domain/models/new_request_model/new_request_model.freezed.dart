@@ -28,8 +28,14 @@ mixin _$NewRequestModel {
   String get customer => throw _privateConstructorUsedError;
   @JsonKey(name: 'customerAddress')
   String get customerAddress => throw _privateConstructorUsedError;
+  @JsonKey(name: 'name')
+  String get name => throw _privateConstructorUsedError;
+  @JsonKey(name: 'image')
+  String get image => throw _privateConstructorUsedError;
   @JsonKey(name: 'technician')
   String? get technician => throw _privateConstructorUsedError;
+  @JsonKey(name: 'phone_number')
+  String get phoneNumber => throw _privateConstructorUsedError;
   @JsonKey(name: 'productSerialNumber')
   String get productSerialNumber => throw _privateConstructorUsedError;
   @JsonKey(name: 'isRecurringService')
@@ -70,7 +76,10 @@ abstract class $NewRequestModelCopyWith<$Res> {
       @JsonKey(name: 'row_id') int rowId,
       @JsonKey(name: 'customer') String customer,
       @JsonKey(name: 'customerAddress') String customerAddress,
+      @JsonKey(name: 'name') String name,
+      @JsonKey(name: 'image') String image,
       @JsonKey(name: 'technician') String? technician,
+      @JsonKey(name: 'phone_number') String phoneNumber,
       @JsonKey(name: 'productSerialNumber') String productSerialNumber,
       @JsonKey(name: 'isRecurringService') bool isRecurringService,
       @JsonKey(name: 'serviceDateSlot') String? serviceDateSlot,
@@ -102,7 +111,10 @@ class _$NewRequestModelCopyWithImpl<$Res, $Val extends NewRequestModel>
     Object? rowId = null,
     Object? customer = null,
     Object? customerAddress = null,
+    Object? name = null,
+    Object? image = null,
     Object? technician = freezed,
+    Object? phoneNumber = null,
     Object? productSerialNumber = null,
     Object? isRecurringService = null,
     Object? serviceDateSlot = freezed,
@@ -132,10 +144,22 @@ class _$NewRequestModelCopyWithImpl<$Res, $Val extends NewRequestModel>
           ? _value.customerAddress
           : customerAddress // ignore: cast_nullable_to_non_nullable
               as String,
+      name: null == name
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String,
+      image: null == image
+          ? _value.image
+          : image // ignore: cast_nullable_to_non_nullable
+              as String,
       technician: freezed == technician
           ? _value.technician
           : technician // ignore: cast_nullable_to_non_nullable
               as String?,
+      phoneNumber: null == phoneNumber
+          ? _value.phoneNumber
+          : phoneNumber // ignore: cast_nullable_to_non_nullable
+              as String,
       productSerialNumber: null == productSerialNumber
           ? _value.productSerialNumber
           : productSerialNumber // ignore: cast_nullable_to_non_nullable
@@ -197,7 +221,10 @@ abstract class _$$NewRequestModelImplCopyWith<$Res>
       @JsonKey(name: 'row_id') int rowId,
       @JsonKey(name: 'customer') String customer,
       @JsonKey(name: 'customerAddress') String customerAddress,
+      @JsonKey(name: 'name') String name,
+      @JsonKey(name: 'image') String image,
       @JsonKey(name: 'technician') String? technician,
+      @JsonKey(name: 'phone_number') String phoneNumber,
       @JsonKey(name: 'productSerialNumber') String productSerialNumber,
       @JsonKey(name: 'isRecurringService') bool isRecurringService,
       @JsonKey(name: 'serviceDateSlot') String? serviceDateSlot,
@@ -227,7 +254,10 @@ class __$$NewRequestModelImplCopyWithImpl<$Res>
     Object? rowId = null,
     Object? customer = null,
     Object? customerAddress = null,
+    Object? name = null,
+    Object? image = null,
     Object? technician = freezed,
+    Object? phoneNumber = null,
     Object? productSerialNumber = null,
     Object? isRecurringService = null,
     Object? serviceDateSlot = freezed,
@@ -257,10 +287,22 @@ class __$$NewRequestModelImplCopyWithImpl<$Res>
           ? _value.customerAddress
           : customerAddress // ignore: cast_nullable_to_non_nullable
               as String,
+      name: null == name
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String,
+      image: null == image
+          ? _value.image
+          : image // ignore: cast_nullable_to_non_nullable
+              as String,
       technician: freezed == technician
           ? _value.technician
           : technician // ignore: cast_nullable_to_non_nullable
               as String?,
+      phoneNumber: null == phoneNumber
+          ? _value.phoneNumber
+          : phoneNumber // ignore: cast_nullable_to_non_nullable
+              as String,
       productSerialNumber: null == productSerialNumber
           ? _value.productSerialNumber
           : productSerialNumber // ignore: cast_nullable_to_non_nullable
@@ -317,7 +359,10 @@ class _$NewRequestModelImpl implements _NewRequestModel {
       @JsonKey(name: 'row_id') this.rowId = 0,
       @JsonKey(name: 'customer') this.customer = "",
       @JsonKey(name: 'customerAddress') this.customerAddress = "",
+      @JsonKey(name: 'name') this.name = "",
+      @JsonKey(name: 'image') this.image = "",
       @JsonKey(name: 'technician') this.technician = "",
+      @JsonKey(name: 'phone_number') this.phoneNumber = "",
       @JsonKey(name: 'productSerialNumber') this.productSerialNumber = "",
       @JsonKey(name: 'isRecurringService') this.isRecurringService = false,
       @JsonKey(name: 'serviceDateSlot') this.serviceDateSlot = "",
@@ -347,8 +392,17 @@ class _$NewRequestModelImpl implements _NewRequestModel {
   @JsonKey(name: 'customerAddress')
   final String customerAddress;
   @override
+  @JsonKey(name: 'name')
+  final String name;
+  @override
+  @JsonKey(name: 'image')
+  final String image;
+  @override
   @JsonKey(name: 'technician')
   final String? technician;
+  @override
+  @JsonKey(name: 'phone_number')
+  final String phoneNumber;
   @override
   @JsonKey(name: 'productSerialNumber')
   final String productSerialNumber;
@@ -385,7 +439,7 @@ class _$NewRequestModelImpl implements _NewRequestModel {
 
   @override
   String toString() {
-    return 'NewRequestModel(id: $id, rowId: $rowId, customer: $customer, customerAddress: $customerAddress, technician: $technician, productSerialNumber: $productSerialNumber, isRecurringService: $isRecurringService, serviceDateSlot: $serviceDateSlot, serviceDateTimeSlot: $serviceDateTimeSlot, note: $note, servicerequestimagebaseurl: $servicerequestimagebaseurl, productimagebaseurl: $productimagebaseurl, serviceimagebaseurl: $serviceimagebaseurl, status: $status, createdAt: $createdAt, updatedAt: $updatedAt)';
+    return 'NewRequestModel(id: $id, rowId: $rowId, customer: $customer, customerAddress: $customerAddress, name: $name, image: $image, technician: $technician, phoneNumber: $phoneNumber, productSerialNumber: $productSerialNumber, isRecurringService: $isRecurringService, serviceDateSlot: $serviceDateSlot, serviceDateTimeSlot: $serviceDateTimeSlot, note: $note, servicerequestimagebaseurl: $servicerequestimagebaseurl, productimagebaseurl: $productimagebaseurl, serviceimagebaseurl: $serviceimagebaseurl, status: $status, createdAt: $createdAt, updatedAt: $updatedAt)';
   }
 
   @override
@@ -399,8 +453,12 @@ class _$NewRequestModelImpl implements _NewRequestModel {
                 other.customer == customer) &&
             (identical(other.customerAddress, customerAddress) ||
                 other.customerAddress == customerAddress) &&
+            (identical(other.name, name) || other.name == name) &&
+            (identical(other.image, image) || other.image == image) &&
             (identical(other.technician, technician) ||
                 other.technician == technician) &&
+            (identical(other.phoneNumber, phoneNumber) ||
+                other.phoneNumber == phoneNumber) &&
             (identical(other.productSerialNumber, productSerialNumber) ||
                 other.productSerialNumber == productSerialNumber) &&
             (identical(other.isRecurringService, isRecurringService) ||
@@ -427,24 +485,28 @@ class _$NewRequestModelImpl implements _NewRequestModel {
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      id,
-      rowId,
-      customer,
-      customerAddress,
-      technician,
-      productSerialNumber,
-      isRecurringService,
-      serviceDateSlot,
-      serviceDateTimeSlot,
-      note,
-      servicerequestimagebaseurl,
-      productimagebaseurl,
-      serviceimagebaseurl,
-      status,
-      createdAt,
-      updatedAt);
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        id,
+        rowId,
+        customer,
+        customerAddress,
+        name,
+        image,
+        technician,
+        phoneNumber,
+        productSerialNumber,
+        isRecurringService,
+        serviceDateSlot,
+        serviceDateTimeSlot,
+        note,
+        servicerequestimagebaseurl,
+        productimagebaseurl,
+        serviceimagebaseurl,
+        status,
+        createdAt,
+        updatedAt
+      ]);
 
   @JsonKey(ignore: true)
   @override
@@ -467,7 +529,10 @@ abstract class _NewRequestModel implements NewRequestModel {
       @JsonKey(name: 'row_id') final int rowId,
       @JsonKey(name: 'customer') final String customer,
       @JsonKey(name: 'customerAddress') final String customerAddress,
+      @JsonKey(name: 'name') final String name,
+      @JsonKey(name: 'image') final String image,
       @JsonKey(name: 'technician') final String? technician,
+      @JsonKey(name: 'phone_number') final String phoneNumber,
       @JsonKey(name: 'productSerialNumber') final String productSerialNumber,
       @JsonKey(name: 'isRecurringService') final bool isRecurringService,
       @JsonKey(name: 'serviceDateSlot') final String? serviceDateSlot,
@@ -498,8 +563,17 @@ abstract class _NewRequestModel implements NewRequestModel {
   @JsonKey(name: 'customerAddress')
   String get customerAddress;
   @override
+  @JsonKey(name: 'name')
+  String get name;
+  @override
+  @JsonKey(name: 'image')
+  String get image;
+  @override
   @JsonKey(name: 'technician')
   String? get technician;
+  @override
+  @JsonKey(name: 'phone_number')
+  String get phoneNumber;
   @override
   @JsonKey(name: 'productSerialNumber')
   String get productSerialNumber;

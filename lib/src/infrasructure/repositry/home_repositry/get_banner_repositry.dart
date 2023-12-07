@@ -1,5 +1,4 @@
 import 'dart:developer';
-
 import 'package:coofix/app/interceptar/dio_interceptor.dart';
 import 'package:coofix/app/services/apiservices/api.dart';
 import 'package:coofix/src/domain/domain/models/banner_model/banner_model.dart';

@@ -68,7 +68,8 @@ extension GetItInjectableX on _i1.GetIt {
         () => _i16.ProdectBloc(gh<_i13.IProdectSales>()));
     gh.factory<_i17.AddressBloc>(() => _i17.AddressBloc(gh<_i5.IGetAddress>()));
     gh.factory<_i18.AuthBloc>(() => _i18.AuthBloc(gh<_i3.IAuthRepository>()));
-    gh.factory<_i19.BannerBloc>(() => _i19.BannerBloc(gh<_i7.IGetBannerRepositry>()));
+    gh.factory<_i19.BannerBloc>(
+        () => _i19.BannerBloc(gh<_i7.IGetBannerRepositry>()));
     gh.factory<_i20.GetServicesBloc>(
         () => _i20.GetServicesBloc(gh<_i9.IGetServieces>()));
     return this;

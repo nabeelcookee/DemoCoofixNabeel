@@ -49,7 +49,7 @@ class NewRequestBloc extends Bloc<NewRequestEvent, NewRequestState> {
           note: event.note,
           serviceDateSlot: event.serviceDateSlot,
           serviceDateTimeSlot: event.serviceDateTimeSlot);
-      emit(state.copyWith(status: true, requestDatas: [response]));
+      emit(state.copyWith(status: true, requestDatas: response));
     } catch (e) {
       // errors
       emit(state.copyWith(status: false));

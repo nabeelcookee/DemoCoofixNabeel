@@ -1,5 +1,6 @@
 import 'package:coofix/src/application/prodect_bloc/prodect_bloc.dart';
 import 'package:coofix/src/application/prodect_bloc/prodect_state.dart';
+import 'package:coofix/src/presentation/core/constants/constants.dart';
 import 'package:coofix/src/presentation/core/constants/images.dart';
 import 'package:coofix/src/presentation/core/constants/strings.dart';
 import 'package:coofix/src/presentation/core/theme/colors.dart';
@@ -11,8 +12,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class ProductsTile extends StatefulWidget {
-  const ProductsTile({super.key});
-
+  const ProductsTile({super.key , required this.index});
+   final int index;
   @override
   State<ProductsTile> createState() => _ProductsTileState();
 }
@@ -47,8 +48,8 @@ class _ProductsTileState extends State<ProductsTile> {
                       height: kSize.height * 0.1421,
                       width: kSize.height * 0.1421,
                       decoration: BoxDecoration(
-                          image: const DecorationImage(
-                              image: AssetImage(AppImages.serviceMan),
+                          image:  DecorationImage(
+                              image: AssetImage("${AppConstants.prodectImageBaseUrl}/${state.prodectList[widget.index].image??""}"),
                               fit: BoxFit.cover),
                           borderRadius:
                               BorderRadius.circular(kSize.height * 0.01052)),
@@ -70,7 +71,7 @@ class _ProductsTileState extends State<ProductsTile> {
                               color: AppColors.greenColor,
                               borderRadius: BorderRadius.circular(
                                   kSize.height * 0.00263)),
-                          child: Text('Warrenty Status :${state.prodectList[0].active}',
+                          child: Text('Warrenty Status :${state.prodectList[widget.index].active}',
                               style: AppTypography.airbnbCerealMedium.copyWith(
                                   color: AppColors.secondaryColor,
                                   fontSize: kSize.height * 0.0155)),
@@ -86,7 +87,7 @@ class _ProductsTileState extends State<ProductsTile> {
                               fontSize: kSize.height * 0.0190),
                         ),
                         Text(
-                        state.prodectList[0].productSerialNumber??"",
+                        state.prodectList[widget.index].productSerialNumber??"",
                           style: AppTypography.soraBold.copyWith(
                               color: AppColors.primaryColor,
                               fontSize: kSize.height * 0.0190),
@@ -99,7 +100,7 @@ class _ProductsTileState extends State<ProductsTile> {
                   height: kSize.height * .015,
                 ),
                 Text(
-                  'Service Coverage: ${state.prodectList[0].year}',
+                  'Service Coverage: ${state.prodectList[widget.index].year}',
                   style: AppTypography.soraRegular.copyWith(
                       color: AppColors.blueGrey1,
                       fontSize: kSize.height * 0.0190),
@@ -134,7 +135,7 @@ class _ProductsTileState extends State<ProductsTile> {
                               ),
                               FittedBox(
                                 child: Text(
-                                  state.prodectList[0].purchaseDate??"",
+                                  state.prodectList[widget.index].purchaseDate??"",
                                   style: AppTypography.soraSemiBold.copyWith(
                                       color: AppColors.primaryColor,
                                       fontSize: kSize.height * 0.0190),
