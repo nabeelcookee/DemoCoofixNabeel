@@ -10,8 +10,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class EditProfileBottomSheet extends StatefulWidget {
-  const EditProfileBottomSheet({super.key});
-
+  const EditProfileBottomSheet({super.key , required this.nameController});
+ final nameController;
   @override
   State<EditProfileBottomSheet> createState() => _EditProfileBottomSheetState();
 }
@@ -21,10 +21,12 @@ class _EditProfileBottomSheetState extends State<EditProfileBottomSheet> {
   final formKey = GlobalKey<FormState>();
   @override
   void initState() {
+
         super.initState();
   }
   @override
   Widget build(BuildContext context) {
+    print("edit  name is :${nameController.text}");
     final kSize = MediaQuery.of(context).size;
     return Form(
       key: formKey,

@@ -21,10 +21,11 @@ class ProfileView extends StatefulWidget {
 }
 
 class _ProfileViewState extends State<ProfileView> {
+   TextEditingController nameController = TextEditingController();
   CroppedFile? imageFile;
 @override
   void initState() {
-  
+  context.read<ProfileBloc>().add(ProfileEvent.upadeProfile(name: nameController.text));
     super.initState();
   }
   @override
@@ -39,7 +40,10 @@ class _ProfileViewState extends State<ProfileView> {
             height: kSize.height * .07,
           ),
           Center(
-            child: BlocBuilder<ProfileBloc, ProfileState>(
+            child: BlocConsumer<ProfileBloc, ProfileState>(
+              listener: (context, state) {
+                
+              },
               builder: (context, state) {
                 if (kDebugMode) {
                   print("name : ${state.name}");
@@ -109,7 +113,7 @@ class _ProfileViewState extends State<ProfileView> {
                       children: [
                         
                         Text(
-                          state.name ?? "Robby",
+                         state.name,
                           style: AppTypography.soraSemiBold
                               .copyWith(fontSize: kSize.height * 0.031),
                         ),
@@ -129,7 +133,7 @@ class _ProfileViewState extends State<ProfileView> {
                                       topRight: Radius.circular(
                                           kSize.height * .022))),
                               builder: (context) {
-                                return const EditProfileBottomSheet();
+                                return  EditProfileBottomSheet(nameController: nameController,);
                               },
                             );
                           },
