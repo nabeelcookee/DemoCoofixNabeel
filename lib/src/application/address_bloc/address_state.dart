@@ -8,11 +8,13 @@ abstract class AddressState with _$AddressState {
     required bool status,
     required String errorMessage,
     required List<AddressModel> address,
+    required String id,
   }) = _AddressState;
 
   factory AddressState.initial() => AddressState(
         status: false,
         errorMessage: "",
         address: [],
+        id: ""
       );
 }

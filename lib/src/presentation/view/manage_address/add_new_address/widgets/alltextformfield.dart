@@ -136,6 +136,7 @@ class _AllTextFormFieldState extends State<AllTextFormField> {
                               pincodeController.clear();
                               directionToReachController.clear();
                                Navigator.pop(context);
+                               context.read<AddressBloc>().add( const AddressEvent.getAddress(limit: 0, skip: 0, id: ""));
                             }
                           },
                         );

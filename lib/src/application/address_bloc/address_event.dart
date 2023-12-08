@@ -24,4 +24,8 @@ class AddressEvent with _$AddressEvent {
   const factory AddressEvent.selectedAddress({
     required String id,
   }) = _SelectedAddressEvent;
+
+   const factory AddressEvent.deletedAddress({
+    required String id,
+  }) = _DeletedAddressEvent;
 }

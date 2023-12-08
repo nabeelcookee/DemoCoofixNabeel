@@ -16,5 +16,7 @@ abstract class IGetAddress {
 
 
   Future<AddressModel>selectedAddress({required String id});
+
+  Future<AddressModel>deletedAddress({required String id});
 }
 

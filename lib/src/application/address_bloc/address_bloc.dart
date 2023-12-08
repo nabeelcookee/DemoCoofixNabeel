@@ -17,6 +17,7 @@ class AddressBloc extends Bloc<AddressEvent, AddressState> {
     on<_GetAddressEvent>(_getAddress);
     on<_AddAddressEvent>(_addAddress);
     on<_SelectedAddressEvent>(_selectedAddress);
+    on<_DeletedAddressEvent>(_deleteAddress);
   }
   FutureOr<void> _getAddress(
       _GetAddressEvent event, Emitter<AddressState> emit) async {
@@ -88,6 +89,19 @@ class AddressBloc extends Bloc<AddressEvent, AddressState> {
       emit(
         state.copyWith(errorMessage: "$e", status: false),
       );
+    }
+  }
+
+  FutureOr<void>_deleteAddress(_DeletedAddressEvent event , Emitter<AddressState> emit) async{
+    try{
+     emit(state.copyWith());
+      final response = await iGetAddress.deletedAddress(
+          id: event.id, );
+      emit(state.copyWith(
+      id: response.id
+      ));
+    }catch(e){
+     print(e);
     }
   }
 }

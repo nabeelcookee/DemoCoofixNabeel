@@ -31,6 +31,7 @@ mixin _$AddressEvent {
             double locationLongitude)
         addAddress,
     required TResult Function(String id) selectedAddress,
+    required TResult Function(String id) deletedAddress,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -47,6 +48,7 @@ mixin _$AddressEvent {
             double locationLongitude)?
         addAddress,
     TResult? Function(String id)? selectedAddress,
+    TResult? Function(String id)? deletedAddress,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -63,6 +65,7 @@ mixin _$AddressEvent {
             double locationLongitude)?
         addAddress,
     TResult Function(String id)? selectedAddress,
+    TResult Function(String id)? deletedAddress,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -71,6 +74,7 @@ mixin _$AddressEvent {
     required TResult Function(_GetAddressEvent value) getAddress,
     required TResult Function(_AddAddressEvent value) addAddress,
     required TResult Function(_SelectedAddressEvent value) selectedAddress,
+    required TResult Function(_DeletedAddressEvent value) deletedAddress,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -78,6 +82,7 @@ mixin _$AddressEvent {
     TResult? Function(_GetAddressEvent value)? getAddress,
     TResult? Function(_AddAddressEvent value)? addAddress,
     TResult? Function(_SelectedAddressEvent value)? selectedAddress,
+    TResult? Function(_DeletedAddressEvent value)? deletedAddress,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -85,6 +90,7 @@ mixin _$AddressEvent {
     TResult Function(_GetAddressEvent value)? getAddress,
     TResult Function(_AddAddressEvent value)? addAddress,
     TResult Function(_SelectedAddressEvent value)? selectedAddress,
+    TResult Function(_DeletedAddressEvent value)? deletedAddress,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -235,6 +241,7 @@ class _$GetAddressEventImpl
             double locationLongitude)
         addAddress,
     required TResult Function(String id) selectedAddress,
+    required TResult Function(String id) deletedAddress,
   }) {
     return getAddress(limit, skip, id);
   }
@@ -254,6 +261,7 @@ class _$GetAddressEventImpl
             double locationLongitude)?
         addAddress,
     TResult? Function(String id)? selectedAddress,
+    TResult? Function(String id)? deletedAddress,
   }) {
     return getAddress?.call(limit, skip, id);
   }
@@ -273,6 +281,7 @@ class _$GetAddressEventImpl
             double locationLongitude)?
         addAddress,
     TResult Function(String id)? selectedAddress,
+    TResult Function(String id)? deletedAddress,
     required TResult orElse(),
   }) {
     if (getAddress != null) {
@@ -287,6 +296,7 @@ class _$GetAddressEventImpl
     required TResult Function(_GetAddressEvent value) getAddress,
     required TResult Function(_AddAddressEvent value) addAddress,
     required TResult Function(_SelectedAddressEvent value) selectedAddress,
+    required TResult Function(_DeletedAddressEvent value) deletedAddress,
   }) {
     return getAddress(this);
   }
@@ -297,6 +307,7 @@ class _$GetAddressEventImpl
     TResult? Function(_GetAddressEvent value)? getAddress,
     TResult? Function(_AddAddressEvent value)? addAddress,
     TResult? Function(_SelectedAddressEvent value)? selectedAddress,
+    TResult? Function(_DeletedAddressEvent value)? deletedAddress,
   }) {
     return getAddress?.call(this);
   }
@@ -307,6 +318,7 @@ class _$GetAddressEventImpl
     TResult Function(_GetAddressEvent value)? getAddress,
     TResult Function(_AddAddressEvent value)? addAddress,
     TResult Function(_SelectedAddressEvent value)? selectedAddress,
+    TResult Function(_DeletedAddressEvent value)? deletedAddress,
     required TResult orElse(),
   }) {
     if (getAddress != null) {
@@ -506,6 +518,7 @@ class _$AddAddressEventImpl
             double locationLongitude)
         addAddress,
     required TResult Function(String id) selectedAddress,
+    required TResult Function(String id) deletedAddress,
   }) {
     return addAddress(id, addressType, fullName, address, pinCode,
         directionToReach, locationLatitude, locationLongitude);
@@ -526,6 +539,7 @@ class _$AddAddressEventImpl
             double locationLongitude)?
         addAddress,
     TResult? Function(String id)? selectedAddress,
+    TResult? Function(String id)? deletedAddress,
   }) {
     return addAddress?.call(id, addressType, fullName, address, pinCode,
         directionToReach, locationLatitude, locationLongitude);
@@ -546,6 +560,7 @@ class _$AddAddressEventImpl
             double locationLongitude)?
         addAddress,
     TResult Function(String id)? selectedAddress,
+    TResult Function(String id)? deletedAddress,
     required TResult orElse(),
   }) {
     if (addAddress != null) {
@@ -561,6 +576,7 @@ class _$AddAddressEventImpl
     required TResult Function(_GetAddressEvent value) getAddress,
     required TResult Function(_AddAddressEvent value) addAddress,
     required TResult Function(_SelectedAddressEvent value) selectedAddress,
+    required TResult Function(_DeletedAddressEvent value) deletedAddress,
   }) {
     return addAddress(this);
   }
@@ -571,6 +587,7 @@ class _$AddAddressEventImpl
     TResult? Function(_GetAddressEvent value)? getAddress,
     TResult? Function(_AddAddressEvent value)? addAddress,
     TResult? Function(_SelectedAddressEvent value)? selectedAddress,
+    TResult? Function(_DeletedAddressEvent value)? deletedAddress,
   }) {
     return addAddress?.call(this);
   }
@@ -581,6 +598,7 @@ class _$AddAddressEventImpl
     TResult Function(_GetAddressEvent value)? getAddress,
     TResult Function(_AddAddressEvent value)? addAddress,
     TResult Function(_SelectedAddressEvent value)? selectedAddress,
+    TResult Function(_DeletedAddressEvent value)? deletedAddress,
     required TResult orElse(),
   }) {
     if (addAddress != null) {
@@ -706,6 +724,7 @@ class _$SelectedAddressEventImpl
             double locationLongitude)
         addAddress,
     required TResult Function(String id) selectedAddress,
+    required TResult Function(String id) deletedAddress,
   }) {
     return selectedAddress(id);
   }
@@ -725,6 +744,7 @@ class _$SelectedAddressEventImpl
             double locationLongitude)?
         addAddress,
     TResult? Function(String id)? selectedAddress,
+    TResult? Function(String id)? deletedAddress,
   }) {
     return selectedAddress?.call(id);
   }
@@ -744,6 +764,7 @@ class _$SelectedAddressEventImpl
             double locationLongitude)?
         addAddress,
     TResult Function(String id)? selectedAddress,
+    TResult Function(String id)? deletedAddress,
     required TResult orElse(),
   }) {
     if (selectedAddress != null) {
@@ -758,6 +779,7 @@ class _$SelectedAddressEventImpl
     required TResult Function(_GetAddressEvent value) getAddress,
     required TResult Function(_AddAddressEvent value) addAddress,
     required TResult Function(_SelectedAddressEvent value) selectedAddress,
+    required TResult Function(_DeletedAddressEvent value) deletedAddress,
   }) {
     return selectedAddress(this);
   }
@@ -768,6 +790,7 @@ class _$SelectedAddressEventImpl
     TResult? Function(_GetAddressEvent value)? getAddress,
     TResult? Function(_AddAddressEvent value)? addAddress,
     TResult? Function(_SelectedAddressEvent value)? selectedAddress,
+    TResult? Function(_DeletedAddressEvent value)? deletedAddress,
   }) {
     return selectedAddress?.call(this);
   }
@@ -778,6 +801,7 @@ class _$SelectedAddressEventImpl
     TResult Function(_GetAddressEvent value)? getAddress,
     TResult Function(_AddAddressEvent value)? addAddress,
     TResult Function(_SelectedAddressEvent value)? selectedAddress,
+    TResult Function(_DeletedAddressEvent value)? deletedAddress,
     required TResult orElse(),
   }) {
     if (selectedAddress != null) {
@@ -797,4 +821,192 @@ abstract class _SelectedAddressEvent implements AddressEvent {
   @JsonKey(ignore: true)
   _$$SelectedAddressEventImplCopyWith<_$SelectedAddressEventImpl>
       get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$DeletedAddressEventImplCopyWith<$Res>
+    implements $AddressEventCopyWith<$Res> {
+  factory _$$DeletedAddressEventImplCopyWith(_$DeletedAddressEventImpl value,
+          $Res Function(_$DeletedAddressEventImpl) then) =
+      __$$DeletedAddressEventImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({String id});
+}
+
+/// @nodoc
+class __$$DeletedAddressEventImplCopyWithImpl<$Res>
+    extends _$AddressEventCopyWithImpl<$Res, _$DeletedAddressEventImpl>
+    implements _$$DeletedAddressEventImplCopyWith<$Res> {
+  __$$DeletedAddressEventImplCopyWithImpl(_$DeletedAddressEventImpl _value,
+      $Res Function(_$DeletedAddressEventImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? id = null,
+  }) {
+    return _then(_$DeletedAddressEventImpl(
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$DeletedAddressEventImpl
+    with DiagnosticableTreeMixin
+    implements _DeletedAddressEvent {
+  const _$DeletedAddressEventImpl({required this.id});
+
+  @override
+  final String id;
+
+  @override
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+    return 'AddressEvent.deletedAddress(id: $id)';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties
+      ..add(DiagnosticsProperty('type', 'AddressEvent.deletedAddress'))
+      ..add(DiagnosticsProperty('id', id));
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$DeletedAddressEventImpl &&
+            (identical(other.id, id) || other.id == id));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, id);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$DeletedAddressEventImplCopyWith<_$DeletedAddressEventImpl> get copyWith =>
+      __$$DeletedAddressEventImplCopyWithImpl<_$DeletedAddressEventImpl>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(int limit, int skip, String id) getAddress,
+    required TResult Function(
+            String id,
+            String addressType,
+            String fullName,
+            String address,
+            String pinCode,
+            String directionToReach,
+            double locationLatitude,
+            double locationLongitude)
+        addAddress,
+    required TResult Function(String id) selectedAddress,
+    required TResult Function(String id) deletedAddress,
+  }) {
+    return deletedAddress(id);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(int limit, int skip, String id)? getAddress,
+    TResult? Function(
+            String id,
+            String addressType,
+            String fullName,
+            String address,
+            String pinCode,
+            String directionToReach,
+            double locationLatitude,
+            double locationLongitude)?
+        addAddress,
+    TResult? Function(String id)? selectedAddress,
+    TResult? Function(String id)? deletedAddress,
+  }) {
+    return deletedAddress?.call(id);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(int limit, int skip, String id)? getAddress,
+    TResult Function(
+            String id,
+            String addressType,
+            String fullName,
+            String address,
+            String pinCode,
+            String directionToReach,
+            double locationLatitude,
+            double locationLongitude)?
+        addAddress,
+    TResult Function(String id)? selectedAddress,
+    TResult Function(String id)? deletedAddress,
+    required TResult orElse(),
+  }) {
+    if (deletedAddress != null) {
+      return deletedAddress(id);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_GetAddressEvent value) getAddress,
+    required TResult Function(_AddAddressEvent value) addAddress,
+    required TResult Function(_SelectedAddressEvent value) selectedAddress,
+    required TResult Function(_DeletedAddressEvent value) deletedAddress,
+  }) {
+    return deletedAddress(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_GetAddressEvent value)? getAddress,
+    TResult? Function(_AddAddressEvent value)? addAddress,
+    TResult? Function(_SelectedAddressEvent value)? selectedAddress,
+    TResult? Function(_DeletedAddressEvent value)? deletedAddress,
+  }) {
+    return deletedAddress?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_GetAddressEvent value)? getAddress,
+    TResult Function(_AddAddressEvent value)? addAddress,
+    TResult Function(_SelectedAddressEvent value)? selectedAddress,
+    TResult Function(_DeletedAddressEvent value)? deletedAddress,
+    required TResult orElse(),
+  }) {
+    if (deletedAddress != null) {
+      return deletedAddress(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _DeletedAddressEvent implements AddressEvent {
+  const factory _DeletedAddressEvent({required final String id}) =
+      _$DeletedAddressEventImpl;
+
+  @override
+  String get id;
+  @override
+  @JsonKey(ignore: true)
+  _$$DeletedAddressEventImplCopyWith<_$DeletedAddressEventImpl> get copyWith =>
+      throw _privateConstructorUsedError;
 }

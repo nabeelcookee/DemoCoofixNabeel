@@ -19,6 +19,7 @@ mixin _$AddressState {
   bool get status => throw _privateConstructorUsedError;
   String get errorMessage => throw _privateConstructorUsedError;
   List<AddressModel> get address => throw _privateConstructorUsedError;
+  String get id => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $AddressStateCopyWith<AddressState> get copyWith =>
@@ -31,7 +32,11 @@ abstract class $AddressStateCopyWith<$Res> {
           AddressState value, $Res Function(AddressState) then) =
       _$AddressStateCopyWithImpl<$Res, AddressState>;
   @useResult
-  $Res call({bool status, String errorMessage, List<AddressModel> address});
+  $Res call(
+      {bool status,
+      String errorMessage,
+      List<AddressModel> address,
+      String id});
 }
 
 /// @nodoc
@@ -50,6 +55,7 @@ class _$AddressStateCopyWithImpl<$Res, $Val extends AddressState>
     Object? status = null,
     Object? errorMessage = null,
     Object? address = null,
+    Object? id = null,
   }) {
     return _then(_value.copyWith(
       status: null == status
@@ -64,6 +70,10 @@ class _$AddressStateCopyWithImpl<$Res, $Val extends AddressState>
           ? _value.address
           : address // ignore: cast_nullable_to_non_nullable
               as List<AddressModel>,
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String,
     ) as $Val);
   }
 }
@@ -76,7 +86,11 @@ abstract class _$$AddressStateImplCopyWith<$Res>
       __$$AddressStateImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({bool status, String errorMessage, List<AddressModel> address});
+  $Res call(
+      {bool status,
+      String errorMessage,
+      List<AddressModel> address,
+      String id});
 }
 
 /// @nodoc
@@ -93,6 +107,7 @@ class __$$AddressStateImplCopyWithImpl<$Res>
     Object? status = null,
     Object? errorMessage = null,
     Object? address = null,
+    Object? id = null,
   }) {
     return _then(_$AddressStateImpl(
       status: null == status
@@ -107,6 +122,10 @@ class __$$AddressStateImplCopyWithImpl<$Res>
           ? _value._address
           : address // ignore: cast_nullable_to_non_nullable
               as List<AddressModel>,
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 }
@@ -117,7 +136,8 @@ class _$AddressStateImpl implements _AddressState {
   _$AddressStateImpl(
       {required this.status,
       required this.errorMessage,
-      required final List<AddressModel> address})
+      required final List<AddressModel> address,
+      required this.id})
       : _address = address;
 
   @override
@@ -133,8 +153,11 @@ class _$AddressStateImpl implements _AddressState {
   }
 
   @override
+  final String id;
+
+  @override
   String toString() {
-    return 'AddressState(status: $status, errorMessage: $errorMessage, address: $address)';
+    return 'AddressState(status: $status, errorMessage: $errorMessage, address: $address, id: $id)';
   }
 
   @override
@@ -145,12 +168,13 @@ class _$AddressStateImpl implements _AddressState {
             (identical(other.status, status) || other.status == status) &&
             (identical(other.errorMessage, errorMessage) ||
                 other.errorMessage == errorMessage) &&
-            const DeepCollectionEquality().equals(other._address, _address));
+            const DeepCollectionEquality().equals(other._address, _address) &&
+            (identical(other.id, id) || other.id == id));
   }
 
   @override
   int get hashCode => Object.hash(runtimeType, status, errorMessage,
-      const DeepCollectionEquality().hash(_address));
+      const DeepCollectionEquality().hash(_address), id);
 
   @JsonKey(ignore: true)
   @override
@@ -163,7 +187,8 @@ abstract class _AddressState implements AddressState {
   factory _AddressState(
       {required final bool status,
       required final String errorMessage,
-      required final List<AddressModel> address}) = _$AddressStateImpl;
+      required final List<AddressModel> address,
+      required final String id}) = _$AddressStateImpl;
 
   @override
   bool get status;
@@ -171,6 +196,8 @@ abstract class _AddressState implements AddressState {
   String get errorMessage;
   @override
   List<AddressModel> get address;
+  @override
+  String get id;
   @override
   @JsonKey(ignore: true)
   _$$AddressStateImplCopyWith<_$AddressStateImpl> get copyWith =>

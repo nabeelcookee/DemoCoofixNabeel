@@ -1,5 +1,6 @@
 import 'dart:io';
 import 'package:coofix/app/router/router_constants.dart';
+import 'package:coofix/src/application/address_bloc/address_bloc.dart';
 import 'package:coofix/src/application/profile_bloc/profile_bloc.dart';
 import 'package:coofix/src/application/profile_bloc/profile_state.dart';
 import 'package:coofix/src/presentation/core/constants/constants.dart';
@@ -166,6 +167,7 @@ class _ProfileViewState extends State<ProfileView> {
             kSize: kSize,
             label: 'Manage Address',
             onTap: () {
+              context.read<AddressBloc>().add(AddressEvent.getAddress(limit: 0, skip: 0, id: ""));
               Navigator.pushNamed(context, "/manageAddress");
             },
           ),

@@ -25,4 +25,7 @@ class ApiEndpoints{
   static const String  getBanner ="${ApiUrl.baseUrl}/general/get_banner_data";
 
   static const String updateProfile ="${ApiUrl.baseUrl}/profile/update_profile";
+
+   static const String deleteAddress ="${ApiUrl.baseUrl}/profile/address/delete";
 }
+

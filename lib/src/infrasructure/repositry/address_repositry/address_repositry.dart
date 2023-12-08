@@ -9,8 +9,6 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 @LazySingleton(as: IGetAddress)
 class GetAddressRepository implements IGetAddress {
-
-
   @override
   Future<List<AddressModel>> getAddress(
       {required String id, required int skip, required int limit}) async {
@@ -149,13 +147,11 @@ class GetAddressRepository implements IGetAddress {
       }
 
       if (response.statusCode == 200) {
-        final Map<String, dynamic> responseData = response.data;
-        final AddressModel addressModel = AddressModel.fromJson(responseData);
+        final AddressModel deleteadress = AddressModel.fromJson(response.data);
         if (kDebugMode) {
           print("Address added successfully");
         }
-
-        return addressModel;
+        return deleteadress;
       } else {
         throw Exception(
             "Failed to add address. Status code: ${response.statusCode}");
@@ -165,6 +161,48 @@ class GetAddressRepository implements IGetAddress {
         print(e);
       }
       throw Exception("Failed to add address. $e");
+    }
+  }
+
+  @override
+  Future<AddressModel> deletedAddress({required String id}) async {
+    try {
+      SharedPreferences prefs = await SharedPreferences.getInstance();
+      final Map<String, dynamic> data = {
+        "_id": id,
+      };
+      var dio = Dio();
+      dio.interceptors.add(Dionterceptor());
+
+      final response = await dio.post(
+        ApiEndpoints.deleteAddress,
+        data: data,
+        options: Options(headers: {
+          "Authorization": "Bearer ${prefs.getString('access_token') ?? ''}",
+        }),
+      );
+      if (kDebugMode) {
+        print(
+            "delete Address access token is ${prefs.getString('access_token')}");
+        print('delete Address Response status code: ${response.statusCode}');
+        print('delete Address Response headers: ${response.headers}');
+        print('delete Address Response body: ${response.data}');
+      }
+
+      if (response.statusCode == 200) {
+        final Map<String, dynamic> responseData = response.data;
+        final AddressModel addressModel = AddressModel.fromJson(responseData);
+        if (kDebugMode) {
+          print("Address delete successfully");
+        }
+
+        return addressModel;
+      } else {
+        throw Exception(
+            "Failed to add address. Status code: ${response.statusCode}");
+      }
+    } catch (e) {
+      throw Exception(e);
     }
   }
 }

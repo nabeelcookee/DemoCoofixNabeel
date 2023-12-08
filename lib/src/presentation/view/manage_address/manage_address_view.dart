@@ -1,3 +1,4 @@
+import 'package:coofix/src/application/address_bloc/address_bloc.dart';
 import 'package:coofix/src/presentation/core/constants/constants.dart';
 import 'package:coofix/src/presentation/core/constants/strings.dart';
 import 'package:coofix/src/presentation/core/theme/colors.dart';
@@ -9,13 +10,25 @@ import 'package:coofix/src/presentation/core/widgets/primary_button.dart';
 import 'package:coofix/src/presentation/view/manage_address/Widgets/addresscontainer.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
-class ManageDetailScreen extends StatelessWidget {
+class ManageDetailScreen extends StatefulWidget {
   const ManageDetailScreen({super.key});
 
   @override
+  State<ManageDetailScreen> createState() => _ManageDetailScreenState();
+}
+
+class _ManageDetailScreenState extends State<ManageDetailScreen> {
+  @override
+  void initState() {
+   context.read<AddressBloc>().add(AddressEvent.getAddress(limit: 0, skip: 0, id: ""));
+    super.initState();
+  }
+  @override
   Widget build(BuildContext context) {
     final kSize = MediaQuery.of(context).size;
+    final int  index =0;
     return Scaffold(
       backgroundColor: AppColors.secondaryColor,
       body: SizedBox(
@@ -55,6 +68,7 @@ class ManageDetailScreen extends StatelessWidget {
                         child: SizedBox(
                           child: AddressContainer(
                             kSize: kSize,
+                            index: index.toInt(),
                           ),
                         ),
                       ),
