@@ -9,6 +9,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 @LazySingleton(as: IGetAddress)
 class GetAddressRepository implements IGetAddress {
+
   @override
   Future<List<AddressModel>> getAddress(
       {required String id, required int skip, required int limit}) async {
@@ -33,7 +34,7 @@ class GetAddressRepository implements IGetAddress {
         ),
       );
       if (kDebugMode) {
-        print("get Address access token is ${prefs.getString('access_token')}");
+        print("Get Address access token is ${prefs.getString('access_token')}");
         print('Get Address Response status code: ${response.statusCode}');
         print('Get Address Response headers: ${response.headers}');
         print('Get Address Response body: ${response.data}');
@@ -85,8 +86,7 @@ class GetAddressRepository implements IGetAddress {
         ),
       );
       if (kDebugMode) {
-        print(
-            "selected Address access token is ${prefs.getString('access_token')}");
+        print("selected Address access token is ${prefs.getString('access_token')}");
         print('selected Address Response status code: ${response.statusCode}');
         print('selected Address Response headers: ${response.headers}');
         print('selected Address Response body: ${response.data}');
@@ -104,7 +104,7 @@ class GetAddressRepository implements IGetAddress {
       throw Exception("Failed to fetch address. $e");
     }
   }
-
+  
   @override
   Future<AddressModel> addAddres(
       {required String id,
@@ -163,8 +163,11 @@ class GetAddressRepository implements IGetAddress {
       throw Exception("Failed to add address. $e");
     }
   }
+  
+
 
   @override
+  
   Future<AddressModel> deletedAddress({required String id}) async {
     try {
       SharedPreferences prefs = await SharedPreferences.getInstance();
@@ -205,4 +208,6 @@ class GetAddressRepository implements IGetAddress {
       throw Exception(e);
     }
   }
+
 }
+
