@@ -22,9 +22,8 @@ class ServiceList extends StatefulWidget {
 class _ServiceListState extends State<ServiceList> {
   @override
   void initState() {
-    context
-        .read<NewRequestBloc>()
-        .add( NewRequestEvent.listRequests(id: "", limit: 0, skip: 0, status: "", productSaleId: ""));
+    context.read<NewRequestBloc>().add(NewRequestEvent.listRequests(
+        id: "", limit: 0, skip: 0, status: "", productSaleId: ""));
     super.initState();
   }
 
@@ -35,7 +34,6 @@ class _ServiceListState extends State<ServiceList> {
       height: kSize.height * .3,
       child: BlocBuilder<NewRequestBloc, NewRequestState>(
         builder: (context, state) {
-
           return ListView.builder(
             itemCount: state.requestDatas.length,
             primary: false,
@@ -44,9 +42,10 @@ class _ServiceListState extends State<ServiceList> {
             scrollDirection: Axis.horizontal,
             shrinkWrap: true,
             itemBuilder: (context, index) {
-        final  date = state.requestDatas[index].serviceDateSlot;
-        DateTime  dateslot= DateTime.parse(date!);
-        String formattedDate = "${dateslot.year}-${dateslot.month}-${dateslot.day}";
+              final date = state.requestDatas[index].serviceDateSlot;
+              DateTime dateslot = DateTime.parse(date!);
+              String formattedDate =
+                  "${dateslot.year}-${dateslot.month}-${dateslot.day}";
               return CustomGradientTile(
                   margin: EdgeInsets.only(right: kSize.width * 0.0277),
                   width: kSize.width / 1.2,
@@ -97,7 +96,8 @@ class _ServiceListState extends State<ServiceList> {
                                 color: AppColors.secondaryColor)),
                       ),
                       SizedBox(height: kSize.height * .01),
-                      Text("${formattedDate} ${state.requestDatas[index].serviceDateTimeSlot}",
+                      Text(
+                          "${formattedDate} ${state.requestDatas[index].serviceDateTimeSlot}",
                           style: AppTypography.soraSemiBold.copyWith(
                               fontSize: kSize.height * 0.019,
                               color: AppColors.blackColor)),
@@ -163,7 +163,8 @@ class _ServiceListState extends State<ServiceList> {
                                       borderRadius: BorderRadius.circular(
                                           kSize.height * 0.01052))),
                               onPressed: () {
-                                launchDIaler(state.requestDatas[index].phoneNumber);
+                                launchDIaler(
+                                    state.requestDatas[index].phoneNumber);
                               },
                               child: Image.asset(
                                 AppImages.callIcon,
