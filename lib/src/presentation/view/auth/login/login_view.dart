@@ -14,6 +14,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
+/// TODO: Review changes
+// 
+// - Implement proper validation for the phone number field
+// - Fix Automatically navigating to next otp page even phone number field is empty
+// - Implement proper error handling (Error message dialog) implemented or not working
+ 
 class LoginView extends StatefulWidget {
   const LoginView({super.key});
 

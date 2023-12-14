@@ -1,8 +1,12 @@
 
-import 'package:coofix/src/application/get_servieces/get_services_event.dart';
-import 'package:coofix/src/application/get_servieces/get_services_event.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
  part 'get_services_event.freezed.dart';
+
+/// TODO : Review changes to do
+/// 
+/// - Dont generate dedicated freezed files for events or states. 
+/// - Add this event file as a part of bloc file
+/// 
 @freezed
 class GetServicesEvent with _$GetServicesEvent {
   const factory GetServicesEvent.getServices({

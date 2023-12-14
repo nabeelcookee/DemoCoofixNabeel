@@ -1,6 +1,3 @@
-import 'package:coofix/src/application/get_servieces/get_services_bloc.dart';
-import 'package:coofix/src/application/get_servieces/get_services_event.dart';
-import 'package:coofix/src/application/get_servieces/get_services_state.dart';
 import 'package:coofix/src/application/new_request_bloc/bloc/new_request_bloc.dart';
 import 'package:coofix/src/application/new_request_bloc/bloc/new_request_state.dart';
 import 'package:coofix/src/presentation/core/constants/constants.dart';
@@ -97,7 +94,7 @@ class _ServiceListState extends State<ServiceList> {
                                 color: AppColors.secondaryColor)),
                       ),
                       SizedBox(height: kSize.height * .01),
-                      Text("${formattedDate} ${state.requestDatas[index].serviceDateTimeSlot}",
+                      Text("$formattedDate ${state.requestDatas[index].serviceDateTimeSlot}",
                           style: AppTypography.soraSemiBold.copyWith(
                               fontSize: kSize.height * 0.019,
                               color: AppColors.blackColor)),

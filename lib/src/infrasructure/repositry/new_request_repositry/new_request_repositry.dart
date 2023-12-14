@@ -10,6 +10,16 @@ import 'package:flutter/foundation.dart';
 import 'package:injectable/injectable.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+/// TODO : Review changes to do
+/// 
+/// - Make api calling and its related functionalities such as interception, error handling as a seperate service class
+/// - Add proper status code handling method. Try to use the features of DioIntercepter for it.
+/// - User debugPrint or log instead of print statement.
+/// - Craete seperate api service profiles for general and profile apis.
+/// - Handle Heeders with tokens for different api profiles commonly 
+/// - Find a common method for api calls to reduce reduntant writing of same code in every repositories.
+/// - Remove unused log, print statements
+
 @LazySingleton(as: INewRequestRepositry)
 class NewRequestRepositry implements INewRequestRepositry {
   @override

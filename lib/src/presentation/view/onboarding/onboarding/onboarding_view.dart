@@ -7,6 +7,9 @@ import 'package:flutter/services.dart';
 class OnboardingView extends StatefulWidget {
   const OnboardingView({super.key});
 
+  //Can  i use route contant like this
+  static String routeName = '/onboarding_route';
+
   @override
   State<OnboardingView> createState() => _OnboardingViewState();
 }
@@ -16,9 +19,7 @@ class _OnboardingViewState extends State<OnboardingView> {
   Widget build(BuildContext context) {
     final kSize = MediaQuery.of(context).size;
     return AnnotatedRegion<SystemUiOverlayStyle>(
-      value: const SystemUiOverlayStyle(
-          statusBarColor: AppColors.secondaryColor,
-          statusBarIconBrightness: Brightness.dark),
+      value: const SystemUiOverlayStyle(statusBarColor: AppColors.secondaryColor, statusBarIconBrightness: Brightness.dark),
       child: Scaffold(
         backgroundColor: AppColors.secondaryColor,
         body: SizedBox(
