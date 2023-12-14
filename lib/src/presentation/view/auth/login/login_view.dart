@@ -189,7 +189,7 @@ class _LoginViewState extends State<LoginView> {
                               },
                               listenWhen: (previous, current) => previous.sendOtpStatus != current.sendOtpStatus,
                               builder: (context, state) {
-                                if (state.sendOtpStatus is StatusLoading) {
+                                if (state.sendOtpStatus is StatusSuccess) {
                                   return const Center(child: CircularProgressIndicator());
                                 } else {
                                   return PrimaryButton(

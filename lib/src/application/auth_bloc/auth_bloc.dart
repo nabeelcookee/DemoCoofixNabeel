@@ -30,6 +30,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       emit(state.copyWith(
         isCheckAuth: Status.loading(),
       ));
+
       var response = await iathReposiroy.checkAuth();
       emit(state.copyWith(isCheckAuth: Status.success(), user: response));
     } catch (e) {

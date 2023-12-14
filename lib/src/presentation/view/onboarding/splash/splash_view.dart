@@ -50,14 +50,17 @@ class _SplashViewState extends State<SplashView>
     final kSize = MediaQuery.of(context).size;
     return BlocListener<AuthBloc, AuthState>(
       listener: (context, state) {
-        print(" error is ${state.errorMessage}");
-        if (state.isCheckAuth is StatusSuccess) {
+        if (state.isCheckAuth is StatusFailure) {
           Navigator.pushReplacementNamed(
-              context, RouterConstants.bottomNavRoute,
+              context, RouterConstants.onboardingRoute,
+              arguments: 0);
+        } else if (state.isCheckAuth is StatusLoading) {
+          Navigator.pushReplacementNamed(
+              context, RouterConstants.onboardingRoute,
               arguments: 0);
         } else {
           Navigator.pushReplacementNamed(
-              context, RouterConstants.onboardingRoute,
+              context, RouterConstants.bottomNavRoute,
               arguments: 0);
         }
       },
@@ -139,6 +142,7 @@ class _SplashViewState extends State<SplashView>
   //
   // - Make 'access-token' key as constant variable
   chechPreviouseLogin() async {
+    // print("saved accessToken${LocalStorage.getString(StorageKey.accessToken)}");
     if (LocalStorage.getString(StorageKey.accessToken) != null &&
         LocalStorage.getString(StorageKey.accessToken)!.isNotEmpty) {
       context.read<AuthBloc>().add(const AuthEvent.checkAuth());
