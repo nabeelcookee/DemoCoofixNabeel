@@ -1,6 +1,6 @@
 import 'dart:developer';
+import 'package:coofix/app/constants/api_constants.dart';
 import 'package:coofix/app/interceptar/dio_interceptor.dart';
-import 'package:coofix/app/services/apiservices/api.dart';
 import 'package:coofix/src/domain/domain/models/app_user_model/app_user_model.dart';
 import 'package:coofix/src/domain/domain/repositories/i_auth_repository.dart';
 import 'package:coofix/src/presentation/core/constants/constants.dart';

@@ -32,7 +32,7 @@ class _HomeBannerState extends State<HomeBanner> {
           return Container();
         }
 
-        final index =
+        const index =
             0; // Change this line based on your logic to determine the index
 
         return Stack(

@@ -1,4 +1,5 @@
 import 'package:coofix/app/providers/provider.dart';
+import 'package:coofix/main.dart';
 import 'package:flutter_bloc/flutter_bloc.dart'; // Import BlocProvider
 import 'package:coofix/src/presentation/core/theme/theme.dart';
 import 'package:flutter/material.dart';
@@ -19,6 +20,7 @@ class MyApp extends StatelessWidget {
     return MultiBlocProvider( 
       providers: kBlocProviders,
       child: MaterialApp(
+        navigatorKey: navigatorKey,
         title: 'Flutter Demo',
         theme: AppThemes.lightTheme,
         darkTheme: AppThemes.darkTheme,

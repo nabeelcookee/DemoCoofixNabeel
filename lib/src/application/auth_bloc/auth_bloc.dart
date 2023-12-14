@@ -2,7 +2,6 @@
 import 'dart:async';
 import 'dart:developer';
 import 'package:bloc/bloc.dart';
-import 'package:coofix/app/constents/status/status.dart';
 import 'package:coofix/src/domain/domain/models/app_user_model/app_user_model.dart';
 import 'package:coofix/src/domain/domain/repositories/i_auth_repository.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';

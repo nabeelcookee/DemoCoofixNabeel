@@ -1,5 +1,5 @@
+import 'package:coofix/app/constants/api_constants.dart';
 import 'package:coofix/app/interceptar/dio_interceptor.dart';
-import 'package:coofix/app/services/apiservices/api.dart';
 import 'package:coofix/src/domain/domain/models/prodect_model/prodect_model.dart';
 import 'package:coofix/src/domain/domain/repositories/i_prodect_repository.dart';
 import 'package:coofix/src/presentation/core/constants/constants.dart';

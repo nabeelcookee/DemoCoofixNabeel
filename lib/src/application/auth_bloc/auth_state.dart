@@ -12,7 +12,6 @@ abstract class AuthState with _$AuthState {
     required bool isCheckAuth,
     required bool isSendingOtp,
     required bool isVrifyingOtp,
-    required Status checkAuthStatus,
     required String errorMessage,
     required String userId,
     AppUser? user,
@@ -26,6 +25,5 @@ abstract class AuthState with _$AuthState {
         userId: "",
         user: null,
         isCheckAuth: false,
-        checkAuthStatus: Status.initial(),
       );
 }

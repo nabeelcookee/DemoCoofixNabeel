@@ -1,7 +1,7 @@
 import 'dart:developer';
 
+import 'package:coofix/app/constants/api_constants.dart';
 import 'package:coofix/app/interceptar/dio_interceptor.dart';
-import 'package:coofix/app/services/apiservices/api.dart';
 import 'package:coofix/src/domain/domain/models/get_servieces/get_servieces_model.dart';
 import 'package:coofix/src/domain/domain/repositories/i_get_serviece_repositry.dart';
 import 'package:dio/dio.dart';

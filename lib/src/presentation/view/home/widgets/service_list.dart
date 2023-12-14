@@ -94,7 +94,7 @@ class _ServiceListState extends State<ServiceList> {
                       ),
                       SizedBox(height: kSize.height * .01),
                       Text(
-                          "${formattedDate} ${state.requestDatas[index].serviceDateTimeSlot}",
+                          "$formattedDate ${state.requestDatas[index].serviceDateTimeSlot}",
                           style: AppTypography.soraSemiBold.copyWith(
                               fontSize: kSize.height * 0.019,
                               color: AppColors.blackColor)),

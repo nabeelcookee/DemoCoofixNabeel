@@ -7,7 +7,6 @@ import 'package:coofix/src/presentation/core/constants/constants.dart';
 import 'package:coofix/src/presentation/core/constants/images.dart';
 import 'package:coofix/src/presentation/core/theme/colors.dart';
 import 'package:coofix/src/presentation/core/theme/typography.dart';
-import 'package:coofix/src/presentation/view/onboarding/splash/splash_view.dart';
 import 'package:coofix/src/presentation/view/profile/widgets/edit_profile_view.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
