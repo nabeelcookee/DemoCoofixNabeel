@@ -42,7 +42,7 @@ class _SplashViewState extends State<SplashView>
       
       listener: (context, state) {
         print(" error is ${state.errorMessage}");
-        if (state.isCheckAuth== false) {
+        if (state.isVrifyingOtp== false) {
           if(state.errorMessage.isNotEmpty){
               Navigator.pushReplacementNamed(
               context, RouterConstants.onboardingRoute,arguments: 0);
