@@ -2,7 +2,6 @@ import 'dart:async';
 import 'package:bloc/bloc.dart';
 import 'package:coofix/src/domain/domain/models/banner_model/banner_model.dart';
 import 'package:coofix/src/domain/domain/repositories/i_get_banner_repository.dart';
-import 'package:coofix/src/infrasructure/repositry/home_repositry/get_banner_repositry.dart';
 import 'package:flutter/foundation.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';

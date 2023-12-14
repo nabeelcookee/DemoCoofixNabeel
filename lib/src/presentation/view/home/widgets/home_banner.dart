@@ -19,7 +19,7 @@ class HomeBanner extends StatelessWidget {
           return Container(); 
         }
 
-        final index = 0; // Change this line based on your logic to determine the index
+        const index = 0; // Change this line based on your logic to determine the index
 
         return Stack(
           alignment: Alignment.bottomCenter,

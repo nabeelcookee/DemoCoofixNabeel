@@ -1,5 +1,4 @@
 import 'package:coofix/src/application/address_bloc/address_bloc.dart';
-import 'package:coofix/src/domain/domain/models/get_address_model/get_address_model.dart';
 import 'package:coofix/src/presentation/core/constants/constants.dart';
 import 'package:coofix/src/presentation/core/constants/strings.dart';
 import 'package:coofix/src/presentation/core/theme/colors.dart';
@@ -108,7 +107,7 @@ class _ServiceRqstDateTimeViewState extends State<ServiceRqstDateTimeView> {
                     PrimaryButton(
                       text: AppStrings.continueButtonText,
                       onPressed: () {
-                        print("selectedDate =${selectedDate}");
+                        print("selectedDate =$selectedDate");
 
                         context.read<AddressBloc>().add(
                             const AddressEvent.getAddress(
@@ -116,7 +115,7 @@ class _ServiceRqstDateTimeViewState extends State<ServiceRqstDateTimeView> {
 
                         selectedtime = selectedtime =
                             selectedIndex.value == 0 ? "Mornig" : "Afternoon";
-                        print("selectedtime = ...${selectedtime}");
+                        print("selectedtime = ...$selectedtime");
                         selectedServieceId = widget.selectedServieceId;
 
                         String formattedDate =
@@ -158,9 +157,9 @@ class _ServiceRqstDateTimeViewState extends State<ServiceRqstDateTimeView> {
         onTap: () {
           selectedIndex.value = index;
 
-          print("selected ${selectedDate}");
+          print("selected $selectedDate");
           selectedtime = selectedIndex.value == 0 ? "Mornig" : "Afternoon";
-          print("selected time ${selectedtime}");
+          print("selected time $selectedtime");
         },
         child: Container(
           alignment: Alignment.center,

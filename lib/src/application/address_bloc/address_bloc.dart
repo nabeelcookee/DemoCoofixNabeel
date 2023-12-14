@@ -34,7 +34,7 @@ class AddressBloc extends Bloc<AddressEvent, AddressState> {
       }
       emit(
         state.copyWith(
-          errorMessage: "${e}",
+          errorMessage: "$e",
         ),
       );
     }

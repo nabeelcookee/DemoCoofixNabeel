@@ -1,4 +1,3 @@
-import 'package:json_annotation/src/json_key.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
  part 'new_request_model.freezed.dart';
    part 'new_request_model.g.dart';

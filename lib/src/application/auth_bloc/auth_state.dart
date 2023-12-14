@@ -1,5 +1,10 @@
 part of 'auth_bloc.dart';
 
+/// TODO : Review changes to do
+///
+/// - Also dont use abstract class for states. Just use normal class
+///
+
 @freezed
 abstract class AuthState with _$AuthState {
   factory AuthState({

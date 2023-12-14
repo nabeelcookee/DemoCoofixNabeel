@@ -20,6 +20,10 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     on<_VerifyOtp>(_verifyOtp);
     on<_CheckAuth>(_handleCheckAuth);
   }
+  /// TODO: Review changes
+  // 
+  // - isCheckAuth status change is not working properly 
+  
   FutureOr<void> _handleCheckAuth(event, Emitter<AuthState> emit) async {
     try {
       emit(state.copyWith(

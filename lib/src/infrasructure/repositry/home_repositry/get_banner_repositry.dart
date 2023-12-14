@@ -7,6 +7,17 @@ import 'package:coofix/src/presentation/core/constants/constants.dart';
 import 'package:dio/dio.dart';
 import 'package:injectable/injectable.dart';
 @LazySingleton(as: IGetBannerRepositry)
+
+/// TODO : Review changes to do
+/// 
+/// - Make api calling and its related functionalities such as interception, error handling as a seperate service class
+/// - Add proper status code handling method. Try to use the features of DioIntercepter for it.
+/// - User debugPrint or log instead of print statement.
+/// - Craete seperate api service profiles for general and profile apis.
+/// - Handle Heeders with tokens for different api profiles commonly 
+/// - Find a common method for api calls to reduce reduntant writing of same code in every repositories.
+/// - Remove unused log, print statements
+
 class GetBannerRepositry implements IGetBannerRepositry {
   @override
   Future<List<BannerModel>> getBanner() async {

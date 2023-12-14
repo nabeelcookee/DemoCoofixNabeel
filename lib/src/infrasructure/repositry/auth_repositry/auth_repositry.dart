@@ -9,6 +9,16 @@ import 'package:dio/dio.dart';
 import 'package:injectable/injectable.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+/// TODO : Review changes to do
+/// 
+/// - Make api calling and its related functionalities such as interception, error handling as a seperate service class
+/// - Add proper status code handling method. Try to use the features of DioIntercepter for it.
+/// - User debugPrint or log instead of print statement.
+/// - Craete seperate api service profiles for general and profile apis.
+/// - Handle Heeders with tokens for different api profiles commonly 
+/// - Find a common method for api calls to reduce reduntant writing of same code in every repositories.
+/// - Remove unused log, print statements
+
 @LazySingleton(as: IAuthRepository)
 class AuthRepository implements IAuthRepository {
   @override
@@ -42,18 +52,17 @@ class AuthRepository implements IAuthRepository {
       throw Exception('Failed to send OTP: $e');
     }
   }
-void saveAccessTokenToPrefs(String accessToken) async {
-  try {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    prefs.setString('access_token', accessToken);
-    print('Access token saved: $accessToken');
-  } catch (e) {
-    print('Error accessing SharedPreferences: $e');
+
+  void saveAccessTokenToPrefs(String accessToken) async {
+    try {
+      SharedPreferences prefs = await SharedPreferences.getInstance();
+      prefs.setString('access_token', accessToken);
+      print('Access token saved: $accessToken');
+    } catch (e) {
+      print('Error accessing SharedPreferences: $e');
+    }
   }
-}
 
-
-   
   @override
   Future<AppUser> checkAuth() async {
     try {
@@ -65,10 +74,7 @@ void saveAccessTokenToPrefs(String accessToken) async {
       // Implimented Intersepter ....
       var dio = Dio();
       dio.interceptors.add(Dionterceptor());
-      final response = await dio.get(ApiEndpoints.checkAuth,
-          options: Options(headers: {
-            "Authorization": "Bearer ${prefs.getString('access_token')}"
-          }));
+      final response = await dio.get(ApiEndpoints.checkAuth, options: Options(headers: {"Authorization": "Bearer ${prefs.getString('access_token')}"}));
       log(prefs.getString('access_token').toString());
       log("Token: ${prefs.getString('access_token')}");
       log("Request URL: ${ApiEndpoints.checkAuth}");
@@ -91,8 +97,7 @@ void saveAccessTokenToPrefs(String accessToken) async {
   }
 
   @override
-  Future<AppUser> verifyOtp(
-      {required String otp, required String userId}) async {
+  Future<AppUser> verifyOtp({required String otp, required String userId}) async {
     log(userId, name: "User id From  Repo");
     log(otp, name: "Otp id From  Repo");
     try {
@@ -112,10 +117,10 @@ void saveAccessTokenToPrefs(String accessToken) async {
       log('Response body: ${response.data}');
       if (response.statusCode == 200) {
         final userModel = AppUser.fromJson(response.data);
-        log(userModel.accessToken,name: "accssess token");
-        
+        log(userModel.accessToken, name: "accssess token");
+
         saveAccessTokenToPrefs(userModel.accessToken);
-        log(response.data.toString(),name: "from verify");
+        log(response.data.toString(), name: "from verify");
         print('accsess tokent is ${userModel.accessToken}');
         print(userModel);
         print("success");

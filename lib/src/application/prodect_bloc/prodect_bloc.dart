@@ -19,7 +19,7 @@ class ProdectBloc extends Bloc<ProdectEvent, ProdectState> {
       emit(state.copyWith(status: false));
     var response =await iProdectSales.getProdects(id: event.id, skip: event.skip, limit: event.limit);
     emit(state.copyWith(prodectList: response,));
-    print("response is form bloc ${response}");
+    print("response is form bloc $response");
     }catch(e){
       print(e);
       emit(state.copyWith(status: false));

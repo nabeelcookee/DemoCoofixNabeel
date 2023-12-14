@@ -19,7 +19,7 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
     try {
       emit(state.copyWith(status: false));
       var responce = await igetProfileRepositry.upadeProfile(name: event.name);
-      print("response for profile :${responce}");
+      print("response for profile :$responce");
       emit(state.copyWith(
           customerImage: responce.customerImage,
           id: responce.id,

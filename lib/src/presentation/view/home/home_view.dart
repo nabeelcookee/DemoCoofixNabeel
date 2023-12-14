@@ -1,7 +1,6 @@
 import 'package:coofix/src/application/get_banner_bloc/banner_bloc.dart';
 import 'package:coofix/src/application/get_servieces/get_services_bloc.dart';
 import 'package:coofix/src/application/get_servieces/get_services_event.dart';
-import 'package:coofix/src/domain/domain/models/get_servieces/get_servieces_model.dart';
 import 'package:coofix/src/presentation/core/theme/colors.dart';
 import 'package:coofix/src/presentation/core/values/custom_silver_delegate.dart';
 import 'package:coofix/src/presentation/core/values/no_glow_scroll_behaviour.dart';
@@ -27,7 +26,7 @@ class _HomeViewState extends State<HomeView> {
     context
         .read<GetServicesBloc>()
         .add(const GetServicesEvent.getServices(limit: 0, skip: 0, id: ""));
-        context.read<BannerBloc>().add(BannerEvent.getBanner());
+        context.read<BannerBloc>().add(const BannerEvent.getBanner());
     super.initState();
   }
 
