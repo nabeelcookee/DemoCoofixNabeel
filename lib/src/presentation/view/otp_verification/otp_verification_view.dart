@@ -161,6 +161,7 @@ class _OtpVerificationViewState extends State<OtpVerificationView> {
                                           fontSize: 16.0,
                                         );
                                       } else {
+                                        // Navigate to the home page only when OTP verification is successful
                                         Navigator.pushNamedAndRemoveUntil(
                                           context,
                                           RouterConstants.bottomNavRoute,
@@ -170,27 +171,35 @@ class _OtpVerificationViewState extends State<OtpVerificationView> {
                                       }
                                     }
                                   },
-                                  listenWhen: (previose, current) =>
-                                      previose.isVrifyingOtp !=
+                                  listenWhen: (previous, current) =>
+                                      previous.isVrifyingOtp !=
                                       current.isVrifyingOtp,
                                   builder: (context, state) {
                                     return state.isVrifyingOtp
-                                        ?const  Center(
+                                        ? const Center(
                                             child: CircularProgressIndicator(),
                                           )
                                         : PrimaryButton(
                                             text: 'Verify OTP',
                                             onPressed: () async {
-                                              context.read<AuthBloc>().add(
-                                                    AuthEvent.verifyOtp(
-                                                      otp: otpController.text,
-                                                      userId: state.userId,
-                                                    ),
-                                                  );
-                                              print(
-                                                  "otp is ${otpController.text} ");
-                                              print(
-                                                  "user id is  ${state.userId} ");
+                                              if (otpController.text.length ==
+                                                  4) {
+                                                context.read<AuthBloc>().add(
+                                                      AuthEvent.verifyOtp(
+                                                        otp: otpController.text,
+                                                        userId: state.userId,
+                                                      ),
+                                                    );
+                                              } else {
+                                                Fluttertoast.showToast(
+                                                  msg:
+                                                      'Please enter a valid OTP',
+                                                  timeInSecForIosWeb: 1,
+                                                  backgroundColor: Colors.black,
+                                                  textColor: Colors.white,
+                                                  fontSize: 16.0,
+                                                );
+                                              }
                                             },
                                           );
                                   },

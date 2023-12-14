@@ -7,8 +7,21 @@ import 'package:coofix/src/presentation/view/home/widgets/custom_marquee.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class HomeBanner extends StatelessWidget {
-  const HomeBanner({super.key,});
+class HomeBanner extends StatefulWidget {
+  const HomeBanner({
+    super.key,
+  });
+
+  @override
+  State<HomeBanner> createState() => _HomeBannerState();
+}
+
+class _HomeBannerState extends State<HomeBanner> {
+  @override
+    void didChangeDependencies() {
+    context.read<BannerBloc>().add(const BannerEvent.getBanner());
+    super.didChangeDependencies();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -16,10 +29,11 @@ class HomeBanner extends StatelessWidget {
     return BlocBuilder<BannerBloc, BannerState>(
       builder: (context, state) {
         if (state.bannerList.isEmpty) {
-          return Container(); 
+          return Container();
         }
 
-        const index = 0; // Change this line based on your logic to determine the index
+        final index =
+            0; // Change this line based on your logic to determine the index
 
         return Stack(
           alignment: Alignment.bottomCenter,
@@ -40,7 +54,6 @@ class HomeBanner extends StatelessWidget {
                   //  AssetImage(AppImages.homeBannerBg),
                   //AssetImage(state.bannerList[index].banneImage ?? "")
                   fit: BoxFit.cover,
-
                 ),
               ),
               child: Column(
