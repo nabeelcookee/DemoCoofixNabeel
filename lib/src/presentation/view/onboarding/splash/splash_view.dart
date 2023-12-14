@@ -46,11 +46,13 @@ class _SplashViewState extends State<SplashView> with SingleTickerProviderStateM
     return BlocListener<AuthBloc, AuthState>(
       listener: (context, state) {
         print(" error is ${state.errorMessage}");
-        if (state.isCheckAuth == false) {
-          if (state.errorMessage.isNotEmpty) {
-            Navigator.pushReplacementNamed(context, RouterConstants.onboardingRoute, arguments: 0);
-          } else {
-            Navigator.pushReplacementNamed(context, RouterConstants.bottomNavRoute, arguments: 0);
+        if (state.isVrifyingOtp== false) {
+          if(state.errorMessage.isNotEmpty){
+              Navigator.pushReplacementNamed(
+              context, RouterConstants.onboardingRoute,arguments: 0);
+          }else{
+              Navigator.pushReplacementNamed(
+              context, RouterConstants.bottomNavRoute,arguments: 0);
           }
         }
       },

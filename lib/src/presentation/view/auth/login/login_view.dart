@@ -142,9 +142,7 @@ class _LoginViewState extends State<LoginView> {
                                       fontSize: 16.0,
                                     );
                                   } else {
-                                    Navigator.pushNamed(context,
-                                        RouterConstants.otpVerificationRoute,
-                                        arguments: phoneController.text);
+                                    
                                   }
                                 }
                               },
@@ -152,18 +150,42 @@ class _LoginViewState extends State<LoginView> {
                                   previose.isSendingOtp != current.isSendingOtp,
                               builder: (context, state) {
                                 if (state.isSendingOtp) {
-                                  return const  Center(
+                                  return const Center(
                                       child: CircularProgressIndicator());
                                 } else {
                                   return PrimaryButton(
                                     text: AppStrings.loginButtonLabel,
-                                    onPressed: () {
-                                      context.read<AuthBloc>().add(
-                                            AuthEvent.sendOtp(
-                                              phoneNumber: phoneController.text,
-                                            ),
-                                          );
-                                     
+                                    onPressed: () async {
+                                      if (formKey.currentState!.validate()) {
+                                        context.read<AuthBloc>().add(
+                                              AuthEvent.sendOtp(
+                                                phoneNumber:
+                                                    phoneController.text,
+                                              ),
+                                            );
+                                        final result =
+                                            await Navigator.pushNamed(
+                                          context,
+                                          RouterConstants.otpVerificationRoute,
+                                          arguments: phoneController.text,
+                                        );
+
+                                        // You can handle the result if needed
+                                        if (result != null) {
+                                          // Handle the result, if needed
+                                          print(
+                                              'OTP Verification Result: $result');
+                                        }
+                                      } else {
+                                        Fluttertoast.showToast(
+                                          msg:
+                                              'Please enter a valid phone number',
+                                          timeInSecForIosWeb: 1,
+                                          backgroundColor: Colors.black,
+                                          textColor: Colors.white,
+                                          fontSize: 16.0,
+                                        );
+                                      }
                                     },
                                   );
                                 }

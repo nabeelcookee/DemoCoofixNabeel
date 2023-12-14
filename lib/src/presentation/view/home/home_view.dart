@@ -26,7 +26,7 @@ class _HomeViewState extends State<HomeView> {
     context
         .read<GetServicesBloc>()
         .add(const GetServicesEvent.getServices(limit: 0, skip: 0, id: ""));
-        context.read<BannerBloc>().add(const BannerEvent.getBanner());
+      
     super.initState();
   }
 
