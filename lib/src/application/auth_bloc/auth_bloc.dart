@@ -28,14 +28,14 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
   FutureOr<void> _handleCheckAuth(event, Emitter<AuthState> emit) async {
     try {
       emit(state.copyWith(
-        isCheckAuth: Status.loading(),
+        checkAuthStatus: Status.loading(),
       ));
 
       var response = await iathReposiroy.checkAuth();
-      emit(state.copyWith(isCheckAuth: Status.success(), user: response));
+      emit(state.copyWith(checkAuthStatus: Status.success(), user: response));
     } catch (e) {
       emit(state.copyWith(
-          errorMessage: e.toString(), isCheckAuth: Status.loading()));
+          errorMessage: e.toString(), checkAuthStatus: Status.failure(e.toString())));
     }
   }
 
@@ -67,12 +67,12 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
 
   FutureOr<void> _verifyOtp(_VerifyOtp event, Emitter<AuthState> emit) async {
     try {
-      emit(state.copyWith(isVrifyingOtp: Status.loading(), errorMessage: ''));
+      emit(state.copyWith(otpVerificationStatus: Status.loading(), errorMessage: ''));
       var response =
           await iathReposiroy.verifyOtp(otp: event.otp, userId: event.userId);
-      emit(state.copyWith(user: response, isVrifyingOtp: Status.success()));
+      emit(state.copyWith(user: response, otpVerificationStatus: Status.success()));
     } catch (e) {
-      emit(state.copyWith(isVrifyingOtp: Status.failure(e.toString())));
+      emit(state.copyWith(otpVerificationStatus: Status.failure(e.toString())));
     }
   }
 }

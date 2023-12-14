@@ -4,7 +4,7 @@ part of 'auth_bloc.dart';
 class AuthState with _$AuthState {
   factory AuthState({
     required bool status,
-    required Status isCheckAuth,
+    required Status checkAuthStatus,
 
     // OLD METHOD 
     // required bool isSendingOtp,
@@ -13,7 +13,7 @@ class AuthState with _$AuthState {
     required Status sendOtpStatus,
     
     
-    required Status isVrifyingOtp,
+    required Status otpVerificationStatus,
     required String errorMessage,
     required String userId,
     AppUser? user,
@@ -28,10 +28,10 @@ class AuthState with _$AuthState {
         //NEW METHOD
         sendOtpStatus: Status.initial(),
 
-        isVrifyingOtp: Status.initial(),
+        otpVerificationStatus: Status.initial(),
         errorMessage: "",
         userId: "",
         user: null,
-        isCheckAuth: Status.initial(),
+        checkAuthStatus: Status.initial(),
       );
 }

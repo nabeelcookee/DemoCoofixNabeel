@@ -152,7 +152,7 @@ class _OtpVerificationViewState extends State<OtpVerificationView> {
                                 ),
                                 BlocConsumer<AuthBloc, AuthState>(
                                   listener: (context, state) {
-                                    if (state.isVrifyingOtp is StatusSuccess) {
+                                    if (state.otpVerificationStatus is StatusSuccess) {
                                       Navigator.pushNamedAndRemoveUntil(
                                         context,
                                         RouterConstants.bottomNavRoute,
@@ -191,10 +191,10 @@ class _OtpVerificationViewState extends State<OtpVerificationView> {
                                     // }
                                   },
                                   listenWhen: (previous, current) =>
-                                      previous.isVrifyingOtp !=
-                                      current.isVrifyingOtp,
+                                      previous.otpVerificationStatus !=
+                                      current.otpVerificationStatus,
                                   builder: (context, state) {
-                                    if (state.isVrifyingOtp is StatusSuccess) {
+                                    if (state.otpVerificationStatus is StatusLoading) {
                                     return  const Center(
                                         child: CircularProgressIndicator(),
                                       );
