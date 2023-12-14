@@ -39,7 +39,7 @@ class Api {
     var dio = Dio(
       BaseOptions(
         headers: {
-          'tokenvalid': ApiTokens.validToken,
+          'Tokenvalid': ApiTokens.validToken,
         },
         baseUrl: ApiUrls.base,
         receiveTimeout: const Duration(seconds: 30),

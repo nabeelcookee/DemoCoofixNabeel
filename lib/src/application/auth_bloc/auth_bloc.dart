@@ -2,6 +2,7 @@
 import 'dart:async';
 import 'dart:developer';
 import 'package:bloc/bloc.dart';
+import 'package:coofix/app/constants/status/status.dart';
 import 'package:coofix/src/domain/domain/models/app_user_model/app_user_model.dart';
 import 'package:coofix/src/domain/domain/repositories/i_auth_repository.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
@@ -36,14 +37,28 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
   }
 
   FutureOr<void> _sendOtp(_SendOtp event, Emitter<AuthState> emit) async {
-    log(event.phoneNumber, name: "From Bloc");
+    // OLD METHOD
+    //
+    // try {
+    //   emit(state.copyWith(isSendingOtp: true, errorMessage: ''));
+    //   var response = await iathReposiroy.sendOtp(event.phoneNumber);
+    //   emit(state.copyWith(userId: response.userid, isSendingOtp: false));
+    // } catch (e) {
+    //   emit(state.copyWith(isSendingOtp: false, errorMessage: e.toString()));
+    // }
+
+    // NEW METHOD
+    //
     try {
-      emit(state.copyWith(isSendingOtp: true, errorMessage: ''));
+      emit(state.copyWith(sendOtpStatus: Status.loading(), errorMessage: ''));
       var response = await iathReposiroy.sendOtp(event.phoneNumber);
-      emit(state.copyWith(userId: response.userid, isSendingOtp: false));
+      emit(state.copyWith(userId: response.userid, sendOtpStatus: StatusSuccess()));
     } catch (e) {
-      emit(state.copyWith(isSendingOtp: false, errorMessage: e.toString()));
+      emit(state.copyWith(sendOtpStatus: Status.failure(e.toString())));
     }
+    //
+    //
+    //
   }
 
   FutureOr<void> _verifyOtp(_VerifyOtp event, Emitter<AuthState> emit) async {

@@ -480,8 +480,10 @@ abstract class _CheckAuth implements AuthEvent {
 /// @nodoc
 mixin _$AuthState {
   bool get status => throw _privateConstructorUsedError;
-  bool get isCheckAuth => throw _privateConstructorUsedError;
-  bool get isSendingOtp => throw _privateConstructorUsedError;
+  bool get isCheckAuth => throw _privateConstructorUsedError; // OLD METHOD
+// required bool isSendingOtp,
+// NEW METHOD
+  Status get sendOtpStatus => throw _privateConstructorUsedError;
   bool get isVrifyingOtp => throw _privateConstructorUsedError;
   String get errorMessage => throw _privateConstructorUsedError;
   String get userId => throw _privateConstructorUsedError;
@@ -500,12 +502,13 @@ abstract class $AuthStateCopyWith<$Res> {
   $Res call(
       {bool status,
       bool isCheckAuth,
-      bool isSendingOtp,
+      Status sendOtpStatus,
       bool isVrifyingOtp,
       String errorMessage,
       String userId,
       AppUser? user});
 
+  $StatusCopyWith<$Res> get sendOtpStatus;
   $AppUserCopyWith<$Res>? get user;
 }
 
@@ -524,7 +527,7 @@ class _$AuthStateCopyWithImpl<$Res, $Val extends AuthState>
   $Res call({
     Object? status = null,
     Object? isCheckAuth = null,
-    Object? isSendingOtp = null,
+    Object? sendOtpStatus = null,
     Object? isVrifyingOtp = null,
     Object? errorMessage = null,
     Object? userId = null,
@@ -539,10 +542,10 @@ class _$AuthStateCopyWithImpl<$Res, $Val extends AuthState>
           ? _value.isCheckAuth
           : isCheckAuth // ignore: cast_nullable_to_non_nullable
               as bool,
-      isSendingOtp: null == isSendingOtp
-          ? _value.isSendingOtp
-          : isSendingOtp // ignore: cast_nullable_to_non_nullable
-              as bool,
+      sendOtpStatus: null == sendOtpStatus
+          ? _value.sendOtpStatus
+          : sendOtpStatus // ignore: cast_nullable_to_non_nullable
+              as Status,
       isVrifyingOtp: null == isVrifyingOtp
           ? _value.isVrifyingOtp
           : isVrifyingOtp // ignore: cast_nullable_to_non_nullable
@@ -560,6 +563,14 @@ class _$AuthStateCopyWithImpl<$Res, $Val extends AuthState>
           : user // ignore: cast_nullable_to_non_nullable
               as AppUser?,
     ) as $Val);
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $StatusCopyWith<$Res> get sendOtpStatus {
+    return $StatusCopyWith<$Res>(_value.sendOtpStatus, (value) {
+      return _then(_value.copyWith(sendOtpStatus: value) as $Val);
+    });
   }
 
   @override
@@ -586,12 +597,14 @@ abstract class _$$AuthStateImplCopyWith<$Res>
   $Res call(
       {bool status,
       bool isCheckAuth,
-      bool isSendingOtp,
+      Status sendOtpStatus,
       bool isVrifyingOtp,
       String errorMessage,
       String userId,
       AppUser? user});
 
+  @override
+  $StatusCopyWith<$Res> get sendOtpStatus;
   @override
   $AppUserCopyWith<$Res>? get user;
 }
@@ -609,7 +622,7 @@ class __$$AuthStateImplCopyWithImpl<$Res>
   $Res call({
     Object? status = null,
     Object? isCheckAuth = null,
-    Object? isSendingOtp = null,
+    Object? sendOtpStatus = null,
     Object? isVrifyingOtp = null,
     Object? errorMessage = null,
     Object? userId = null,
@@ -624,10 +637,10 @@ class __$$AuthStateImplCopyWithImpl<$Res>
           ? _value.isCheckAuth
           : isCheckAuth // ignore: cast_nullable_to_non_nullable
               as bool,
-      isSendingOtp: null == isSendingOtp
-          ? _value.isSendingOtp
-          : isSendingOtp // ignore: cast_nullable_to_non_nullable
-              as bool,
+      sendOtpStatus: null == sendOtpStatus
+          ? _value.sendOtpStatus
+          : sendOtpStatus // ignore: cast_nullable_to_non_nullable
+              as Status,
       isVrifyingOtp: null == isVrifyingOtp
           ? _value.isVrifyingOtp
           : isVrifyingOtp // ignore: cast_nullable_to_non_nullable
@@ -654,7 +667,7 @@ class _$AuthStateImpl implements _AuthState {
   _$AuthStateImpl(
       {required this.status,
       required this.isCheckAuth,
-      required this.isSendingOtp,
+      required this.sendOtpStatus,
       required this.isVrifyingOtp,
       required this.errorMessage,
       required this.userId,
@@ -664,8 +677,11 @@ class _$AuthStateImpl implements _AuthState {
   final bool status;
   @override
   final bool isCheckAuth;
+// OLD METHOD
+// required bool isSendingOtp,
+// NEW METHOD
   @override
-  final bool isSendingOtp;
+  final Status sendOtpStatus;
   @override
   final bool isVrifyingOtp;
   @override
@@ -677,7 +693,7 @@ class _$AuthStateImpl implements _AuthState {
 
   @override
   String toString() {
-    return 'AuthState(status: $status, isCheckAuth: $isCheckAuth, isSendingOtp: $isSendingOtp, isVrifyingOtp: $isVrifyingOtp, errorMessage: $errorMessage, userId: $userId, user: $user)';
+    return 'AuthState(status: $status, isCheckAuth: $isCheckAuth, sendOtpStatus: $sendOtpStatus, isVrifyingOtp: $isVrifyingOtp, errorMessage: $errorMessage, userId: $userId, user: $user)';
   }
 
   @override
@@ -688,8 +704,8 @@ class _$AuthStateImpl implements _AuthState {
             (identical(other.status, status) || other.status == status) &&
             (identical(other.isCheckAuth, isCheckAuth) ||
                 other.isCheckAuth == isCheckAuth) &&
-            (identical(other.isSendingOtp, isSendingOtp) ||
-                other.isSendingOtp == isSendingOtp) &&
+            (identical(other.sendOtpStatus, sendOtpStatus) ||
+                other.sendOtpStatus == sendOtpStatus) &&
             (identical(other.isVrifyingOtp, isVrifyingOtp) ||
                 other.isVrifyingOtp == isVrifyingOtp) &&
             (identical(other.errorMessage, errorMessage) ||
@@ -700,7 +716,7 @@ class _$AuthStateImpl implements _AuthState {
 
   @override
   int get hashCode => Object.hash(runtimeType, status, isCheckAuth,
-      isSendingOtp, isVrifyingOtp, errorMessage, userId, user);
+      sendOtpStatus, isVrifyingOtp, errorMessage, userId, user);
 
   @JsonKey(ignore: true)
   @override
@@ -713,7 +729,7 @@ abstract class _AuthState implements AuthState {
   factory _AuthState(
       {required final bool status,
       required final bool isCheckAuth,
-      required final bool isSendingOtp,
+      required final Status sendOtpStatus,
       required final bool isVrifyingOtp,
       required final String errorMessage,
       required final String userId,
@@ -723,8 +739,10 @@ abstract class _AuthState implements AuthState {
   bool get status;
   @override
   bool get isCheckAuth;
-  @override
-  bool get isSendingOtp;
+  @override // OLD METHOD
+// required bool isSendingOtp,
+// NEW METHOD
+  Status get sendOtpStatus;
   @override
   bool get isVrifyingOtp;
   @override

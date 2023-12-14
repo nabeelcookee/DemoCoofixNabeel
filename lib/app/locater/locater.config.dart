@@ -62,7 +62,8 @@ extension GetItInjectableX on _i1.GetIt {
       environmentFilter,
     );
     gh.lazySingleton<_i3.Api>(() => _i3.Api());
-    gh.lazySingleton<_i4.IAuthRepository>(() => _i5.AuthRepository());
+    gh.lazySingleton<_i4.IAuthRepository>(
+        () => _i5.AuthRepository(api: gh<_i3.Api>()));
     gh.lazySingleton<_i6.IGetAddress>(() => _i7.GetAddressRepository());
     gh.lazySingleton<_i8.IGetBannerRepositry>(() => _i9.GetBannerRepositry());
     gh.lazySingleton<_i10.IGetServieces>(() => _i11.GetServiecesRepositry());

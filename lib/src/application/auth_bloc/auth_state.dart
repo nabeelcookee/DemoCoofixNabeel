@@ -1,16 +1,18 @@
 part of 'auth_bloc.dart';
 
-/// TODO : Review changes to do
-///
-/// - Also dont use abstract class for states. Just use normal class
-///
-
 @freezed
-abstract class AuthState with _$AuthState {
+class AuthState with _$AuthState {
   factory AuthState({
     required bool status,
     required bool isCheckAuth,
-    required bool isSendingOtp,
+
+    // OLD METHOD 
+    // required bool isSendingOtp,
+
+    // NEW METHOD
+    required Status sendOtpStatus,
+    
+    
     required bool isVrifyingOtp,
     required String errorMessage,
     required String userId,
@@ -19,7 +21,13 @@ abstract class AuthState with _$AuthState {
 
   factory AuthState.initial() => AuthState(
         status: false,
-        isSendingOtp: false,
+
+        //OLD METHOD 
+        // isSendingOtp: false,
+
+        //NEW METHOD
+        sendOtpStatus: Status.initial(),
+
         isVrifyingOtp: false,
         errorMessage: "",
         userId: "",
