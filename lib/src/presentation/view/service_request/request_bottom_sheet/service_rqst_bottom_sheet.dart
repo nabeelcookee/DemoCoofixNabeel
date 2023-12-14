@@ -1,4 +1,3 @@
-import 'dart:developer';
 
 import 'package:coofix/app/router/router_constants.dart';
 import 'package:coofix/src/presentation/core/constants/constants.dart';
@@ -10,7 +9,6 @@ import 'package:coofix/src/presentation/core/values/no_glow_scroll_behaviour.dar
 import 'package:coofix/src/presentation/core/widgets/custom_gradient_tile.dart';
 import 'package:coofix/src/presentation/core/widgets/footer_button.dart';
 import 'package:coofix/src/presentation/core/widgets/primary_button.dart';
-import 'package:coofix/src/presentation/view/service_request/instructions/service_rqst_instruction.dart';
 import 'package:flutter/material.dart';
 
 class ServiceRequestBottomSheet extends StatefulWidget {

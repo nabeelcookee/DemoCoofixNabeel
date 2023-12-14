@@ -9,20 +9,25 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'widgets/gradient_circular_progress_indiator.dart';
 
+/// TODO: Review changes
+//
+// - Cross check the process of saving access-token
+// - Use log or debugPrint instead of print statement if necessary
+
 class SplashView extends StatefulWidget {
   const SplashView({super.key});
+
+  static String splashRoute = "/splashRoute";
 
   @override
   State<SplashView> createState() => _SplashViewState();
 }
 
-class _SplashViewState extends State<SplashView>
-    with SingleTickerProviderStateMixin {
+class _SplashViewState extends State<SplashView> with SingleTickerProviderStateMixin {
   AnimationController? _animationController;
   @override
   void initState() {
-    _animationController =
-        AnimationController(vsync: this, duration: const Duration(seconds: 1));
+    _animationController = AnimationController(vsync: this, duration: const Duration(seconds: 1));
     _animationController!.addListener(() => setState(() {}));
     _animationController!.repeat();
     chechPreviouseLogin();
@@ -39,7 +44,6 @@ class _SplashViewState extends State<SplashView>
   Widget build(BuildContext context) {
     final kSize = MediaQuery.of(context).size;
     return BlocListener<AuthBloc, AuthState>(
-      
       listener: (context, state) {
         print(" error is ${state.errorMessage}");
         if (state.isVrifyingOtp== false) {
@@ -50,7 +54,6 @@ class _SplashViewState extends State<SplashView>
               Navigator.pushReplacementNamed(
               context, RouterConstants.bottomNavRoute,arguments: 0);
           }
-         
         }
       },
       child: Scaffold(
@@ -70,11 +73,7 @@ class _SplashViewState extends State<SplashView>
               Container(
                 height: kSize.height * .6,
                 width: kSize.width,
-                decoration: BoxDecoration(
-                    gradient: LinearGradient(colors: [
-                  AppColors.primaryColor.withOpacity(.2),
-                  AppColors.primaryColor
-                ], begin: Alignment.topCenter, end: Alignment.bottomCenter)),
+                decoration: BoxDecoration(gradient: LinearGradient(colors: [AppColors.primaryColor.withOpacity(.2), AppColors.primaryColor], begin: Alignment.topCenter, end: Alignment.bottomCenter)),
                 child: Image.asset(AppImages.splashBg, fit: BoxFit.cover),
               ),
               Center(
@@ -92,8 +91,7 @@ class _SplashViewState extends State<SplashView>
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
                     RotationTransition(
-                      turns: Tween(begin: 0.0, end: 1.0)
-                          .animate(_animationController!),
+                      turns: Tween(begin: 0.0, end: 1.0).animate(_animationController!),
                       child: GradientCircularProgressIndicator(
                         radius: 10,
                         gradientColors: [
@@ -126,13 +124,16 @@ class _SplashViewState extends State<SplashView>
       ),
     );
   }
-  chechPreviouseLogin()async {
+
+  /// TODO: Review changes
+  //
+  // - Make 'access-token' key as constant variable
+  chechPreviouseLogin() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
-      if (prefs.getString('access_token') != null && prefs.getString('access_token')!.isNotEmpty) {
-        context.read<AuthBloc>().add(AuthEvent.checkAuth());
-      } else {
-        Navigator.pushReplacementNamed(
-            context, RouterConstants.onboardingRoute);
-      }
+    if (prefs.getString('access_token') != null && prefs.getString('access_token')!.isNotEmpty) {
+      context.read<AuthBloc>().add(const AuthEvent.checkAuth());
+    } else {
+      Navigator.pushReplacementNamed(context, RouterConstants.onboardingRoute);
+    }
   }
 }

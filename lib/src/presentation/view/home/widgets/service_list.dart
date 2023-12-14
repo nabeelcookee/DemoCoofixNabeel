@@ -1,6 +1,3 @@
-import 'package:coofix/src/application/get_servieces/get_services_bloc.dart';
-import 'package:coofix/src/application/get_servieces/get_services_event.dart';
-import 'package:coofix/src/application/get_servieces/get_services_state.dart';
 import 'package:coofix/src/application/new_request_bloc/bloc/new_request_bloc.dart';
 import 'package:coofix/src/application/new_request_bloc/bloc/new_request_state.dart';
 import 'package:coofix/src/presentation/core/constants/constants.dart';

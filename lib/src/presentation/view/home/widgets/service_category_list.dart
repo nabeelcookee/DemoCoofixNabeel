@@ -1,10 +1,8 @@
-import 'dart:developer';
 
 import 'package:coofix/app/router/router_constants.dart';
 import 'package:coofix/src/application/get_servieces/get_services_bloc.dart';
 import 'package:coofix/src/application/get_servieces/get_services_event.dart';
 import 'package:coofix/src/application/get_servieces/get_services_state.dart';
-import 'package:coofix/src/domain/domain/models/get_servieces/get_servieces_model.dart';
 import 'package:coofix/src/presentation/core/constants/constants.dart';
 import 'package:coofix/src/presentation/core/constants/images.dart';
 import 'package:coofix/src/presentation/core/theme/colors.dart';

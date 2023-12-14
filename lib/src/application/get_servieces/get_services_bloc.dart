@@ -1,9 +1,6 @@
 import 'dart:async';
-import "dart:developer";
 import 'package:bloc/bloc.dart';
-import 'package:coofix/src/domain/domain/models/get_servieces/get_servieces_model.dart';
 import 'package:coofix/src/domain/domain/repositories/i_get_serviece_repositry.dart';
-import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
 import 'package:injectable/injectable.dart';
 import 'get_services_event.dart';
@@ -33,7 +30,7 @@ class GetServicesBloc extends Bloc<GetServicesEvent, ServiceState> {
         print('Error in _getServices: $e');
       }
       emit(
-        state.copyWith(isLoading: false, errorMessage: "${e}", status: false),
+        state.copyWith(isLoading: false, errorMessage: "$e", status: false),
       );
     }
   }

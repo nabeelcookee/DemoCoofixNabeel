@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 class SaveThisAddressAsContainer extends StatefulWidget {
    final Function(int) onIndexChanged; // New parameter to receive the selected index
 
-   SaveThisAddressAsContainer({Key? key, required this.onIndexChanged})
+   const SaveThisAddressAsContainer({Key? key, required this.onIndexChanged})
       : super(key: key);
 
   @override

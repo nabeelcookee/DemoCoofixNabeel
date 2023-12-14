@@ -1,4 +1,3 @@
-import 'dart:developer';
 
 import 'package:coofix/src/application/get_servieces/get_services_bloc.dart';
 import 'package:coofix/src/application/get_servieces/get_services_event.dart';
@@ -28,13 +27,13 @@ class _ServiceRequestViewState extends State<ServiceRequestView> {
   void initState() {
     context
         .read<GetServicesBloc>()
-        .add(GetServicesEvent.getServices(limit: 0, skip: 0, id: ""));
+        .add(const GetServicesEvent.getServices(limit: 0, skip: 0, id: ""));
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
-    print("ServiceId is ${ServiceId}");
+    print("ServiceId is $ServiceId");
     final kSize = MediaQuery.of(context).size;
     return BlocBuilder<GetServicesBloc, ServiceState>(
       builder: (context, state) {
@@ -66,7 +65,7 @@ class _ServiceRequestViewState extends State<ServiceRequestView> {
                                 getServicesId: (String serviceId) {
                               setState(() {});
                               ServiceId = serviceId;
-                              print("service id is.. ${ServiceId}");
+                              print("service id is.. $ServiceId");
                             }),
                           )
                         ],

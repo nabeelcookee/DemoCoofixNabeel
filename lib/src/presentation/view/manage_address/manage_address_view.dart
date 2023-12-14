@@ -22,13 +22,13 @@ class ManageDetailScreen extends StatefulWidget {
 class _ManageDetailScreenState extends State<ManageDetailScreen> {
   @override
   void initState() {
-   context.read<AddressBloc>().add(AddressEvent.getAddress(limit: 0, skip: 0, id: ""));
+   context.read<AddressBloc>().add(const AddressEvent.getAddress(limit: 0, skip: 0, id: ""));
     super.initState();
   }
   @override
   Widget build(BuildContext context) {
     final kSize = MediaQuery.of(context).size;
-    final int  index =0;
+    const int  index =0;
     return Scaffold(
       backgroundColor: AppColors.secondaryColor,
       body: SizedBox(
