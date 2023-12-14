@@ -20,19 +20,21 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     on<_VerifyOtp>(_verifyOtp);
     on<_CheckAuth>(_handleCheckAuth);
   }
+
   /// TODO: Review changes
-  // 
-  // - isCheckAuth status change is not working properly 
-  
+  //
+  // - isCheckAuth status change is not working properly
+
   FutureOr<void> _handleCheckAuth(event, Emitter<AuthState> emit) async {
     try {
       emit(state.copyWith(
-        isCheckAuth: false,
+        isCheckAuth: Status.loading(),
       ));
       var response = await iathReposiroy.checkAuth();
-      emit(state.copyWith(isCheckAuth: true, user: response));
+      emit(state.copyWith(isCheckAuth: Status.success(), user: response));
     } catch (e) {
-      emit(state.copyWith(errorMessage: e.toString(), isCheckAuth: false));
+      emit(state.copyWith(
+          errorMessage: e.toString(), isCheckAuth: Status.loading()));
     }
   }
 
@@ -52,7 +54,8 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     try {
       emit(state.copyWith(sendOtpStatus: Status.loading(), errorMessage: ''));
       var response = await iathReposiroy.sendOtp(event.phoneNumber);
-      emit(state.copyWith(userId: response.userid, sendOtpStatus: StatusSuccess()));
+      emit(state.copyWith(
+          userId: response.userid, sendOtpStatus: StatusSuccess()));
     } catch (e) {
       emit(state.copyWith(sendOtpStatus: Status.failure(e.toString())));
     }
@@ -63,16 +66,12 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
 
   FutureOr<void> _verifyOtp(_VerifyOtp event, Emitter<AuthState> emit) async {
     try {
-      emit(state.copyWith(isVrifyingOtp: true, errorMessage: ''));
+      emit(state.copyWith(isVrifyingOtp: Status.loading(), errorMessage: ''));
       var response =
           await iathReposiroy.verifyOtp(otp: event.otp, userId: event.userId);
-      emit(state.copyWith(user: response));
-      log(event.userId);
-      log(response.toString(), name: "response frome verify");
-
-      emit(state.copyWith(isVrifyingOtp: false));
+      emit(state.copyWith(user: response, isVrifyingOtp: Status.success()));
     } catch (e) {
-      emit(state.copyWith(isVrifyingOtp: false, errorMessage: e.toString()));
+      emit(state.copyWith(isVrifyingOtp: Status.failure(e.toString())));
     }
   }
 }
