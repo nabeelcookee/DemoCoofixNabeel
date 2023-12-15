@@ -16,6 +16,7 @@ class AuthState with _$AuthState {
     required Status otpVerificationStatus,
     required String errorMessage,
     required String userId,
+    required Status logoutStatus,
     AppUser? user,
   }) = _AuthState;
 
@@ -33,5 +34,6 @@ class AuthState with _$AuthState {
         userId: "",
         user: null,
         checkAuthStatus: Status.initial(),
+        logoutStatus: Status.initial()
       );
 }

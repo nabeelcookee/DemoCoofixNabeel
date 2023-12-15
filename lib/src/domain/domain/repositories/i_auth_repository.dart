@@ -7,5 +7,5 @@ abstract class IAuthRepository {
   required String userId,
   });
   Future<AppUser>checkAuth();
-  
+  Future<AppUser>logout();
 }

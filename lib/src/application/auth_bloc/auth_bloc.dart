@@ -19,6 +19,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     on<_SendOtp>(_sendOtp);
     on<_VerifyOtp>(_verifyOtp);
     on<_CheckAuth>(_handleCheckAuth);
+    on<_logout>(_logOut);
   }
 
   /// TODO: Review changes
@@ -74,4 +75,13 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       emit(state.copyWith(otpVerificationStatus: Status.failure(e.toString())));
     }
   }
+FutureOr<void>_logOut(_logout event , Emitter<AuthState> emit)async{
+  try{
+    emit(state.copyWith(logoutStatus: Status.loading()));
+    var response =await iathReposiroy.logout();
+    emit(state.copyWith(logoutStatus: Status.success()));
+  }catch(e){
+
+  }
+}
 }

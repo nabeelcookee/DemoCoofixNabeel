@@ -125,11 +125,24 @@ class AuthRepository implements IAuthRepository {
       final response =
           await api.general.post(ApiEndpoints.verifyOtpApi, data: requestData);
       final userData = AppUser.fromJson(response.data);
-      LocalStorage.setString(StorageKey.accessToken, userData.accessToken);
+      LocalStorage.setString(StorageKey.accessToken, response.data['access_token']);
 
       return userData;
     } catch (e) {
       rethrow;
     }
+  }
+  
+  @override
+  Future<AppUser> logout() async{
+   try{
+   final response= await api.profile.get(ApiEndpoints.logout);
+
+   final user = AppUser.fromJson(response.data);
+   return user;
+   }catch(e){
+   rethrow;
+   }
+  
   }
 }

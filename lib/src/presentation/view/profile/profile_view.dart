@@ -1,6 +1,9 @@
 import 'dart:io';
+import 'package:coofix/app/constants/status/status.dart';
 import 'package:coofix/app/router/router_constants.dart';
+import 'package:coofix/app/services/local_storage_service.dart';
 import 'package:coofix/src/application/address_bloc/address_bloc.dart';
+import 'package:coofix/src/application/auth_bloc/auth_bloc.dart';
 import 'package:coofix/src/application/profile_bloc/profile_bloc.dart';
 import 'package:coofix/src/application/profile_bloc/profile_state.dart';
 import 'package:coofix/src/presentation/core/constants/constants.dart';
@@ -26,7 +29,9 @@ class _ProfileViewState extends State<ProfileView> {
   CroppedFile? imageFile;
   @override
   void initState() {
-    context.read<ProfileBloc>().add(ProfileEvent.upadeProfile(name: nameController.text));
+    context
+        .read<ProfileBloc>()
+        .add(ProfileEvent.upadeProfile(name: nameController.text));
     super.initState();
   }
 
@@ -61,8 +66,13 @@ class _ProfileViewState extends State<ProfileView> {
                           clipBehavior: Clip.antiAlias,
                           height: kSize.height * 0.126,
                           width: kSize.height * 0.126,
-                          decoration: const BoxDecoration(shape: BoxShape.circle),
-                          child: imageFile == null ? Image.asset(AppImages.serviceMan, fit: BoxFit.cover) : Image.file(File(imageFile!.path), fit: BoxFit.cover),
+                          decoration:
+                              const BoxDecoration(shape: BoxShape.circle),
+                          child: imageFile == null
+                              ? Image.asset(AppImages.serviceMan,
+                                  fit: BoxFit.cover)
+                              : Image.file(File(imageFile!.path),
+                                  fit: BoxFit.cover),
                         ),
                         Positioned(
                           bottom: -10,
@@ -86,9 +96,16 @@ class _ProfileViewState extends State<ProfileView> {
                                 width: kSize.height * 0.04,
                                 decoration: BoxDecoration(
                                     shape: BoxShape.circle,
-                                    boxShadow: [BoxShadow(color: AppColors.blackColor.withOpacity(.08), blurRadius: 20, offset: const Offset(-10, 4))],
+                                    boxShadow: [
+                                      BoxShadow(
+                                          color: AppColors.blackColor
+                                              .withOpacity(.08),
+                                          blurRadius: 20,
+                                          offset: const Offset(-10, 4))
+                                    ],
                                     color: AppColors.secondaryColor),
-                                child: Image.asset(AppImages.galleryIcon, height: kSize.height * .021)),
+                                child: Image.asset(AppImages.galleryIcon,
+                                    height: kSize.height * .021)),
                           ),
                         ),
                       ],
@@ -101,7 +118,8 @@ class _ProfileViewState extends State<ProfileView> {
                       children: [
                         Text(
                           state.name,
-                          style: AppTypography.soraSemiBold.copyWith(fontSize: kSize.height * 0.031),
+                          style: AppTypography.soraSemiBold
+                              .copyWith(fontSize: kSize.height * 0.031),
                         ),
                         SizedBox(
                           width: kSize.width * .025,
@@ -112,7 +130,12 @@ class _ProfileViewState extends State<ProfileView> {
                               context: context,
                               enableDrag: true,
                               isScrollControlled: true,
-                              shape: RoundedRectangleBorder(borderRadius: BorderRadius.only(topLeft: Radius.circular(kSize.height * .022), topRight: Radius.circular(kSize.height * .022))),
+                              shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.only(
+                                      topLeft:
+                                          Radius.circular(kSize.height * .022),
+                                      topRight: Radius.circular(
+                                          kSize.height * .022))),
                               builder: (context) {
                                 return EditProfileBottomSheet(
                                   nameController: nameController,
@@ -133,7 +156,9 @@ class _ProfileViewState extends State<ProfileView> {
                     ),
                     Text(
                       state.phoneNumber,
-                      style: AppTypography.soraRegular.copyWith(fontSize: kSize.height * 0.019, color: AppColors.blueGrey1),
+                      style: AppTypography.soraRegular.copyWith(
+                          fontSize: kSize.height * 0.019,
+                          color: AppColors.blueGrey1),
                     ),
                     SizedBox(
                       height: kSize.height * .04,
@@ -147,7 +172,8 @@ class _ProfileViewState extends State<ProfileView> {
             kSize: kSize,
             label: 'Manage Address',
             onTap: () {
-              context.read<AddressBloc>().add(const AddressEvent.getAddress(limit: 0, skip: 0, id: ""));
+              context.read<AddressBloc>().add(
+                  const AddressEvent.getAddress(limit: 0, skip: 0, id: ""));
               Navigator.pushNamed(context, "/manageAddress");
             },
           ),
@@ -155,7 +181,9 @@ class _ProfileViewState extends State<ProfileView> {
             kSize: kSize,
             label: 'Service History',
             onTap: () {
-              Navigator.pushNamedAndRemoveUntil(context, RouterConstants.bottomNavRoute, (route) => false, arguments: 1);
+              Navigator.pushNamedAndRemoveUntil(
+                  context, RouterConstants.bottomNavRoute, (route) => false,
+                  arguments: 1);
             },
           ),
           profileDataTile(
@@ -181,19 +209,40 @@ class _ProfileViewState extends State<ProfileView> {
           SizedBox(
             height: kSize.height * .015,
           ),
-          TextButton(
-              style: TextButton.styleFrom(foregroundColor: AppColors.redColor, padding: const EdgeInsets.symmetric(horizontal: 0)),
-              onPressed: () {},
-              child: Text(
-                'Log out',
-                style: AppTypography.soraRegular.copyWith(color: AppColors.redColor, fontSize: kSize.height * 0.019),
-              ))
+          BlocBuilder<AuthBloc, AuthState>(
+            builder: (context, state) {
+              return TextButton(
+                  style: TextButton.styleFrom(
+                      foregroundColor: AppColors.redColor,
+                      padding: const EdgeInsets.symmetric(horizontal: 0)),
+                  onPressed: () async {
+                    context.read<AuthBloc>().add( const AuthEvent.logout());
+                    await Future.delayed(Duration.zero);
+                    if (state.logoutStatus is StatusSuccess) {
+                      LocalStorage.clear();
+                      Navigator.pushNamedAndRemoveUntil(
+                        context,
+                        RouterConstants.onboardingRoute,
+                        (route) => false,
+                        arguments: 0,
+                      );
+                    }
+                  },
+                  child: Text(
+                    'Log out',
+                    style: AppTypography.soraRegular.copyWith(
+                        color: AppColors.redColor,
+                        fontSize: kSize.height * 0.019),
+                  ));
+            },
+          )
         ],
       ),
     );
   }
 
-  Widget profileDataTile({required Size kSize, Function()? onTap, required String label}) {
+  Widget profileDataTile(
+      {required Size kSize, Function()? onTap, required String label}) {
     return Column(
       children: [
         InkWell(
@@ -207,9 +256,12 @@ class _ProfileViewState extends State<ProfileView> {
               children: [
                 Text(
                   label,
-                  style: AppTypography.soraRegular.copyWith(fontSize: kSize.height * 0.019, color: AppColors.blueGrey1),
+                  style: AppTypography.soraRegular.copyWith(
+                      fontSize: kSize.height * 0.019,
+                      color: AppColors.blueGrey1),
                 ),
-                Image.asset(AppImages.arrowLeftIcon, height: kSize.height * .0167),
+                Image.asset(AppImages.arrowLeftIcon,
+                    height: kSize.height * .0167),
               ],
             ),
           ),
@@ -294,7 +346,12 @@ class _ProfileViewState extends State<ProfileView> {
     if (pickedFile != null) {
       final croppedImage = await ImageCropper().cropImage(
         sourcePath: pickedFile.path,
-        uiSettings: [AndroidUiSettings(statusBarColor: AppColors.primaryColor, toolbarTitle: 'Crop Image'), IOSUiSettings(title: 'Crop Image')],
+        uiSettings: [
+          AndroidUiSettings(
+              statusBarColor: AppColors.primaryColor,
+              toolbarTitle: 'Crop Image'),
+          IOSUiSettings(title: 'Crop Image')
+        ],
         aspectRatio: const CropAspectRatio(ratioX: 1, ratioY: 1),
       );
       setState(() {
