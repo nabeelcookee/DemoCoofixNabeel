@@ -15,7 +15,6 @@ class AppUser with _$AppUser{
    @Default('') String image,
    @Default(false) bool active,
    @JsonKey(name: 'last_logged_in') @Default('') String lastLoggedIn, 
-   @JsonKey(name: 'access_tokken')@Default('')String accessToken,
    @JsonKey(name: 'user_id')@Default('')String userid
   })= _AppUser;
  
