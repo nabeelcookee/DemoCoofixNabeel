@@ -1,7 +1,3 @@
-<<<<<<< HEAD
-part of 'get_services_bloc.dart';
-
-=======
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
@@ -672,4 +668,3 @@ abstract class _ServiceState implements ServiceState {
   _$$ServiceStateImplCopyWith<_$ServiceStateImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
->>>>>>> 1a4b0fc951ca41dbd04efbed9d20916107ae674f
