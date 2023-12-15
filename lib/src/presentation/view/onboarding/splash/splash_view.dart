@@ -61,10 +61,6 @@ class _SplashViewState extends State<SplashView>
           Navigator.pushReplacementNamed(
               context, RouterConstants.onboardingRoute,
               arguments: 0);
-        }else{
-           Navigator.pushReplacementNamed(
-              context, RouterConstants.onboardingRoute,
-              arguments: 0);
         }
       },
       child: Scaffold(
