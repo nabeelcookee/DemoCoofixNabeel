@@ -152,52 +152,30 @@ class _OtpVerificationViewState extends State<OtpVerificationView> {
                                 ),
                                 BlocConsumer<AuthBloc, AuthState>(
                                   listener: (context, state) {
-                                    if (state.otpVerificationStatus
-                                        is StatusSuccess) {
+                                    if (state.otpVerificationStatus is StatusSuccess) {
                                       Navigator.pushNamedAndRemoveUntil(
                                         context,
                                         RouterConstants.bottomNavRoute,
                                         (route) => false,
                                         arguments: 0,
                                       );
-                                    } else if (state.sendOtpStatus
+                                    } else if (state.otpVerificationStatus
                                         is StatusFailure) {
                                       Fluttertoast.showToast(
-                                        msg: state.sendOtpStatus.errorMessage,
+                                        msg: state.otpVerificationStatus.errorMessage,
                                         timeInSecForIosWeb: 1,
                                         backgroundColor: Colors.black,
                                         textColor: Colors.white,
                                         fontSize: 16.0,
                                       );
                                     }
-
-                                    // if () {
-                                    //   if (state.errorMessage.isNotEmpty) {
-                                    //     Fluttertoast.showToast(
-                                    //       msg: state.errorMessage,
-                                    //       timeInSecForIosWeb: 1,
-                                    //       backgroundColor: Colors.black,
-                                    //       textColor: Colors.white,
-                                    //       fontSize: 16.0,
-                                    //     );
-                                    //   } else {
-                                    //     // Navigate to the home page only when OTP verification is successful
-                                    //     Navigator.pushNamedAndRemoveUntil(
-                                    //       context,
-                                    //       RouterConstants.bottomNavRoute,
-                                    //       (route) => false,
-                                    //       arguments: 0,
-                                    //     );
-                                    //   }
-                                    // }
                                   },
                                   listenWhen: (previous, current) =>
                                       previous.otpVerificationStatus !=
                                       current.otpVerificationStatus,
                                   builder: (context, state) {
-                                    if (state.otpVerificationStatus
-                                        is StatusLoading) {
-                                      return const Center(
+                                    if (state.otpVerificationStatus is StatusLoading) {
+                                    return  const Center(
                                         child: CircularProgressIndicator(),
                                       );
                                     } else {
@@ -223,8 +201,10 @@ class _OtpVerificationViewState extends State<OtpVerificationView> {
                                         },
                                       );
                                     }
+                                  
                                   },
                                 ),
+                              
                                 SizedBox(
                                   height: kSize.height * .06,
                                 ),

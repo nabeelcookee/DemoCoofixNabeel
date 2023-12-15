@@ -40,25 +40,13 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
   }
 
   FutureOr<void> _sendOtp(_SendOtp event, Emitter<AuthState> emit) async {
-    // OLD METHOD
-    //
-    // try {
-    //   emit(state.copyWith(isSendingOtp: true, errorMessage: ''));
-    //   var response = await iathReposiroy.sendOtp(event.phoneNumber);
-    //   emit(state.copyWith(userId: response.userid, isSendingOtp: false));
-    // } catch (e) {
-    //   emit(state.copyWith(isSendingOtp: false, errorMessage: e.toString()));
-    // }
-
-    // NEW METHOD
-    //
     try {
       emit(state.copyWith(sendOtpStatus: Status.loading(), errorMessage: ''));
       var response = await iathReposiroy.sendOtp(event.phoneNumber);
       emit(state.copyWith(
           userId: response.userid, sendOtpStatus: StatusSuccess()));
     } catch (e) {
-      emit(state.copyWith(sendOtpStatus: Status.failure(e.toString())));
+      emit(state.copyWith(sendOtpStatus: Status.failure(e.toString()),errorMessage: e.toString()));
     }
     //
     //
@@ -79,7 +67,7 @@ FutureOr<void>_logOut(_logout event , Emitter<AuthState> emit)async{
   try{
     emit(state.copyWith(logoutStatus: Status.loading()));
     var response =await iathReposiroy.logout();
-    emit(state.copyWith(logoutStatus: Status.success()));
+    emit(state.copyWith(user: response  ,logoutStatus: Status.success()));
   }catch(e){
 
   }
