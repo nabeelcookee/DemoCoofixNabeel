@@ -18,9 +18,9 @@ class HomeBanner extends StatefulWidget {
 
 class _HomeBannerState extends State<HomeBanner> {
   @override
-    void didChangeDependencies() {
-    context.read<BannerBloc>().add(const BannerEvent.getBanner());
-    super.didChangeDependencies();
+  void initState() {
+   context.read<BannerBloc>().add(const BannerEvent.getBanner());
+    super.initState();
   }
 
   @override

@@ -13,14 +13,14 @@ part of 'get_services_bloc.dart';
 abstract class ServiceState with _$ServiceState {
   factory ServiceState(
       {
-      required Status isLoading,
+      required Status serviceStatus,
       required String errorMessage,
       required List<GetServiecesModel> services,
       required String selecterServiceId}) = _ServiceState;
 
   factory ServiceState.initial() => ServiceState(
       
-      isLoading: Status.initial(),
+      serviceStatus: Status.initial(),
       errorMessage: "",
       services: [],
       selecterServiceId: "");

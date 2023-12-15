@@ -65,8 +65,9 @@ extension GetItInjectableX on _i1.GetIt {
     gh.lazySingleton<_i4.IAuthRepository>(
         () => _i5.AuthRepository(api: gh<_i3.Api>()));
     gh.lazySingleton<_i6.IGetAddress>(() => _i7.GetAddressRepository());
-    gh.lazySingleton<_i8.IGetBannerRepositry>(() => _i9.GetBannerRepositry());
-    gh.lazySingleton<_i10.IGetServieces>(
+    gh.lazySingleton<_i8.IGetBannerRepository>(
+        () => _i9.GetBannerRepository(api: gh<_i3.Api>()));
+    gh.lazySingleton<_i10.IGetServiecesRepository>(
         () => _i11.GetServiecesRepository(api: gh<_i3.Api>()));
     gh.lazySingleton<_i12.INewRequestRepositry>(
         () => _i13.NewRequestRepositry());
@@ -82,9 +83,9 @@ extension GetItInjectableX on _i1.GetIt {
     gh.factory<_i21.AddressBloc>(() => _i21.AddressBloc(gh<_i6.IGetAddress>()));
     gh.factory<_i22.AuthBloc>(() => _i22.AuthBloc(gh<_i4.IAuthRepository>()));
     gh.factory<_i23.BannerBloc>(
-        () => _i23.BannerBloc(gh<_i8.IGetBannerRepositry>()));
+        () => _i23.BannerBloc(gh<_i8.IGetBannerRepository>()));
     gh.factory<_i24.GetServicesBloc>(
-        () => _i24.GetServicesBloc(gh<_i10.IGetServieces>()));
+        () => _i24.GetServicesBloc(gh<_i10.IGetServiecesRepository>()));
     return this;
   }
 }

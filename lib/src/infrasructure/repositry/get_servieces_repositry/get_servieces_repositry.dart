@@ -21,8 +21,8 @@ import 'package:coofix/src/presentation/core/constants/constants.dart';
 /// - Find a common method for api calls to reduce reduntant writing of same code in every repositories.
 /// - Remove unused log, print statements
 
-@LazySingleton(as: IGetServieces)
-class GetServiecesRepository implements IGetServieces {
+@LazySingleton(as: IGetServiecesRepository)
+class GetServiecesRepository implements IGetServiecesRepository {
   final Api api;
   GetServiecesRepository({required this.api});
   @override
