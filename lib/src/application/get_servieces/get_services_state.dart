@@ -1,6 +1,7 @@
 
 
-part of 'get_services_bloc';
+part of 'get_services_bloc.dart';
+
 
 /// TODO : Review changes to do
 ///
