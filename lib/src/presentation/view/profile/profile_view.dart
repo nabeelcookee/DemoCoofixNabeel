@@ -16,6 +16,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:image_cropper/image_cropper.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:injectable/injectable.dart';
 
 class ProfileView extends StatefulWidget {
   const ProfileView({super.key});
@@ -209,24 +210,25 @@ class _ProfileViewState extends State<ProfileView> {
           SizedBox(
             height: kSize.height * .015,
           ),
-          BlocBuilder<AuthBloc, AuthState>(
+          BlocConsumer<AuthBloc, AuthState>(
+            listener: (context, state) {
+              if (state.logoutStatus is StatusSuccess) {
+                LocalStorage.clear();
+                Navigator.pushNamedAndRemoveUntil(
+                  context,
+                  RouterConstants.onboardingRoute,(route) => false,
+                  arguments: 0,
+                );
+              }
+            },
+            listenWhen: (previous, current) => previous.logoutStatus != current.logoutStatus,
             builder: (context, state) {
               return TextButton(
                   style: TextButton.styleFrom(
                       foregroundColor: AppColors.redColor,
                       padding: const EdgeInsets.symmetric(horizontal: 0)),
-                  onPressed: () async {
+                  onPressed: () {
                     context.read<AuthBloc>().add( const AuthEvent.logout());
-                    await Future.delayed(Duration.zero);
-                    if (state.logoutStatus is StatusSuccess) {
-                      LocalStorage.clear();
-                      Navigator.pushNamedAndRemoveUntil(
-                        context,
-                        RouterConstants.onboardingRoute,
-                        (route) => false,
-                        arguments: 0,
-                      );
-                    }
                   },
                   child: Text(
                     'Log out',
