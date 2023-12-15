@@ -21,6 +21,7 @@ mixin _$AuthEvent {
     required TResult Function(String phoneNumber) sendOtp,
     required TResult Function(String otp, String userId) verifyOtp,
     required TResult Function() checkAuth,
+    required TResult Function() logout,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -28,6 +29,7 @@ mixin _$AuthEvent {
     TResult? Function(String phoneNumber)? sendOtp,
     TResult? Function(String otp, String userId)? verifyOtp,
     TResult? Function()? checkAuth,
+    TResult? Function()? logout,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -35,6 +37,7 @@ mixin _$AuthEvent {
     TResult Function(String phoneNumber)? sendOtp,
     TResult Function(String otp, String userId)? verifyOtp,
     TResult Function()? checkAuth,
+    TResult Function()? logout,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -43,6 +46,7 @@ mixin _$AuthEvent {
     required TResult Function(_SendOtp value) sendOtp,
     required TResult Function(_VerifyOtp value) verifyOtp,
     required TResult Function(_CheckAuth value) checkAuth,
+    required TResult Function(_logout value) logout,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -50,6 +54,7 @@ mixin _$AuthEvent {
     TResult? Function(_SendOtp value)? sendOtp,
     TResult? Function(_VerifyOtp value)? verifyOtp,
     TResult? Function(_CheckAuth value)? checkAuth,
+    TResult? Function(_logout value)? logout,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -57,6 +62,7 @@ mixin _$AuthEvent {
     TResult Function(_SendOtp value)? sendOtp,
     TResult Function(_VerifyOtp value)? verifyOtp,
     TResult Function(_CheckAuth value)? checkAuth,
+    TResult Function(_logout value)? logout,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -147,6 +153,7 @@ class _$SendOtpImpl implements _SendOtp {
     required TResult Function(String phoneNumber) sendOtp,
     required TResult Function(String otp, String userId) verifyOtp,
     required TResult Function() checkAuth,
+    required TResult Function() logout,
   }) {
     return sendOtp(phoneNumber);
   }
@@ -157,6 +164,7 @@ class _$SendOtpImpl implements _SendOtp {
     TResult? Function(String phoneNumber)? sendOtp,
     TResult? Function(String otp, String userId)? verifyOtp,
     TResult? Function()? checkAuth,
+    TResult? Function()? logout,
   }) {
     return sendOtp?.call(phoneNumber);
   }
@@ -167,6 +175,7 @@ class _$SendOtpImpl implements _SendOtp {
     TResult Function(String phoneNumber)? sendOtp,
     TResult Function(String otp, String userId)? verifyOtp,
     TResult Function()? checkAuth,
+    TResult Function()? logout,
     required TResult orElse(),
   }) {
     if (sendOtp != null) {
@@ -181,6 +190,7 @@ class _$SendOtpImpl implements _SendOtp {
     required TResult Function(_SendOtp value) sendOtp,
     required TResult Function(_VerifyOtp value) verifyOtp,
     required TResult Function(_CheckAuth value) checkAuth,
+    required TResult Function(_logout value) logout,
   }) {
     return sendOtp(this);
   }
@@ -191,6 +201,7 @@ class _$SendOtpImpl implements _SendOtp {
     TResult? Function(_SendOtp value)? sendOtp,
     TResult? Function(_VerifyOtp value)? verifyOtp,
     TResult? Function(_CheckAuth value)? checkAuth,
+    TResult? Function(_logout value)? logout,
   }) {
     return sendOtp?.call(this);
   }
@@ -201,6 +212,7 @@ class _$SendOtpImpl implements _SendOtp {
     TResult Function(_SendOtp value)? sendOtp,
     TResult Function(_VerifyOtp value)? verifyOtp,
     TResult Function(_CheckAuth value)? checkAuth,
+    TResult Function(_logout value)? logout,
     required TResult orElse(),
   }) {
     if (sendOtp != null) {
@@ -294,6 +306,7 @@ class _$VerifyOtpImpl implements _VerifyOtp {
     required TResult Function(String phoneNumber) sendOtp,
     required TResult Function(String otp, String userId) verifyOtp,
     required TResult Function() checkAuth,
+    required TResult Function() logout,
   }) {
     return verifyOtp(otp, userId);
   }
@@ -304,6 +317,7 @@ class _$VerifyOtpImpl implements _VerifyOtp {
     TResult? Function(String phoneNumber)? sendOtp,
     TResult? Function(String otp, String userId)? verifyOtp,
     TResult? Function()? checkAuth,
+    TResult? Function()? logout,
   }) {
     return verifyOtp?.call(otp, userId);
   }
@@ -314,6 +328,7 @@ class _$VerifyOtpImpl implements _VerifyOtp {
     TResult Function(String phoneNumber)? sendOtp,
     TResult Function(String otp, String userId)? verifyOtp,
     TResult Function()? checkAuth,
+    TResult Function()? logout,
     required TResult orElse(),
   }) {
     if (verifyOtp != null) {
@@ -328,6 +343,7 @@ class _$VerifyOtpImpl implements _VerifyOtp {
     required TResult Function(_SendOtp value) sendOtp,
     required TResult Function(_VerifyOtp value) verifyOtp,
     required TResult Function(_CheckAuth value) checkAuth,
+    required TResult Function(_logout value) logout,
   }) {
     return verifyOtp(this);
   }
@@ -338,6 +354,7 @@ class _$VerifyOtpImpl implements _VerifyOtp {
     TResult? Function(_SendOtp value)? sendOtp,
     TResult? Function(_VerifyOtp value)? verifyOtp,
     TResult? Function(_CheckAuth value)? checkAuth,
+    TResult? Function(_logout value)? logout,
   }) {
     return verifyOtp?.call(this);
   }
@@ -348,6 +365,7 @@ class _$VerifyOtpImpl implements _VerifyOtp {
     TResult Function(_SendOtp value)? sendOtp,
     TResult Function(_VerifyOtp value)? verifyOtp,
     TResult Function(_CheckAuth value)? checkAuth,
+    TResult Function(_logout value)? logout,
     required TResult orElse(),
   }) {
     if (verifyOtp != null) {
@@ -410,6 +428,7 @@ class _$CheckAuthImpl implements _CheckAuth {
     required TResult Function(String phoneNumber) sendOtp,
     required TResult Function(String otp, String userId) verifyOtp,
     required TResult Function() checkAuth,
+    required TResult Function() logout,
   }) {
     return checkAuth();
   }
@@ -420,6 +439,7 @@ class _$CheckAuthImpl implements _CheckAuth {
     TResult? Function(String phoneNumber)? sendOtp,
     TResult? Function(String otp, String userId)? verifyOtp,
     TResult? Function()? checkAuth,
+    TResult? Function()? logout,
   }) {
     return checkAuth?.call();
   }
@@ -430,6 +450,7 @@ class _$CheckAuthImpl implements _CheckAuth {
     TResult Function(String phoneNumber)? sendOtp,
     TResult Function(String otp, String userId)? verifyOtp,
     TResult Function()? checkAuth,
+    TResult Function()? logout,
     required TResult orElse(),
   }) {
     if (checkAuth != null) {
@@ -444,6 +465,7 @@ class _$CheckAuthImpl implements _CheckAuth {
     required TResult Function(_SendOtp value) sendOtp,
     required TResult Function(_VerifyOtp value) verifyOtp,
     required TResult Function(_CheckAuth value) checkAuth,
+    required TResult Function(_logout value) logout,
   }) {
     return checkAuth(this);
   }
@@ -454,6 +476,7 @@ class _$CheckAuthImpl implements _CheckAuth {
     TResult? Function(_SendOtp value)? sendOtp,
     TResult? Function(_VerifyOtp value)? verifyOtp,
     TResult? Function(_CheckAuth value)? checkAuth,
+    TResult? Function(_logout value)? logout,
   }) {
     return checkAuth?.call(this);
   }
@@ -464,6 +487,7 @@ class _$CheckAuthImpl implements _CheckAuth {
     TResult Function(_SendOtp value)? sendOtp,
     TResult Function(_VerifyOtp value)? verifyOtp,
     TResult Function(_CheckAuth value)? checkAuth,
+    TResult Function(_logout value)? logout,
     required TResult orElse(),
   }) {
     if (checkAuth != null) {
@@ -478,15 +502,131 @@ abstract class _CheckAuth implements AuthEvent {
 }
 
 /// @nodoc
+abstract class _$$logoutImplCopyWith<$Res> {
+  factory _$$logoutImplCopyWith(
+          _$logoutImpl value, $Res Function(_$logoutImpl) then) =
+      __$$logoutImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$logoutImplCopyWithImpl<$Res>
+    extends _$AuthEventCopyWithImpl<$Res, _$logoutImpl>
+    implements _$$logoutImplCopyWith<$Res> {
+  __$$logoutImplCopyWithImpl(
+      _$logoutImpl _value, $Res Function(_$logoutImpl) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$logoutImpl implements _logout {
+  const _$logoutImpl();
+
+  @override
+  String toString() {
+    return 'AuthEvent.logout()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$logoutImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(String phoneNumber) sendOtp,
+    required TResult Function(String otp, String userId) verifyOtp,
+    required TResult Function() checkAuth,
+    required TResult Function() logout,
+  }) {
+    return logout();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(String phoneNumber)? sendOtp,
+    TResult? Function(String otp, String userId)? verifyOtp,
+    TResult? Function()? checkAuth,
+    TResult? Function()? logout,
+  }) {
+    return logout?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(String phoneNumber)? sendOtp,
+    TResult Function(String otp, String userId)? verifyOtp,
+    TResult Function()? checkAuth,
+    TResult Function()? logout,
+    required TResult orElse(),
+  }) {
+    if (logout != null) {
+      return logout();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_SendOtp value) sendOtp,
+    required TResult Function(_VerifyOtp value) verifyOtp,
+    required TResult Function(_CheckAuth value) checkAuth,
+    required TResult Function(_logout value) logout,
+  }) {
+    return logout(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_SendOtp value)? sendOtp,
+    TResult? Function(_VerifyOtp value)? verifyOtp,
+    TResult? Function(_CheckAuth value)? checkAuth,
+    TResult? Function(_logout value)? logout,
+  }) {
+    return logout?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_SendOtp value)? sendOtp,
+    TResult Function(_VerifyOtp value)? verifyOtp,
+    TResult Function(_CheckAuth value)? checkAuth,
+    TResult Function(_logout value)? logout,
+    required TResult orElse(),
+  }) {
+    if (logout != null) {
+      return logout(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _logout implements AuthEvent {
+  const factory _logout() = _$logoutImpl;
+}
+
+/// @nodoc
 mixin _$AuthState {
   bool get status => throw _privateConstructorUsedError;
-  bool get isCheckAuth => throw _privateConstructorUsedError; // OLD METHOD
+  Status get checkAuthStatus =>
+      throw _privateConstructorUsedError; // OLD METHOD
 // required bool isSendingOtp,
 // NEW METHOD
   Status get sendOtpStatus => throw _privateConstructorUsedError;
-  bool get isVrifyingOtp => throw _privateConstructorUsedError;
+  Status get otpVerificationStatus => throw _privateConstructorUsedError;
   String get errorMessage => throw _privateConstructorUsedError;
   String get userId => throw _privateConstructorUsedError;
+  Status get logoutStatus => throw _privateConstructorUsedError;
   AppUser? get user => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -501,14 +641,18 @@ abstract class $AuthStateCopyWith<$Res> {
   @useResult
   $Res call(
       {bool status,
-      bool isCheckAuth,
+      Status checkAuthStatus,
       Status sendOtpStatus,
-      bool isVrifyingOtp,
+      Status otpVerificationStatus,
       String errorMessage,
       String userId,
+      Status logoutStatus,
       AppUser? user});
 
+  $StatusCopyWith<$Res> get checkAuthStatus;
   $StatusCopyWith<$Res> get sendOtpStatus;
+  $StatusCopyWith<$Res> get otpVerificationStatus;
+  $StatusCopyWith<$Res> get logoutStatus;
   $AppUserCopyWith<$Res>? get user;
 }
 
@@ -526,11 +670,12 @@ class _$AuthStateCopyWithImpl<$Res, $Val extends AuthState>
   @override
   $Res call({
     Object? status = null,
-    Object? isCheckAuth = null,
+    Object? checkAuthStatus = null,
     Object? sendOtpStatus = null,
-    Object? isVrifyingOtp = null,
+    Object? otpVerificationStatus = null,
     Object? errorMessage = null,
     Object? userId = null,
+    Object? logoutStatus = null,
     Object? user = freezed,
   }) {
     return _then(_value.copyWith(
@@ -538,18 +683,18 @@ class _$AuthStateCopyWithImpl<$Res, $Val extends AuthState>
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
               as bool,
-      isCheckAuth: null == isCheckAuth
-          ? _value.isCheckAuth
-          : isCheckAuth // ignore: cast_nullable_to_non_nullable
-              as bool,
+      checkAuthStatus: null == checkAuthStatus
+          ? _value.checkAuthStatus
+          : checkAuthStatus // ignore: cast_nullable_to_non_nullable
+              as Status,
       sendOtpStatus: null == sendOtpStatus
           ? _value.sendOtpStatus
           : sendOtpStatus // ignore: cast_nullable_to_non_nullable
               as Status,
-      isVrifyingOtp: null == isVrifyingOtp
-          ? _value.isVrifyingOtp
-          : isVrifyingOtp // ignore: cast_nullable_to_non_nullable
-              as bool,
+      otpVerificationStatus: null == otpVerificationStatus
+          ? _value.otpVerificationStatus
+          : otpVerificationStatus // ignore: cast_nullable_to_non_nullable
+              as Status,
       errorMessage: null == errorMessage
           ? _value.errorMessage
           : errorMessage // ignore: cast_nullable_to_non_nullable
@@ -558,6 +703,10 @@ class _$AuthStateCopyWithImpl<$Res, $Val extends AuthState>
           ? _value.userId
           : userId // ignore: cast_nullable_to_non_nullable
               as String,
+      logoutStatus: null == logoutStatus
+          ? _value.logoutStatus
+          : logoutStatus // ignore: cast_nullable_to_non_nullable
+              as Status,
       user: freezed == user
           ? _value.user
           : user // ignore: cast_nullable_to_non_nullable
@@ -567,9 +716,33 @@ class _$AuthStateCopyWithImpl<$Res, $Val extends AuthState>
 
   @override
   @pragma('vm:prefer-inline')
+  $StatusCopyWith<$Res> get checkAuthStatus {
+    return $StatusCopyWith<$Res>(_value.checkAuthStatus, (value) {
+      return _then(_value.copyWith(checkAuthStatus: value) as $Val);
+    });
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
   $StatusCopyWith<$Res> get sendOtpStatus {
     return $StatusCopyWith<$Res>(_value.sendOtpStatus, (value) {
       return _then(_value.copyWith(sendOtpStatus: value) as $Val);
+    });
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $StatusCopyWith<$Res> get otpVerificationStatus {
+    return $StatusCopyWith<$Res>(_value.otpVerificationStatus, (value) {
+      return _then(_value.copyWith(otpVerificationStatus: value) as $Val);
+    });
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $StatusCopyWith<$Res> get logoutStatus {
+    return $StatusCopyWith<$Res>(_value.logoutStatus, (value) {
+      return _then(_value.copyWith(logoutStatus: value) as $Val);
     });
   }
 
@@ -596,15 +769,22 @@ abstract class _$$AuthStateImplCopyWith<$Res>
   @useResult
   $Res call(
       {bool status,
-      bool isCheckAuth,
+      Status checkAuthStatus,
       Status sendOtpStatus,
-      bool isVrifyingOtp,
+      Status otpVerificationStatus,
       String errorMessage,
       String userId,
+      Status logoutStatus,
       AppUser? user});
 
   @override
+  $StatusCopyWith<$Res> get checkAuthStatus;
+  @override
   $StatusCopyWith<$Res> get sendOtpStatus;
+  @override
+  $StatusCopyWith<$Res> get otpVerificationStatus;
+  @override
+  $StatusCopyWith<$Res> get logoutStatus;
   @override
   $AppUserCopyWith<$Res>? get user;
 }
@@ -621,11 +801,12 @@ class __$$AuthStateImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? status = null,
-    Object? isCheckAuth = null,
+    Object? checkAuthStatus = null,
     Object? sendOtpStatus = null,
-    Object? isVrifyingOtp = null,
+    Object? otpVerificationStatus = null,
     Object? errorMessage = null,
     Object? userId = null,
+    Object? logoutStatus = null,
     Object? user = freezed,
   }) {
     return _then(_$AuthStateImpl(
@@ -633,18 +814,18 @@ class __$$AuthStateImplCopyWithImpl<$Res>
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
               as bool,
-      isCheckAuth: null == isCheckAuth
-          ? _value.isCheckAuth
-          : isCheckAuth // ignore: cast_nullable_to_non_nullable
-              as bool,
+      checkAuthStatus: null == checkAuthStatus
+          ? _value.checkAuthStatus
+          : checkAuthStatus // ignore: cast_nullable_to_non_nullable
+              as Status,
       sendOtpStatus: null == sendOtpStatus
           ? _value.sendOtpStatus
           : sendOtpStatus // ignore: cast_nullable_to_non_nullable
               as Status,
-      isVrifyingOtp: null == isVrifyingOtp
-          ? _value.isVrifyingOtp
-          : isVrifyingOtp // ignore: cast_nullable_to_non_nullable
-              as bool,
+      otpVerificationStatus: null == otpVerificationStatus
+          ? _value.otpVerificationStatus
+          : otpVerificationStatus // ignore: cast_nullable_to_non_nullable
+              as Status,
       errorMessage: null == errorMessage
           ? _value.errorMessage
           : errorMessage // ignore: cast_nullable_to_non_nullable
@@ -653,6 +834,10 @@ class __$$AuthStateImplCopyWithImpl<$Res>
           ? _value.userId
           : userId // ignore: cast_nullable_to_non_nullable
               as String,
+      logoutStatus: null == logoutStatus
+          ? _value.logoutStatus
+          : logoutStatus // ignore: cast_nullable_to_non_nullable
+              as Status,
       user: freezed == user
           ? _value.user
           : user // ignore: cast_nullable_to_non_nullable
@@ -666,34 +851,37 @@ class __$$AuthStateImplCopyWithImpl<$Res>
 class _$AuthStateImpl implements _AuthState {
   _$AuthStateImpl(
       {required this.status,
-      required this.isCheckAuth,
+      required this.checkAuthStatus,
       required this.sendOtpStatus,
-      required this.isVrifyingOtp,
+      required this.otpVerificationStatus,
       required this.errorMessage,
       required this.userId,
+      required this.logoutStatus,
       this.user});
 
   @override
   final bool status;
   @override
-  final bool isCheckAuth;
+  final Status checkAuthStatus;
 // OLD METHOD
 // required bool isSendingOtp,
 // NEW METHOD
   @override
   final Status sendOtpStatus;
   @override
-  final bool isVrifyingOtp;
+  final Status otpVerificationStatus;
   @override
   final String errorMessage;
   @override
   final String userId;
   @override
+  final Status logoutStatus;
+  @override
   final AppUser? user;
 
   @override
   String toString() {
-    return 'AuthState(status: $status, isCheckAuth: $isCheckAuth, sendOtpStatus: $sendOtpStatus, isVrifyingOtp: $isVrifyingOtp, errorMessage: $errorMessage, userId: $userId, user: $user)';
+    return 'AuthState(status: $status, checkAuthStatus: $checkAuthStatus, sendOtpStatus: $sendOtpStatus, otpVerificationStatus: $otpVerificationStatus, errorMessage: $errorMessage, userId: $userId, logoutStatus: $logoutStatus, user: $user)';
   }
 
   @override
@@ -702,21 +890,31 @@ class _$AuthStateImpl implements _AuthState {
         (other.runtimeType == runtimeType &&
             other is _$AuthStateImpl &&
             (identical(other.status, status) || other.status == status) &&
-            (identical(other.isCheckAuth, isCheckAuth) ||
-                other.isCheckAuth == isCheckAuth) &&
+            (identical(other.checkAuthStatus, checkAuthStatus) ||
+                other.checkAuthStatus == checkAuthStatus) &&
             (identical(other.sendOtpStatus, sendOtpStatus) ||
                 other.sendOtpStatus == sendOtpStatus) &&
-            (identical(other.isVrifyingOtp, isVrifyingOtp) ||
-                other.isVrifyingOtp == isVrifyingOtp) &&
+            (identical(other.otpVerificationStatus, otpVerificationStatus) ||
+                other.otpVerificationStatus == otpVerificationStatus) &&
             (identical(other.errorMessage, errorMessage) ||
                 other.errorMessage == errorMessage) &&
             (identical(other.userId, userId) || other.userId == userId) &&
+            (identical(other.logoutStatus, logoutStatus) ||
+                other.logoutStatus == logoutStatus) &&
             (identical(other.user, user) || other.user == user));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, status, isCheckAuth,
-      sendOtpStatus, isVrifyingOtp, errorMessage, userId, user);
+  int get hashCode => Object.hash(
+      runtimeType,
+      status,
+      checkAuthStatus,
+      sendOtpStatus,
+      otpVerificationStatus,
+      errorMessage,
+      userId,
+      logoutStatus,
+      user);
 
   @JsonKey(ignore: true)
   @override
@@ -728,27 +926,30 @@ class _$AuthStateImpl implements _AuthState {
 abstract class _AuthState implements AuthState {
   factory _AuthState(
       {required final bool status,
-      required final bool isCheckAuth,
+      required final Status checkAuthStatus,
       required final Status sendOtpStatus,
-      required final bool isVrifyingOtp,
+      required final Status otpVerificationStatus,
       required final String errorMessage,
       required final String userId,
+      required final Status logoutStatus,
       final AppUser? user}) = _$AuthStateImpl;
 
   @override
   bool get status;
   @override
-  bool get isCheckAuth;
+  Status get checkAuthStatus;
   @override // OLD METHOD
 // required bool isSendingOtp,
 // NEW METHOD
   Status get sendOtpStatus;
   @override
-  bool get isVrifyingOtp;
+  Status get otpVerificationStatus;
   @override
   String get errorMessage;
   @override
   String get userId;
+  @override
+  Status get logoutStatus;
   @override
   AppUser? get user;
   @override

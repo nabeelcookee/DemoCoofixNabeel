@@ -12,5 +12,7 @@ class AuthEvent with _$AuthEvent {
     required String userId,
   }) = _VerifyOtp;
   const factory AuthEvent.checkAuth()=_CheckAuth;
+
+   const factory AuthEvent.logout()=_logout;
 }
 

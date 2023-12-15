@@ -1,4 +1,7 @@
+import 'package:coofix/app/constants/status/status.dart';
+import 'package:coofix/app/constants/storage_constants.dart';
 import 'package:coofix/app/router/router_constants.dart';
+import 'package:coofix/app/services/local_storage_service.dart';
 import 'package:coofix/src/application/auth_bloc/auth_bloc.dart';
 import 'package:coofix/src/presentation/core/constants/images.dart';
 import 'package:coofix/src/presentation/core/constants/strings.dart';
@@ -23,14 +26,18 @@ class SplashView extends StatefulWidget {
   State<SplashView> createState() => _SplashViewState();
 }
 
-class _SplashViewState extends State<SplashView> with SingleTickerProviderStateMixin {
+class _SplashViewState extends State<SplashView>
+    with SingleTickerProviderStateMixin {
   AnimationController? _animationController;
   @override
   void initState() {
-    _animationController = AnimationController(vsync: this, duration: const Duration(seconds: 1));
+    _animationController =
+        AnimationController(vsync: this, duration: const Duration(seconds: 1));
     _animationController!.addListener(() => setState(() {}));
     _animationController!.repeat();
+     WidgetsBinding.instance.addPostFrameCallback((_) {
     chechPreviouseLogin();
+  });
     super.initState();
   }
 
@@ -45,15 +52,15 @@ class _SplashViewState extends State<SplashView> with SingleTickerProviderStateM
     final kSize = MediaQuery.of(context).size;
     return BlocListener<AuthBloc, AuthState>(
       listener: (context, state) {
-        print(" error is ${state.errorMessage}");
-        if (state.isVrifyingOtp== false) {
-          if(state.errorMessage.isNotEmpty){
-              Navigator.pushReplacementNamed(
-              context, RouterConstants.onboardingRoute,arguments: 0);
-          }else{
-              Navigator.pushReplacementNamed(
-              context, RouterConstants.bottomNavRoute,arguments: 0);
-          }
+         print(" error is ${state.checkAuthStatus}");
+        if (state.checkAuthStatus is StatusSuccess) {
+          Navigator.pushReplacementNamed(
+              context, RouterConstants.bottomNavRoute,
+              arguments: 0);
+        } else if (state.checkAuthStatus is StatusFailure){
+          Navigator.pushReplacementNamed(
+              context, RouterConstants.onboardingRoute,
+              arguments: 0);
         }
       },
       child: Scaffold(
@@ -73,7 +80,11 @@ class _SplashViewState extends State<SplashView> with SingleTickerProviderStateM
               Container(
                 height: kSize.height * .6,
                 width: kSize.width,
-                decoration: BoxDecoration(gradient: LinearGradient(colors: [AppColors.primaryColor.withOpacity(.2), AppColors.primaryColor], begin: Alignment.topCenter, end: Alignment.bottomCenter)),
+                decoration: BoxDecoration(
+                    gradient: LinearGradient(colors: [
+                  AppColors.primaryColor.withOpacity(.2),
+                  AppColors.primaryColor
+                ], begin: Alignment.topCenter, end: Alignment.bottomCenter)),
                 child: Image.asset(AppImages.splashBg, fit: BoxFit.cover),
               ),
               Center(
@@ -91,7 +102,8 @@ class _SplashViewState extends State<SplashView> with SingleTickerProviderStateM
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
                     RotationTransition(
-                      turns: Tween(begin: 0.0, end: 1.0).animate(_animationController!),
+                      turns: Tween(begin: 0.0, end: 1.0)
+                          .animate(_animationController!),
                       child: GradientCircularProgressIndicator(
                         radius: 10,
                         gradientColors: [
@@ -129,8 +141,8 @@ class _SplashViewState extends State<SplashView> with SingleTickerProviderStateM
   //
   // - Make 'access-token' key as constant variable
   chechPreviouseLogin() async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    if (prefs.getString('access_token') != null && prefs.getString('access_token')!.isNotEmpty) {
+    if (LocalStorage.getString(StorageKey.accessToken) != null &&
+        LocalStorage.getString(StorageKey.accessToken)!.isNotEmpty) {
       context.read<AuthBloc>().add(const AuthEvent.checkAuth());
     } else {
       Navigator.pushReplacementNamed(context, RouterConstants.onboardingRoute);

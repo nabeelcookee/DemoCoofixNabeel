@@ -1,7 +1,9 @@
 import 'dart:developer';
 import 'package:coofix/app/constants/api_constants.dart';
+import 'package:coofix/app/constants/storage_constants.dart';
 import 'package:coofix/app/interceptar/dio_interceptor.dart';
 import 'package:coofix/app/services/api_services/api_service.dart';
+import 'package:coofix/app/services/local_storage_service.dart';
 import 'package:coofix/src/domain/domain/models/app_user_model/app_user_model.dart';
 import 'package:coofix/src/domain/domain/repositories/i_auth_repository.dart';
 import 'package:coofix/src/presentation/core/constants/constants.dart';
@@ -66,17 +68,16 @@ class AuthRepository implements IAuthRepository {
       // [api] is the service [api.general] is api profile type [post] is the method
       // for profile apis [api.profile] can be used.
       // for get mthod apis [api.general.get / api.profile.get] can be used
-      var response = await api.general.post(ApiEndpoints.checkPhone,data: requestData);
+      var response =
+          await api.general.post(ApiEndpoints.checkPhone, data: requestData);
 
       // Model conversion of the json reponse
       AppUser user = AppUser.fromJson(response.data);
 
       // Returning the converted model
       return user;
-
     } catch (e) {
-
-      // rethrowing the catched excpetion 
+      // rethrowing the catched excpetion
       rethrow;
     }
   }
@@ -88,83 +89,62 @@ class AuthRepository implements IAuthRepository {
   //
   //
 
-  void saveAccessTokenToPrefs(String accessToken) async {
-    try {
-      SharedPreferences prefs = await SharedPreferences.getInstance();
-      prefs.setString('access_token', accessToken);
-      print('Access token saved: $accessToken');
-    } catch (e) {
-      print('Error accessing SharedPreferences: $e');
-    }
-  }
+  // void saveAccessTokenToPrefs(String accessToken) async {
+  //   try {
+  //     SharedPreferences prefs = await SharedPreferences.getInstance();
+  //     prefs.setString('access_token', accessToken);
+  //     print('Access token saved: $accessToken');
+  //   } catch (e) {
+  //     print('Error accessing SharedPreferences: $e');
+  //   }
+  // }
 
   @override
   Future<AppUser> checkAuth() async {
     try {
-      SharedPreferences prefs = await SharedPreferences.getInstance();
-      if (prefs.getString('access_token') == null) {
-        log("Invalid Token");
-        throw Exception("Invalid Token");
-      }
-      // Implimented Intersepter ....
-      var dio = Dio();
-      dio.interceptors.add(Dionterceptor());
-      final response = await dio.get(ApiEndpoints.checkAuth, options: Options(headers: {"Authorization": "Bearer ${prefs.getString('access_token')}"}));
-      log(prefs.getString('access_token').toString());
-      log("Token: ${prefs.getString('access_token')}");
-      log("Request URL: ${ApiEndpoints.checkAuth}");
-      log("Request Headers: ${response.data.headers}");
-      log("Response status code: ${response.statusCode}");
-      log("Response body: ${response.data}");
+      final response = await api.profile.get(
+        ApiEndpoints.checkAuth,
+      );
 
-      if (response.statusCode == 200) {
-        final AppUser user = AppUser.fromJson(response.data);
-        print(user);
-        print("checkAuth Success");
-        return user;
-      } else {
-        throw Exception('Failed to check authentication..');
-      }
+      final AppUser user = AppUser.fromJson(response.data);
+
+      return user;
     } catch (error) {
-      print('Error: $error');
-      throw Exception('Failed to check authentication..');
+      rethrow;
     }
   }
 
   @override
-  Future<AppUser> verifyOtp({required String otp, required String userId}) async {
-    log(userId, name: "User id From  Repo");
-    log(otp, name: "Otp id From  Repo");
+  Future<AppUser> verifyOtp(
+      {required String otp, required String userId}) async {
     try {
-      final Map<String, dynamic> data = {
+      final Map<String, dynamic> requestData = {
         'otp': otp,
         'user_id': userId,
       };
-      var dio = Dio();
-      dio.interceptors.add(Dionterceptor());
-      final response = await dio.post(ApiEndpoints.verifyOtpApi,
-          options: Options(
-            headers: {"Tokenvalid": AppConstants.tockenValied},
-          ),
-          data: data);
-      log('Response status code: ${response.statusCode}');
-      log('Response headers: ${response.headers}');
-      log('Response body: ${response.data}');
-      if (response.statusCode == 200) {
-        final userModel = AppUser.fromJson(response.data);
-        log(userModel.accessToken, name: "accssess token");
-
-        saveAccessTokenToPrefs(userModel.accessToken);
-        log(response.data.toString(), name: "from verify");
-        print('accsess tokent is ${userModel.accessToken}');
-        print(userModel);
-        print("success");
-        return userModel;
-      } else {
-        throw Exception('Failed to verify OTP');
+      final response =
+          await api.general.post(ApiEndpoints.verifyOtpApi, data: requestData);
+      final userData = AppUser.fromJson(response.data);
+      LocalStorage.setString(
+          StorageKey.accessToken, response.data['access_tokken']);
+      if (response.data['auth_status'] == false) {
+        throw (response.data['message']);
       }
+
+      return userData;
     } catch (e) {
-      log('Error: $e');
+      rethrow;
+    }
+  }
+
+  @override
+  Future<AppUser> logout() async {
+    try {
+      final response = await api.profile.get(ApiEndpoints.logout);
+
+      final user = AppUser.fromJson(response.data);
+      return user;
+    } catch (e) {
       rethrow;
     }
   }

@@ -19,42 +19,34 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     on<_SendOtp>(_sendOtp);
     on<_VerifyOtp>(_verifyOtp);
     on<_CheckAuth>(_handleCheckAuth);
+    on<_logout>(_logOut);
   }
+
   /// TODO: Review changes
-  // 
-  // - isCheckAuth status change is not working properly 
-  
+  //
+  // - isCheckAuth status change is not working properly
+
   FutureOr<void> _handleCheckAuth(event, Emitter<AuthState> emit) async {
     try {
       emit(state.copyWith(
-        isCheckAuth: false,
+        checkAuthStatus: Status.loading(),
       ));
       var response = await iathReposiroy.checkAuth();
-      emit(state.copyWith(isCheckAuth: true, user: response));
+      emit(state.copyWith(checkAuthStatus: Status.success(), user: response));
     } catch (e) {
-      emit(state.copyWith(errorMessage: e.toString(), isCheckAuth: false));
+      emit(state.copyWith(
+          errorMessage: e.toString(), checkAuthStatus: Status.failure(e.toString())));
     }
   }
 
   FutureOr<void> _sendOtp(_SendOtp event, Emitter<AuthState> emit) async {
-    // OLD METHOD
-    //
-    // try {
-    //   emit(state.copyWith(isSendingOtp: true, errorMessage: ''));
-    //   var response = await iathReposiroy.sendOtp(event.phoneNumber);
-    //   emit(state.copyWith(userId: response.userid, isSendingOtp: false));
-    // } catch (e) {
-    //   emit(state.copyWith(isSendingOtp: false, errorMessage: e.toString()));
-    // }
-
-    // NEW METHOD
-    //
     try {
       emit(state.copyWith(sendOtpStatus: Status.loading(), errorMessage: ''));
       var response = await iathReposiroy.sendOtp(event.phoneNumber);
-      emit(state.copyWith(userId: response.userid, sendOtpStatus: StatusSuccess()));
+      emit(state.copyWith(
+          userId: response.userid, sendOtpStatus: StatusSuccess()));
     } catch (e) {
-      emit(state.copyWith(sendOtpStatus: Status.failure(e.toString())));
+      emit(state.copyWith(sendOtpStatus: Status.failure(e.toString()),errorMessage: e.toString()));
     }
     //
     //
@@ -63,16 +55,21 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
 
   FutureOr<void> _verifyOtp(_VerifyOtp event, Emitter<AuthState> emit) async {
     try {
-      emit(state.copyWith(isVrifyingOtp: true, errorMessage: ''));
+      emit(state.copyWith(otpVerificationStatus: Status.loading(), errorMessage: ''));
       var response =
           await iathReposiroy.verifyOtp(otp: event.otp, userId: event.userId);
-      emit(state.copyWith(user: response));
-      log(event.userId);
-      log(response.toString(), name: "response frome verify");
-
-      emit(state.copyWith(isVrifyingOtp: false));
+      emit(state.copyWith(user: response, otpVerificationStatus: Status.success()));
     } catch (e) {
-      emit(state.copyWith(isVrifyingOtp: false, errorMessage: e.toString()));
+      emit(state.copyWith(otpVerificationStatus: Status.failure(e.toString())));
     }
   }
+FutureOr<void>_logOut(_logout event , Emitter<AuthState> emit)async{
+  try{
+    emit(state.copyWith(logoutStatus: Status.loading()));
+    var response =await iathReposiroy.logout();
+    emit(state.copyWith(user: response  ,logoutStatus: Status.success()));
+  }catch(e){
+
+  }
+}
 }

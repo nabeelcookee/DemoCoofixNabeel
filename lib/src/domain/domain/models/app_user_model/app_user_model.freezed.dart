@@ -32,10 +32,12 @@ mixin _$AppUser {
   bool get active => throw _privateConstructorUsedError;
   @JsonKey(name: 'last_logged_in')
   String get lastLoggedIn => throw _privateConstructorUsedError;
-  @JsonKey(name: 'access_tokken')
-  String get accessToken => throw _privateConstructorUsedError;
   @JsonKey(name: 'user_id')
   String get userid => throw _privateConstructorUsedError;
+  @JsonKey(name: 'auth_status')
+  bool get authstatus => throw _privateConstructorUsedError;
+  @JsonKey(name: 'message')
+  String get message => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -55,8 +57,9 @@ abstract class $AppUserCopyWith<$Res> {
       String image,
       bool active,
       @JsonKey(name: 'last_logged_in') String lastLoggedIn,
-      @JsonKey(name: 'access_tokken') String accessToken,
-      @JsonKey(name: 'user_id') String userid});
+      @JsonKey(name: 'user_id') String userid,
+      @JsonKey(name: 'auth_status') bool authstatus,
+      @JsonKey(name: 'message') String message});
 }
 
 /// @nodoc
@@ -79,8 +82,9 @@ class _$AppUserCopyWithImpl<$Res, $Val extends AppUser>
     Object? image = null,
     Object? active = null,
     Object? lastLoggedIn = null,
-    Object? accessToken = null,
     Object? userid = null,
+    Object? authstatus = null,
+    Object? message = null,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -111,13 +115,17 @@ class _$AppUserCopyWithImpl<$Res, $Val extends AppUser>
           ? _value.lastLoggedIn
           : lastLoggedIn // ignore: cast_nullable_to_non_nullable
               as String,
-      accessToken: null == accessToken
-          ? _value.accessToken
-          : accessToken // ignore: cast_nullable_to_non_nullable
-              as String,
       userid: null == userid
           ? _value.userid
           : userid // ignore: cast_nullable_to_non_nullable
+              as String,
+      authstatus: null == authstatus
+          ? _value.authstatus
+          : authstatus // ignore: cast_nullable_to_non_nullable
+              as bool,
+      message: null == message
+          ? _value.message
+          : message // ignore: cast_nullable_to_non_nullable
               as String,
     ) as $Val);
   }
@@ -138,8 +146,9 @@ abstract class _$$AppUserImplCopyWith<$Res> implements $AppUserCopyWith<$Res> {
       String image,
       bool active,
       @JsonKey(name: 'last_logged_in') String lastLoggedIn,
-      @JsonKey(name: 'access_tokken') String accessToken,
-      @JsonKey(name: 'user_id') String userid});
+      @JsonKey(name: 'user_id') String userid,
+      @JsonKey(name: 'auth_status') bool authstatus,
+      @JsonKey(name: 'message') String message});
 }
 
 /// @nodoc
@@ -160,8 +169,9 @@ class __$$AppUserImplCopyWithImpl<$Res>
     Object? image = null,
     Object? active = null,
     Object? lastLoggedIn = null,
-    Object? accessToken = null,
     Object? userid = null,
+    Object? authstatus = null,
+    Object? message = null,
   }) {
     return _then(_$AppUserImpl(
       id: null == id
@@ -192,13 +202,17 @@ class __$$AppUserImplCopyWithImpl<$Res>
           ? _value.lastLoggedIn
           : lastLoggedIn // ignore: cast_nullable_to_non_nullable
               as String,
-      accessToken: null == accessToken
-          ? _value.accessToken
-          : accessToken // ignore: cast_nullable_to_non_nullable
-              as String,
       userid: null == userid
           ? _value.userid
           : userid // ignore: cast_nullable_to_non_nullable
+              as String,
+      authstatus: null == authstatus
+          ? _value.authstatus
+          : authstatus // ignore: cast_nullable_to_non_nullable
+              as bool,
+      message: null == message
+          ? _value.message
+          : message // ignore: cast_nullable_to_non_nullable
               as String,
     ));
   }
@@ -215,8 +229,9 @@ class _$AppUserImpl implements _AppUser {
       this.image = '',
       this.active = false,
       @JsonKey(name: 'last_logged_in') this.lastLoggedIn = '',
-      @JsonKey(name: 'access_tokken') this.accessToken = '',
-      @JsonKey(name: 'user_id') this.userid = ''});
+      @JsonKey(name: 'user_id') this.userid = '',
+      @JsonKey(name: 'auth_status') this.authstatus = false,
+      @JsonKey(name: 'message') this.message = ''});
 
   factory _$AppUserImpl.fromJson(Map<String, dynamic> json) =>
       _$$AppUserImplFromJson(json);
@@ -243,15 +258,18 @@ class _$AppUserImpl implements _AppUser {
   @JsonKey(name: 'last_logged_in')
   final String lastLoggedIn;
   @override
-  @JsonKey(name: 'access_tokken')
-  final String accessToken;
-  @override
   @JsonKey(name: 'user_id')
   final String userid;
+  @override
+  @JsonKey(name: 'auth_status')
+  final bool authstatus;
+  @override
+  @JsonKey(name: 'message')
+  final String message;
 
   @override
   String toString() {
-    return 'AppUser(id: $id, rowId: $rowId, name: $name, phoneNumber: $phoneNumber, image: $image, active: $active, lastLoggedIn: $lastLoggedIn, accessToken: $accessToken, userid: $userid)';
+    return 'AppUser(id: $id, rowId: $rowId, name: $name, phoneNumber: $phoneNumber, image: $image, active: $active, lastLoggedIn: $lastLoggedIn, userid: $userid, authstatus: $authstatus, message: $message)';
   }
 
   @override
@@ -268,15 +286,16 @@ class _$AppUserImpl implements _AppUser {
             (identical(other.active, active) || other.active == active) &&
             (identical(other.lastLoggedIn, lastLoggedIn) ||
                 other.lastLoggedIn == lastLoggedIn) &&
-            (identical(other.accessToken, accessToken) ||
-                other.accessToken == accessToken) &&
-            (identical(other.userid, userid) || other.userid == userid));
+            (identical(other.userid, userid) || other.userid == userid) &&
+            (identical(other.authstatus, authstatus) ||
+                other.authstatus == authstatus) &&
+            (identical(other.message, message) || other.message == message));
   }
 
   @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(runtimeType, id, rowId, name, phoneNumber,
-      image, active, lastLoggedIn, accessToken, userid);
+      image, active, lastLoggedIn, userid, authstatus, message);
 
   @JsonKey(ignore: true)
   @override
@@ -301,8 +320,9 @@ abstract class _AppUser implements AppUser {
       final String image,
       final bool active,
       @JsonKey(name: 'last_logged_in') final String lastLoggedIn,
-      @JsonKey(name: 'access_tokken') final String accessToken,
-      @JsonKey(name: 'user_id') final String userid}) = _$AppUserImpl;
+      @JsonKey(name: 'user_id') final String userid,
+      @JsonKey(name: 'auth_status') final bool authstatus,
+      @JsonKey(name: 'message') final String message}) = _$AppUserImpl;
 
   factory _AppUser.fromJson(Map<String, dynamic> json) = _$AppUserImpl.fromJson;
 
@@ -326,11 +346,14 @@ abstract class _AppUser implements AppUser {
   @JsonKey(name: 'last_logged_in')
   String get lastLoggedIn;
   @override
-  @JsonKey(name: 'access_tokken')
-  String get accessToken;
-  @override
   @JsonKey(name: 'user_id')
   String get userid;
+  @override
+  @JsonKey(name: 'auth_status')
+  bool get authstatus;
+  @override
+  @JsonKey(name: 'message')
+  String get message;
   @override
   @JsonKey(ignore: true)
   _$$AppUserImplCopyWith<_$AppUserImpl> get copyWith =>

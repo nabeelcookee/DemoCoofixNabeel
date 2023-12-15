@@ -1,3 +1,4 @@
+import 'package:coofix/app/constants/status/status.dart';
 import 'package:coofix/app/router/router_constants.dart';
 import 'package:coofix/src/application/auth_bloc/auth_bloc.dart';
 import 'package:coofix/src/presentation/core/constants/constants.dart';
@@ -151,59 +152,59 @@ class _OtpVerificationViewState extends State<OtpVerificationView> {
                                 ),
                                 BlocConsumer<AuthBloc, AuthState>(
                                   listener: (context, state) {
-                                    if (!state.isVrifyingOtp) {
-                                      if (state.errorMessage.isNotEmpty) {
-                                        Fluttertoast.showToast(
-                                          msg: state.errorMessage,
-                                          timeInSecForIosWeb: 1,
-                                          backgroundColor: Colors.black,
-                                          textColor: Colors.white,
-                                          fontSize: 16.0,
-                                        );
-                                      } else {
-                                        // Navigate to the home page only when OTP verification is successful
-                                        Navigator.pushNamedAndRemoveUntil(
-                                          context,
-                                          RouterConstants.bottomNavRoute,
-                                          (route) => false,
-                                          arguments: 0,
-                                        );
-                                      }
+                                    if (state.otpVerificationStatus is StatusSuccess) {
+                                      Navigator.pushNamedAndRemoveUntil(
+                                        context,
+                                        RouterConstants.bottomNavRoute,
+                                        (route) => false,
+                                        arguments: 0,
+                                      );
+                                    } else if (state.otpVerificationStatus
+                                        is StatusFailure) {
+                                      Fluttertoast.showToast(
+                                        msg: state.otpVerificationStatus.errorMessage,
+                                        timeInSecForIosWeb: 1,
+                                        backgroundColor: Colors.black,
+                                        textColor: Colors.white,
+                                        fontSize: 16.0,
+                                      );
                                     }
                                   },
                                   listenWhen: (previous, current) =>
-                                      previous.isVrifyingOtp !=
-                                      current.isVrifyingOtp,
+                                      previous.otpVerificationStatus !=
+                                      current.otpVerificationStatus,
                                   builder: (context, state) {
-                                    return state.isVrifyingOtp
-                                        ? const Center(
-                                            child: CircularProgressIndicator(),
-                                          )
-                                        : PrimaryButton(
-                                            text: 'Verify OTP',
-                                            onPressed: () async {
-                                              if (otpController.text.length ==
-                                                  4) {
-                                                context.read<AuthBloc>().add(
-                                                      AuthEvent.verifyOtp(
-                                                        otp: otpController.text,
-                                                        userId: state.userId,
-                                                      ),
-                                                    );
-                                              } else {
-                                                Fluttertoast.showToast(
-                                                  msg:
-                                                      'Please enter a valid OTP',
-                                                  timeInSecForIosWeb: 1,
-                                                  backgroundColor: Colors.black,
-                                                  textColor: Colors.white,
-                                                  fontSize: 16.0,
+                                    if (state.otpVerificationStatus is StatusLoading) {
+                                    return  const Center(
+                                        child: CircularProgressIndicator(),
+                                      );
+                                    } else {
+                                      return PrimaryButton(
+                                        text: 'Verify OTP',
+                                        onPressed: () async {
+                                          if (otpController.text.length == 4) {
+                                            context.read<AuthBloc>().add(
+                                                  AuthEvent.verifyOtp(
+                                                    otp: otpController.text,
+                                                    userId: state.userId,
+                                                  ),
                                                 );
-                                              }
-                                            },
-                                          );
+                                          } else {
+                                            Fluttertoast.showToast(
+                                              msg: 'Please enter a valid OTP',
+                                              timeInSecForIosWeb: 1,
+                                              backgroundColor: Colors.black,
+                                              textColor: Colors.white,
+                                              fontSize: 16.0,
+                                            );
+                                          }
+                                        },
+                                      );
+                                    }
+                                  
                                   },
                                 ),
+                              
                                 SizedBox(
                                   height: kSize.height * .06,
                                 ),
