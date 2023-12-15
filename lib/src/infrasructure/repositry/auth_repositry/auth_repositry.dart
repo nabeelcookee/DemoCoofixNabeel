@@ -127,8 +127,10 @@ class AuthRepository implements IAuthRepository {
       final userData = AppUser.fromJson(response.data);
       LocalStorage.setString(
           StorageKey.accessToken, response.data['access_tokken']);
-          
-         
+      if (userData.authstatus == false) {
+        throw (userData.message);
+      }
+
       return userData;
     } catch (e) {
       rethrow;

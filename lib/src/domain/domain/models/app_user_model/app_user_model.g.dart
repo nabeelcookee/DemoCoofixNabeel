@@ -16,6 +16,8 @@ _$AppUserImpl _$$AppUserImplFromJson(Map<String, dynamic> json) =>
       active: json['active'] as bool? ?? false,
       lastLoggedIn: json['last_logged_in'] as String? ?? '',
       userid: json['user_id'] as String? ?? '',
+      authstatus: json['auth_status'] as bool? ?? false,
+      message: json['message'] as String? ?? '',
     );
 
 Map<String, dynamic> _$$AppUserImplToJson(_$AppUserImpl instance) =>
@@ -28,4 +30,6 @@ Map<String, dynamic> _$$AppUserImplToJson(_$AppUserImpl instance) =>
       'active': instance.active,
       'last_logged_in': instance.lastLoggedIn,
       'user_id': instance.userid,
+      'auth_status': instance.authstatus,
+      'message': instance.message,
     };

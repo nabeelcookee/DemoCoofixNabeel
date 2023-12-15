@@ -15,7 +15,9 @@ class AppUser with _$AppUser{
    @Default('') String image,
    @Default(false) bool active,
    @JsonKey(name: 'last_logged_in') @Default('') String lastLoggedIn, 
-   @JsonKey(name: 'user_id')@Default('')String userid
+   @JsonKey(name: 'user_id')@Default('')String userid,
+   @JsonKey(name: 'auth_status')@Default(false)bool authstatus,
+   @JsonKey(name: 'message')@Default('')String message
   })= _AppUser;
  
   factory AppUser.fromJson(Map<String, dynamic> json)=> _$AppUserFromJson(json);
