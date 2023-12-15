@@ -3,7 +3,11 @@ import 'package:bloc/bloc.dart';
 import 'package:coofix/app/constants/status/status.dart';
 import 'package:coofix/src/domain/domain/repositories/i_get_serviece_repositry.dart';
 import 'package:injectable/injectable.dart';
-
+import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:coofix/src/domain/domain/models/get_servieces/get_servieces_model.dart';
+part 'get_services_event.dart';
+part 'get_services_state.dart';
+part 'get_services_bloc.freezed.dart';
 @injectable
 class GetServicesBloc extends Bloc<GetServicesEvent, ServiceState> {
   final IGetServieces iGetServieces;

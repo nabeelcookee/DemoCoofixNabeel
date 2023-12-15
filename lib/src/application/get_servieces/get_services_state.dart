@@ -1,6 +1,7 @@
 
 
-part  of 'get_services_bloc';
+part of 'get_services_bloc';
+
 /// TODO : Review changes to do
 ///
 /// - Dont generate dedicated freezed files for events or states.
