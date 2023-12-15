@@ -110,9 +110,10 @@ class AuthRepository implements IAuthRepository {
 
       return user;
     } catch (error) {
-      throw Exception(error);
+      rethrow;
     }
   }
+
   @override
   Future<AppUser> verifyOtp(
       {required String otp, required String userId}) async {

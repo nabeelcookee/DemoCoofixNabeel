@@ -57,8 +57,12 @@ class _SplashViewState extends State<SplashView>
           Navigator.pushReplacementNamed(
               context, RouterConstants.bottomNavRoute,
               arguments: 0);
-        } else {
+        } else if (state.checkAuthStatus is StatusFailure){
           Navigator.pushReplacementNamed(
+              context, RouterConstants.onboardingRoute,
+              arguments: 0);
+        }else{
+           Navigator.pushReplacementNamed(
               context, RouterConstants.onboardingRoute,
               arguments: 0);
         }
