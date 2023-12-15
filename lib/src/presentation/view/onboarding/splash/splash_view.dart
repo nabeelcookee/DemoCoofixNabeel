@@ -35,9 +35,9 @@ class _SplashViewState extends State<SplashView>
         AnimationController(vsync: this, duration: const Duration(seconds: 1));
     _animationController!.addListener(() => setState(() {}));
     _animationController!.repeat();
-     WidgetsBinding.instance.addPostFrameCallback((_) {
-    chechPreviouseLogin();
-  });
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      chechPreviouseLogin();
+    });
     super.initState();
   }
 
@@ -52,12 +52,12 @@ class _SplashViewState extends State<SplashView>
     final kSize = MediaQuery.of(context).size;
     return BlocListener<AuthBloc, AuthState>(
       listener: (context, state) {
-         print(" error is ${state.checkAuthStatus}");
+        print(" error is ${state.checkAuthStatus}");
         if (state.checkAuthStatus is StatusSuccess) {
           Navigator.pushReplacementNamed(
               context, RouterConstants.bottomNavRoute,
               arguments: 0);
-        } else if (state.checkAuthStatus is StatusFailure){
+        } else if (state.checkAuthStatus is StatusFailure) {
           Navigator.pushReplacementNamed(
               context, RouterConstants.onboardingRoute,
               arguments: 0);
