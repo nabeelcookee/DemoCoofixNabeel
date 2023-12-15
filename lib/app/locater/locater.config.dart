@@ -66,7 +66,8 @@ extension GetItInjectableX on _i1.GetIt {
         () => _i5.AuthRepository(api: gh<_i3.Api>()));
     gh.lazySingleton<_i6.IGetAddress>(() => _i7.GetAddressRepository());
     gh.lazySingleton<_i8.IGetBannerRepositry>(() => _i9.GetBannerRepositry());
-    gh.lazySingleton<_i10.IGetServieces>(() => _i11.GetServiecesRepositry());
+    gh.lazySingleton<_i10.IGetServieces>(
+        () => _i11.GetServiecesRepositry(api: gh<_i3.Api>()));
     gh.lazySingleton<_i12.INewRequestRepositry>(
         () => _i13.NewRequestRepositry());
     gh.lazySingleton<_i14.IProdectSales>(() => _i15.GetProdectRepositry());

@@ -2,6 +2,7 @@ import 'dart:developer';
 
 import 'package:coofix/app/constants/api_constants.dart';
 import 'package:coofix/app/interceptar/dio_interceptor.dart';
+import 'package:coofix/app/services/api_services/api_service.dart';
 import 'package:coofix/src/domain/domain/models/get_servieces/get_servieces_model.dart';
 import 'package:coofix/src/domain/domain/repositories/i_get_serviece_repositry.dart';
 import 'package:dio/dio.dart';
@@ -22,34 +23,21 @@ import 'package:coofix/src/presentation/core/constants/constants.dart';
 
 @LazySingleton(as: IGetServieces)
 class GetServiecesRepositry implements IGetServieces {
+   final Api api;
+   GetServiecesRepositry({required this .api});
   @override
   Future<List<GetServiecesModel>> getServices(
       {required String id, required int skip, required int limit}) async {
     try {
-      SharedPreferences prefs = await SharedPreferences.getInstance();
       final Map<String, dynamic> data = {
         'id': id,
         'limit': limit,
         'skip': skip,
       };
-      var dio = Dio();
-      dio.interceptors.add(Dionterceptor());
-      final response = await dio.post(
-        ApiEndpoints.getServieces,
-        data: data,
-        options: Options(headers: {"Tokenvalid": AppConstants.tockenValied}),
-      );
-      if (kDebugMode) {
-        print(
-            "get services accsess token is ${prefs.getString('access_token')}");
-        print('Get Servieces Response status code: ${response.statusCode}');
-        print('Get Servieces Response headers: ${response.headers}');
-        print('Get Servieces Response body: ${response.data}');
-      }
+
+      var response =await api.profile.post(ApiEndpoints.getServieces,data: data);
       if (response.data is Map<String, dynamic>) {
         final Map<String, dynamic> responseData = response.data;
-        log(responseData.toString(), name: "response.data");
-
         final List<GetServiecesModel> dataList = [];
         for (var element in responseData['data'] as List) {
           dataList.add(GetServiecesModel.fromJson(element));
@@ -61,10 +49,7 @@ class GetServiecesRepositry implements IGetServieces {
             "Unexpected response type: ${response.data.runtimeType}");
       }
     } catch (e) {
-      if (kDebugMode) {
-        print('Exception: $e');
-      }
-      throw Exception("Failed with exception: $e");
+     rethrow;
     }
   }
 }

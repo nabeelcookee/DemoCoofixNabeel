@@ -1,3 +1,4 @@
+import 'package:coofix/app/constants/status/status.dart';
 import 'package:coofix/src/domain/domain/models/get_servieces/get_servieces_model.dart';
 import 'package:flutter/foundation.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
@@ -12,7 +13,17 @@ part 'get_services_state.freezed.dart';
 ///
 @freezed
 abstract class ServiceState with _$ServiceState {
-  factory ServiceState({required bool status, required bool isLoading, required String errorMessage, required List<GetServiecesModel> services, required String selecterServiceId}) = _ServiceState;
+  factory ServiceState(
+      {required bool status,
+      required Status isLoading,
+      required String errorMessage,
+      required List<GetServiecesModel> services,
+      required String selecterServiceId}) = _ServiceState;
 
-  factory ServiceState.initial() => ServiceState(status: false, isLoading: false, errorMessage: "", services: [], selecterServiceId: "");
+  factory ServiceState.initial() => ServiceState(
+      status: false,
+      isLoading: Status.initial(),
+      errorMessage: "",
+      services: [],
+      selecterServiceId: "");
 }

@@ -17,7 +17,7 @@ final _privateConstructorUsedError = UnsupportedError(
 /// @nodoc
 mixin _$ServiceState {
   bool get status => throw _privateConstructorUsedError;
-  bool get isLoading => throw _privateConstructorUsedError;
+  Status get isLoading => throw _privateConstructorUsedError;
   String get errorMessage => throw _privateConstructorUsedError;
   List<GetServiecesModel> get services => throw _privateConstructorUsedError;
   String get selecterServiceId => throw _privateConstructorUsedError;
@@ -35,10 +35,12 @@ abstract class $ServiceStateCopyWith<$Res> {
   @useResult
   $Res call(
       {bool status,
-      bool isLoading,
+      Status isLoading,
       String errorMessage,
       List<GetServiecesModel> services,
       String selecterServiceId});
+
+  $StatusCopyWith<$Res> get isLoading;
 }
 
 /// @nodoc
@@ -68,7 +70,7 @@ class _$ServiceStateCopyWithImpl<$Res, $Val extends ServiceState>
       isLoading: null == isLoading
           ? _value.isLoading
           : isLoading // ignore: cast_nullable_to_non_nullable
-              as bool,
+              as Status,
       errorMessage: null == errorMessage
           ? _value.errorMessage
           : errorMessage // ignore: cast_nullable_to_non_nullable
@@ -83,6 +85,14 @@ class _$ServiceStateCopyWithImpl<$Res, $Val extends ServiceState>
               as String,
     ) as $Val);
   }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $StatusCopyWith<$Res> get isLoading {
+    return $StatusCopyWith<$Res>(_value.isLoading, (value) {
+      return _then(_value.copyWith(isLoading: value) as $Val);
+    });
+  }
 }
 
 /// @nodoc
@@ -95,10 +105,13 @@ abstract class _$$ServiceStateImplCopyWith<$Res>
   @useResult
   $Res call(
       {bool status,
-      bool isLoading,
+      Status isLoading,
       String errorMessage,
       List<GetServiecesModel> services,
       String selecterServiceId});
+
+  @override
+  $StatusCopyWith<$Res> get isLoading;
 }
 
 /// @nodoc
@@ -126,7 +139,7 @@ class __$$ServiceStateImplCopyWithImpl<$Res>
       isLoading: null == isLoading
           ? _value.isLoading
           : isLoading // ignore: cast_nullable_to_non_nullable
-              as bool,
+              as Status,
       errorMessage: null == errorMessage
           ? _value.errorMessage
           : errorMessage // ignore: cast_nullable_to_non_nullable
@@ -157,7 +170,7 @@ class _$ServiceStateImpl with DiagnosticableTreeMixin implements _ServiceState {
   @override
   final bool status;
   @override
-  final bool isLoading;
+  final Status isLoading;
   @override
   final String errorMessage;
   final List<GetServiecesModel> _services;
@@ -217,7 +230,7 @@ class _$ServiceStateImpl with DiagnosticableTreeMixin implements _ServiceState {
 abstract class _ServiceState implements ServiceState {
   factory _ServiceState(
       {required final bool status,
-      required final bool isLoading,
+      required final Status isLoading,
       required final String errorMessage,
       required final List<GetServiecesModel> services,
       required final String selecterServiceId}) = _$ServiceStateImpl;
@@ -225,7 +238,7 @@ abstract class _ServiceState implements ServiceState {
   @override
   bool get status;
   @override
-  bool get isLoading;
+  Status get isLoading;
   @override
   String get errorMessage;
   @override
