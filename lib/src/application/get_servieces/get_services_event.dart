@@ -1,6 +1,7 @@
 
-import 'package:freezed_annotation/freezed_annotation.dart';
- part 'get_services_event.freezed.dart';
+
+
+part  of 'get_services_bloc';
 
 /// TODO : Review changes to do
 /// 

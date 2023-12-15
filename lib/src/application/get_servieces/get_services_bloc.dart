@@ -2,7 +2,6 @@ import 'dart:async';
 import 'package:bloc/bloc.dart';
 import 'package:coofix/app/constants/status/status.dart';
 import 'package:coofix/src/domain/domain/repositories/i_get_serviece_repositry.dart';
-import 'package:flutter/foundation.dart';
 import 'package:injectable/injectable.dart';
 
 @injectable
@@ -26,7 +25,7 @@ class GetServicesBloc extends Bloc<GetServicesEvent, ServiceState> {
       ));
     } catch (e) {
       emit(
-        state.copyWith(isLoading: Status.failure(e.toString()), status: false),
+        state.copyWith(isLoading: Status.failure(e.toString()),),
       );
     }
   }

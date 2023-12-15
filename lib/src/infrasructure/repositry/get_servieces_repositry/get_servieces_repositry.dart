@@ -12,19 +12,19 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:coofix/src/presentation/core/constants/constants.dart';
 
 /// TODO : Review changes to do
-/// 
+///
 /// - Make api calling and its related functionalities such as interception, error handling as a seperate service class
 /// - Add proper status code handling method. Try to use the features of DioIntercepter for it.
 /// - User debugPrint or log instead of print statement.
 /// - Craete seperate api service profiles for general and profile apis.
-/// - Handle Heeders with tokens for different api profiles commonly 
+/// - Handle Heeders with tokens for different api profiles commonly
 /// - Find a common method for api calls to reduce reduntant writing of same code in every repositories.
 /// - Remove unused log, print statements
 
 @LazySingleton(as: IGetServieces)
-class GetServiecesRepositry implements IGetServieces {
-   final Api api;
-   GetServiecesRepositry({required this .api});
+class GetServiecesRepository implements IGetServieces {
+  final Api api;
+  GetServiecesRepository({required this.api});
   @override
   Future<List<GetServiecesModel>> getServices(
       {required String id, required int skip, required int limit}) async {
@@ -35,7 +35,8 @@ class GetServiecesRepositry implements IGetServieces {
         'skip': skip,
       };
 
-      var response =await api.profile.post(ApiEndpoints.getServieces,data: data);
+      var response =
+          await api.profile.post(ApiEndpoints.getServieces, data: data);
       if (response.data is Map<String, dynamic>) {
         final Map<String, dynamic> responseData = response.data;
         final List<GetServiecesModel> dataList = [];
@@ -49,7 +50,7 @@ class GetServiecesRepositry implements IGetServieces {
             "Unexpected response type: ${response.data.runtimeType}");
       }
     } catch (e) {
-     rethrow;
+      rethrow;
     }
   }
 }
