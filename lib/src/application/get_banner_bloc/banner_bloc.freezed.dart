@@ -174,7 +174,7 @@ abstract class _getBannerEvent implements BannerEvent {
 
 /// @nodoc
 mixin _$BannerState {
-  bool get status => throw _privateConstructorUsedError;
+  Status get bannerStatus => throw _privateConstructorUsedError;
   String get message => throw _privateConstructorUsedError;
   List<BannerModel> get bannerList => throw _privateConstructorUsedError;
 
@@ -189,7 +189,10 @@ abstract class $BannerStateCopyWith<$Res> {
           BannerState value, $Res Function(BannerState) then) =
       _$BannerStateCopyWithImpl<$Res, BannerState>;
   @useResult
-  $Res call({bool status, String message, List<BannerModel> bannerList});
+  $Res call(
+      {Status bannerStatus, String message, List<BannerModel> bannerList});
+
+  $StatusCopyWith<$Res> get bannerStatus;
 }
 
 /// @nodoc
@@ -205,15 +208,15 @@ class _$BannerStateCopyWithImpl<$Res, $Val extends BannerState>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? status = null,
+    Object? bannerStatus = null,
     Object? message = null,
     Object? bannerList = null,
   }) {
     return _then(_value.copyWith(
-      status: null == status
-          ? _value.status
-          : status // ignore: cast_nullable_to_non_nullable
-              as bool,
+      bannerStatus: null == bannerStatus
+          ? _value.bannerStatus
+          : bannerStatus // ignore: cast_nullable_to_non_nullable
+              as Status,
       message: null == message
           ? _value.message
           : message // ignore: cast_nullable_to_non_nullable
@@ -223,6 +226,14 @@ class _$BannerStateCopyWithImpl<$Res, $Val extends BannerState>
           : bannerList // ignore: cast_nullable_to_non_nullable
               as List<BannerModel>,
     ) as $Val);
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $StatusCopyWith<$Res> get bannerStatus {
+    return $StatusCopyWith<$Res>(_value.bannerStatus, (value) {
+      return _then(_value.copyWith(bannerStatus: value) as $Val);
+    });
   }
 }
 
@@ -234,7 +245,11 @@ abstract class _$$BannerStateImplCopyWith<$Res>
       __$$BannerStateImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({bool status, String message, List<BannerModel> bannerList});
+  $Res call(
+      {Status bannerStatus, String message, List<BannerModel> bannerList});
+
+  @override
+  $StatusCopyWith<$Res> get bannerStatus;
 }
 
 /// @nodoc
@@ -248,15 +263,15 @@ class __$$BannerStateImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? status = null,
+    Object? bannerStatus = null,
     Object? message = null,
     Object? bannerList = null,
   }) {
     return _then(_$BannerStateImpl(
-      status: null == status
-          ? _value.status
-          : status // ignore: cast_nullable_to_non_nullable
-              as bool,
+      bannerStatus: null == bannerStatus
+          ? _value.bannerStatus
+          : bannerStatus // ignore: cast_nullable_to_non_nullable
+              as Status,
       message: null == message
           ? _value.message
           : message // ignore: cast_nullable_to_non_nullable
@@ -273,13 +288,13 @@ class __$$BannerStateImplCopyWithImpl<$Res>
 
 class _$BannerStateImpl with DiagnosticableTreeMixin implements _BannerState {
   _$BannerStateImpl(
-      {required this.status,
+      {required this.bannerStatus,
       required this.message,
       required final List<BannerModel> bannerList})
       : _bannerList = bannerList;
 
   @override
-  final bool status;
+  final Status bannerStatus;
   @override
   final String message;
   final List<BannerModel> _bannerList;
@@ -292,7 +307,7 @@ class _$BannerStateImpl with DiagnosticableTreeMixin implements _BannerState {
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'BannerState(status: $status, message: $message, bannerList: $bannerList)';
+    return 'BannerState(bannerStatus: $bannerStatus, message: $message, bannerList: $bannerList)';
   }
 
   @override
@@ -300,7 +315,7 @@ class _$BannerStateImpl with DiagnosticableTreeMixin implements _BannerState {
     super.debugFillProperties(properties);
     properties
       ..add(DiagnosticsProperty('type', 'BannerState'))
-      ..add(DiagnosticsProperty('status', status))
+      ..add(DiagnosticsProperty('bannerStatus', bannerStatus))
       ..add(DiagnosticsProperty('message', message))
       ..add(DiagnosticsProperty('bannerList', bannerList));
   }
@@ -310,14 +325,15 @@ class _$BannerStateImpl with DiagnosticableTreeMixin implements _BannerState {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$BannerStateImpl &&
-            (identical(other.status, status) || other.status == status) &&
+            (identical(other.bannerStatus, bannerStatus) ||
+                other.bannerStatus == bannerStatus) &&
             (identical(other.message, message) || other.message == message) &&
             const DeepCollectionEquality()
                 .equals(other._bannerList, _bannerList));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, status, message,
+  int get hashCode => Object.hash(runtimeType, bannerStatus, message,
       const DeepCollectionEquality().hash(_bannerList));
 
   @JsonKey(ignore: true)
@@ -329,12 +345,12 @@ class _$BannerStateImpl with DiagnosticableTreeMixin implements _BannerState {
 
 abstract class _BannerState implements BannerState {
   factory _BannerState(
-      {required final bool status,
+      {required final Status bannerStatus,
       required final String message,
       required final List<BannerModel> bannerList}) = _$BannerStateImpl;
 
   @override
-  bool get status;
+  Status get bannerStatus;
   @override
   String get message;
   @override

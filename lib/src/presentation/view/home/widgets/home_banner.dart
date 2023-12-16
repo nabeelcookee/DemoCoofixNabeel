@@ -1,3 +1,4 @@
+import 'package:coofix/app/constants/status/status.dart';
 import 'package:coofix/src/application/get_banner_bloc/banner_bloc.dart';
 import 'package:coofix/src/presentation/core/constants/constants.dart';
 import 'package:coofix/src/presentation/core/constants/images.dart';
@@ -18,27 +19,36 @@ class HomeBanner extends StatefulWidget {
 
 class _HomeBannerState extends State<HomeBanner> {
   @override
-    void didChangeDependencies() {
+  void initState() {
     context.read<BannerBloc>().add(const BannerEvent.getBanner());
-    super.didChangeDependencies();
+    super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
+    const index = 0;
     final kSize = MediaQuery.of(context).size;
     return BlocBuilder<BannerBloc, BannerState>(
       builder: (context, state) {
         if (state.bannerList.isEmpty) {
-          return Container();
-        }
-
-        const index =
-            0; // Change this line based on your logic to determine the index
-
-        return Stack(
+          return const  Center(
+            child: SizedBox(
+              height: 20,
+              width: 20,
+              child:  CircularProgressIndicator()),
+          );
+        }else if(state.bannerStatus is StatusLoading){
+        return const  Center(
+          child: SizedBox(
+            height: 20,
+            width:20,
+            child: CircularProgressIndicator()),
+        );
+        }else if (state.bannerStatus is StatusSuccess){
+          return Stack(
           alignment: Alignment.bottomCenter,
           children: [
-            Container(
+            Container(  
               height: 150,
               margin: const EdgeInsets.symmetric(
                   horizontal: AppConstants.basePadding),
@@ -139,7 +149,13 @@ class _HomeBannerState extends State<HomeBanner> {
             ),
           ],
         );
+    
+    
+        }
+    return const SizedBox();
       },
     );
+  
+  
   }
 }

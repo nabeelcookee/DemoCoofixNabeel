@@ -1,8 +1,5 @@
-
 import 'package:coofix/app/router/router_constants.dart';
 import 'package:coofix/src/application/get_servieces/get_services_bloc.dart';
-import 'package:coofix/src/application/get_servieces/get_services_event.dart';
-import 'package:coofix/src/application/get_servieces/get_services_state.dart';
 import 'package:coofix/src/presentation/core/constants/constants.dart';
 import 'package:coofix/src/presentation/core/constants/images.dart';
 import 'package:coofix/src/presentation/core/theme/colors.dart';
@@ -19,19 +16,18 @@ class ServiceCategoryList extends StatefulWidget {
 }
 
 class _ServiceCategoryListState extends State<ServiceCategoryList> {
-  @override
-  void initState() {
-    context.read<GetServicesBloc>().add(
-          const GetServicesEvent.getServices(limit: 0, skip: 0, id: ""),
-        );
-    super.initState();
-  }
+  // @override
+  // void initState() {
+  //   context.read<GetServicesBloc>().add(
+  //         const GetServicesEvent.getServices(limit: 0, skip: 0, id: ""),
+  //       );
+  //   super.initState();
+  // }
 
   @override
   Widget build(BuildContext context) {
     final kSize = MediaQuery.of(context).size;
-    return BlocConsumer<GetServicesBloc, ServiceState>(
-      listener: (context, state) {},
+    return BlocBuilder<GetServicesBloc, ServiceState>(
       builder: (context, state) {
         if (state.services.isEmpty) {
           return const SizedBox(
@@ -39,7 +35,7 @@ class _ServiceCategoryListState extends State<ServiceCategoryList> {
             height: 100,
             child: Text("No services available"),
           );
-        } else if (state.services.isNotEmpty) {
+        } else {
           return Padding(
             padding: const EdgeInsets.symmetric(
               horizontal: AppConstants.basePadding,
@@ -135,10 +131,9 @@ class _ServiceCategoryListState extends State<ServiceCategoryList> {
               }),
             ),
           );
-        } else {
-          return Text(state.errorMessage);
         }
-      },
+        }
+
     );
   }
 

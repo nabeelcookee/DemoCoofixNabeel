@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
-part of 'get_services_event.dart';
+part of 'get_services_bloc.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -461,5 +461,189 @@ abstract class _SelecterServiceId implements SelecterServiceId {
   @override
   @JsonKey(ignore: true)
   _$$SelecterServiceIdImplCopyWith<_$SelecterServiceIdImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+mixin _$ServiceState {
+  Status get serviceStatus => throw _privateConstructorUsedError;
+  List<GetServiecesModel> get services => throw _privateConstructorUsedError;
+  String get selecterServiceId => throw _privateConstructorUsedError;
+
+  @JsonKey(ignore: true)
+  $ServiceStateCopyWith<ServiceState> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $ServiceStateCopyWith<$Res> {
+  factory $ServiceStateCopyWith(
+          ServiceState value, $Res Function(ServiceState) then) =
+      _$ServiceStateCopyWithImpl<$Res, ServiceState>;
+  @useResult
+  $Res call(
+      {Status serviceStatus,
+      List<GetServiecesModel> services,
+      String selecterServiceId});
+
+  $StatusCopyWith<$Res> get serviceStatus;
+}
+
+/// @nodoc
+class _$ServiceStateCopyWithImpl<$Res, $Val extends ServiceState>
+    implements $ServiceStateCopyWith<$Res> {
+  _$ServiceStateCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? serviceStatus = null,
+    Object? services = null,
+    Object? selecterServiceId = null,
+  }) {
+    return _then(_value.copyWith(
+      serviceStatus: null == serviceStatus
+          ? _value.serviceStatus
+          : serviceStatus // ignore: cast_nullable_to_non_nullable
+              as Status,
+      services: null == services
+          ? _value.services
+          : services // ignore: cast_nullable_to_non_nullable
+              as List<GetServiecesModel>,
+      selecterServiceId: null == selecterServiceId
+          ? _value.selecterServiceId
+          : selecterServiceId // ignore: cast_nullable_to_non_nullable
+              as String,
+    ) as $Val);
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $StatusCopyWith<$Res> get serviceStatus {
+    return $StatusCopyWith<$Res>(_value.serviceStatus, (value) {
+      return _then(_value.copyWith(serviceStatus: value) as $Val);
+    });
+  }
+}
+
+/// @nodoc
+abstract class _$$ServiceStateImplCopyWith<$Res>
+    implements $ServiceStateCopyWith<$Res> {
+  factory _$$ServiceStateImplCopyWith(
+          _$ServiceStateImpl value, $Res Function(_$ServiceStateImpl) then) =
+      __$$ServiceStateImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call(
+      {Status serviceStatus,
+      List<GetServiecesModel> services,
+      String selecterServiceId});
+
+  @override
+  $StatusCopyWith<$Res> get serviceStatus;
+}
+
+/// @nodoc
+class __$$ServiceStateImplCopyWithImpl<$Res>
+    extends _$ServiceStateCopyWithImpl<$Res, _$ServiceStateImpl>
+    implements _$$ServiceStateImplCopyWith<$Res> {
+  __$$ServiceStateImplCopyWithImpl(
+      _$ServiceStateImpl _value, $Res Function(_$ServiceStateImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? serviceStatus = null,
+    Object? services = null,
+    Object? selecterServiceId = null,
+  }) {
+    return _then(_$ServiceStateImpl(
+      serviceStatus: null == serviceStatus
+          ? _value.serviceStatus
+          : serviceStatus // ignore: cast_nullable_to_non_nullable
+              as Status,
+      services: null == services
+          ? _value._services
+          : services // ignore: cast_nullable_to_non_nullable
+              as List<GetServiecesModel>,
+      selecterServiceId: null == selecterServiceId
+          ? _value.selecterServiceId
+          : selecterServiceId // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$ServiceStateImpl implements _ServiceState {
+  _$ServiceStateImpl(
+      {required this.serviceStatus,
+      required final List<GetServiecesModel> services,
+      required this.selecterServiceId})
+      : _services = services;
+
+  @override
+  final Status serviceStatus;
+  final List<GetServiecesModel> _services;
+  @override
+  List<GetServiecesModel> get services {
+    if (_services is EqualUnmodifiableListView) return _services;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_services);
+  }
+
+  @override
+  final String selecterServiceId;
+
+  @override
+  String toString() {
+    return 'ServiceState(serviceStatus: $serviceStatus, services: $services, selecterServiceId: $selecterServiceId)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$ServiceStateImpl &&
+            (identical(other.serviceStatus, serviceStatus) ||
+                other.serviceStatus == serviceStatus) &&
+            const DeepCollectionEquality().equals(other._services, _services) &&
+            (identical(other.selecterServiceId, selecterServiceId) ||
+                other.selecterServiceId == selecterServiceId));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, serviceStatus,
+      const DeepCollectionEquality().hash(_services), selecterServiceId);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$ServiceStateImplCopyWith<_$ServiceStateImpl> get copyWith =>
+      __$$ServiceStateImplCopyWithImpl<_$ServiceStateImpl>(this, _$identity);
+}
+
+abstract class _ServiceState implements ServiceState {
+  factory _ServiceState(
+      {required final Status serviceStatus,
+      required final List<GetServiecesModel> services,
+      required final String selecterServiceId}) = _$ServiceStateImpl;
+
+  @override
+  Status get serviceStatus;
+  @override
+  List<GetServiecesModel> get services;
+  @override
+  String get selecterServiceId;
+  @override
+  @JsonKey(ignore: true)
+  _$$ServiceStateImplCopyWith<_$ServiceStateImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
