@@ -32,18 +32,14 @@ class GetBannerRepository implements IGetBannerRepository {
           headers: {"Tokenvalid": AppConstants.tockenValied},
         ),
       );
-      if (response.data is Map<String, dynamic>) {
-        final Map<String, dynamic> responseData = response.data;
-        final List<BannerModel> getBannerList = [];
-        for (var element in responseData['data'] as List) {
-          getBannerList.add(BannerModel.fromJson(element));
-          AppConstants.bannerImageBaseUrl = responseData['image_base_url'];
-        }
-        return getBannerList;
-      } else {
-        throw Exception(
-            "Unexpected response type: ${response.data.runtimeType}");
+
+      final Map<String, dynamic> responseData = response.data;
+      final List<BannerModel> getBannerList = [];
+      for (var element in responseData['data'] as List) {
+        getBannerList.add(BannerModel.fromJson(element));
+        AppConstants.bannerImageBaseUrl = responseData['image_base_url'];
       }
+      return getBannerList;
     } catch (e) {
       rethrow;
     }

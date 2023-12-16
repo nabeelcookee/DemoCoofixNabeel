@@ -467,7 +467,6 @@ abstract class _SelecterServiceId implements SelecterServiceId {
 /// @nodoc
 mixin _$ServiceState {
   Status get serviceStatus => throw _privateConstructorUsedError;
-  String get errorMessage => throw _privateConstructorUsedError;
   List<GetServiecesModel> get services => throw _privateConstructorUsedError;
   String get selecterServiceId => throw _privateConstructorUsedError;
 
@@ -484,7 +483,6 @@ abstract class $ServiceStateCopyWith<$Res> {
   @useResult
   $Res call(
       {Status serviceStatus,
-      String errorMessage,
       List<GetServiecesModel> services,
       String selecterServiceId});
 
@@ -505,7 +503,6 @@ class _$ServiceStateCopyWithImpl<$Res, $Val extends ServiceState>
   @override
   $Res call({
     Object? serviceStatus = null,
-    Object? errorMessage = null,
     Object? services = null,
     Object? selecterServiceId = null,
   }) {
@@ -514,10 +511,6 @@ class _$ServiceStateCopyWithImpl<$Res, $Val extends ServiceState>
           ? _value.serviceStatus
           : serviceStatus // ignore: cast_nullable_to_non_nullable
               as Status,
-      errorMessage: null == errorMessage
-          ? _value.errorMessage
-          : errorMessage // ignore: cast_nullable_to_non_nullable
-              as String,
       services: null == services
           ? _value.services
           : services // ignore: cast_nullable_to_non_nullable
@@ -548,7 +541,6 @@ abstract class _$$ServiceStateImplCopyWith<$Res>
   @useResult
   $Res call(
       {Status serviceStatus,
-      String errorMessage,
       List<GetServiecesModel> services,
       String selecterServiceId});
 
@@ -568,7 +560,6 @@ class __$$ServiceStateImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? serviceStatus = null,
-    Object? errorMessage = null,
     Object? services = null,
     Object? selecterServiceId = null,
   }) {
@@ -577,10 +568,6 @@ class __$$ServiceStateImplCopyWithImpl<$Res>
           ? _value.serviceStatus
           : serviceStatus // ignore: cast_nullable_to_non_nullable
               as Status,
-      errorMessage: null == errorMessage
-          ? _value.errorMessage
-          : errorMessage // ignore: cast_nullable_to_non_nullable
-              as String,
       services: null == services
           ? _value._services
           : services // ignore: cast_nullable_to_non_nullable
@@ -598,15 +585,12 @@ class __$$ServiceStateImplCopyWithImpl<$Res>
 class _$ServiceStateImpl implements _ServiceState {
   _$ServiceStateImpl(
       {required this.serviceStatus,
-      required this.errorMessage,
       required final List<GetServiecesModel> services,
       required this.selecterServiceId})
       : _services = services;
 
   @override
   final Status serviceStatus;
-  @override
-  final String errorMessage;
   final List<GetServiecesModel> _services;
   @override
   List<GetServiecesModel> get services {
@@ -620,7 +604,7 @@ class _$ServiceStateImpl implements _ServiceState {
 
   @override
   String toString() {
-    return 'ServiceState(serviceStatus: $serviceStatus, errorMessage: $errorMessage, services: $services, selecterServiceId: $selecterServiceId)';
+    return 'ServiceState(serviceStatus: $serviceStatus, services: $services, selecterServiceId: $selecterServiceId)';
   }
 
   @override
@@ -630,15 +614,13 @@ class _$ServiceStateImpl implements _ServiceState {
             other is _$ServiceStateImpl &&
             (identical(other.serviceStatus, serviceStatus) ||
                 other.serviceStatus == serviceStatus) &&
-            (identical(other.errorMessage, errorMessage) ||
-                other.errorMessage == errorMessage) &&
             const DeepCollectionEquality().equals(other._services, _services) &&
             (identical(other.selecterServiceId, selecterServiceId) ||
                 other.selecterServiceId == selecterServiceId));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, serviceStatus, errorMessage,
+  int get hashCode => Object.hash(runtimeType, serviceStatus,
       const DeepCollectionEquality().hash(_services), selecterServiceId);
 
   @JsonKey(ignore: true)
@@ -651,14 +633,11 @@ class _$ServiceStateImpl implements _ServiceState {
 abstract class _ServiceState implements ServiceState {
   factory _ServiceState(
       {required final Status serviceStatus,
-      required final String errorMessage,
       required final List<GetServiecesModel> services,
       required final String selecterServiceId}) = _$ServiceStateImpl;
 
   @override
   Status get serviceStatus;
-  @override
-  String get errorMessage;
   @override
   List<GetServiecesModel> get services;
   @override

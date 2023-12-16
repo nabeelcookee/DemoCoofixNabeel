@@ -19,22 +19,19 @@ class HomeBanner extends StatefulWidget {
 class _HomeBannerState extends State<HomeBanner> {
   @override
   void initState() {
-   context.read<BannerBloc>().add(const BannerEvent.getBanner());
+    context.read<BannerBloc>().add(const BannerEvent.getBanner());
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
+    const index = 0;
     final kSize = MediaQuery.of(context).size;
     return BlocBuilder<BannerBloc, BannerState>(
       builder: (context, state) {
         if (state.bannerList.isEmpty) {
           return Container();
         }
-
-        const index =
-            0; // Change this line based on your logic to determine the index
-
         return Stack(
           alignment: Alignment.bottomCenter,
           children: [

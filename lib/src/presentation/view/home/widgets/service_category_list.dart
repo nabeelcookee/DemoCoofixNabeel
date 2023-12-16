@@ -17,19 +17,18 @@ class ServiceCategoryList extends StatefulWidget {
 }
 
 class _ServiceCategoryListState extends State<ServiceCategoryList> {
-  @override
-  void initState() {
-    context.read<GetServicesBloc>().add(
-          const GetServicesEvent.getServices(limit: 0, skip: 0, id: ""),
-        );
-    super.initState();
-  }
+  // @override
+  // void initState() {
+  //   context.read<GetServicesBloc>().add(
+  //         const GetServicesEvent.getServices(limit: 0, skip: 0, id: ""),
+  //       );
+  //   super.initState();
+  // }
 
   @override
   Widget build(BuildContext context) {
     final kSize = MediaQuery.of(context).size;
-    return BlocConsumer<GetServicesBloc, ServiceState>(
-      listener: (context, state) {},
+    return BlocBuilder<GetServicesBloc, ServiceState>(
       builder: (context, state) {
         if (state.services.isEmpty) {
           return const SizedBox(
@@ -134,7 +133,7 @@ class _ServiceCategoryListState extends State<ServiceCategoryList> {
             ),
           );
         } else {
-          return Text(state.errorMessage);
+          return Container();
         }
       },
     );

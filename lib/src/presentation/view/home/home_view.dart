@@ -24,10 +24,8 @@ class _HomeViewState extends State<HomeView> {
     context
         .read<GetServicesBloc>()
         .add(const GetServicesEvent.getServices(limit: 0, skip: 0, id: ""));
-      
     super.initState();
   }
-
   @override
   Widget build(BuildContext context) {
     final kSize = MediaQuery.of(context).size;

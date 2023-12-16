@@ -24,7 +24,7 @@ class BannerBloc extends Bloc<BannerEvent, BannerState> {
       emit(state.copyWith(bannerList: response, bannerStatus: Status.success()));
     } catch (e) {
       emit(state.copyWith( bannerStatus: Status.failure(e.toString())));
-      throw Exception(e);
+      
     }
   }
 }

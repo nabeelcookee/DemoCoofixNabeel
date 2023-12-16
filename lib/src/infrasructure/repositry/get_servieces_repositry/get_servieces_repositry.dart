@@ -37,18 +37,14 @@ class GetServiecesRepository implements IGetServiecesRepository {
 
       var response =
           await api.profile.post(ApiEndpoints.getServieces, data: data);
-      if (response.data is Map<String, dynamic>) {
-        final Map<String, dynamic> responseData = response.data;
-        final List<GetServiecesModel> dataList = [];
-        for (var element in responseData['data'] as List) {
-          dataList.add(GetServiecesModel.fromJson(element));
-          AppConstants.servicIimageBaseUrl = responseData['image_base_url'];
-        }
-        return dataList;
-      } else {
-        throw Exception(
-            "Unexpected response type: ${response.data.runtimeType}");
+
+      final Map<String, dynamic> responseData = response.data;
+      final List<GetServiecesModel> dataList = [];
+      for (var element in responseData['data'] as List) {
+        dataList.add(GetServiecesModel.fromJson(element));
+        AppConstants.servicIimageBaseUrl = responseData['image_base_url'];
       }
+      return dataList;
     } catch (e) {
       rethrow;
     }

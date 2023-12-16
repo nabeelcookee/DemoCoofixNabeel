@@ -6,7 +6,7 @@ part of 'banner_bloc.dart';
 ///
 
 @freezed
-abstract class BannerState with _$BannerState {
+ class BannerState with _$BannerState {
   factory BannerState({
     required Status bannerStatus,
     required String message,

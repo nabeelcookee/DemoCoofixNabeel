@@ -1,4 +1,3 @@
-
 import 'package:coofix/src/application/get_servieces/get_services_bloc.dart';
 import 'package:coofix/src/presentation/core/constants/images.dart';
 import 'package:coofix/src/presentation/core/constants/strings.dart';
@@ -27,7 +26,7 @@ class _ServiceGridTileState extends State<ServiceGridTile> {
           primary: true,
           padding: EdgeInsets.only(bottom: kSize.height * 0.131),
           scrollDirection: Axis.vertical,
-          itemCount: 10,
+          itemCount: state.services.length,
           gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
             childAspectRatio: kSize.width / (kSize.height / 1.8),
             crossAxisSpacing: kSize.width * 0.011,
@@ -40,11 +39,11 @@ class _ServiceGridTileState extends State<ServiceGridTile> {
                 setState(() {
                   if (selected == index) {
                     selected = -1;
-                  
                   } else {
                     selected = index;
                     widget.getServicesId(state.services[selected].id);
-                    print("Selected Service ID: ${state.services[selected].id}");
+                    print(
+                        "Selected Service ID: ${state.services[selected].id}");
                   }
                 });
               },
