@@ -32,14 +32,15 @@ class GetBannerRepository implements IGetBannerRepository {
           headers: {"Tokenvalid": AppConstants.tockenValied},
         ),
       );
-
-      final Map<String, dynamic> responseData = response.data;
-      final List<BannerModel> getBannerList = [];
-      for (var element in responseData['data'] as List) {
-        getBannerList.add(BannerModel.fromJson(element));
-        AppConstants.bannerImageBaseUrl = responseData['image_base_url'];
-      }
-      return getBannerList;
+    
+        final Map<String, dynamic> responseData = response.data;
+        final List<BannerModel> getBannerList = [];
+        for (var element in responseData['data'] as List) {
+          getBannerList.add(BannerModel.fromJson(element));
+          AppConstants.bannerImageBaseUrl = responseData['image_base_url'];
+        }
+        return getBannerList;
+   
     } catch (e) {
       rethrow;
     }

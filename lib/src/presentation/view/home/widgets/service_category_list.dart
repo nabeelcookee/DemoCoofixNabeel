@@ -1,4 +1,3 @@
-
 import 'package:coofix/app/router/router_constants.dart';
 import 'package:coofix/src/application/get_servieces/get_services_bloc.dart';
 import 'package:coofix/src/presentation/core/constants/constants.dart';
@@ -36,7 +35,7 @@ class _ServiceCategoryListState extends State<ServiceCategoryList> {
             height: 100,
             child: Text("No services available"),
           );
-        } else if (state.services.isNotEmpty) {
+        } else {
           return Padding(
             padding: const EdgeInsets.symmetric(
               horizontal: AppConstants.basePadding,
@@ -132,10 +131,9 @@ class _ServiceCategoryListState extends State<ServiceCategoryList> {
               }),
             ),
           );
-        } else {
-          return Container();
         }
-      },
+        }
+
     );
   }
 
